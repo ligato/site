@@ -1,0 +1,193 @@
+baseURL: http://something-fresh.org/
+languageCode: en-us
+title: Ligato
+theme: hugo-fresh
+
+params:
+  navbarlogo:
+  # Logo (from /images/logos/___)
+   image: logos/new-logo-ligato-dark.png
+   link: /
+  font:
+    name: "Open Sans"
+    sizes: [400,600]
+  hero:
+    # Main hero title
+    title: Ligato
+    # Hero subtitle (optional)
+    subtitle: An open source framework for building applications to control and manage Cloud Native Network Functions (CNF)
+    # Button text
+    buttontext: Get started
+    # Where the main hero button links to
+    buttonlink: "#"
+    # Hero image (from /images/___)
+    image: ligato/ligato-agent-worker-green.png
+    # Footer logos (from /images/logos/clients/___.svg)
+    # Metz: replace client logos with FD.io, CNCF, K8S, Contiv VPP
+    clientlogos:
+    - systek
+    - tribe
+    - kromo
+    - infinite
+    - gutwork
+  # Customizable navbar. For a dropdown, add a "sublinks" list.
+  navbar:
+  - title: Blog
+    sublinks:
+      - title: CNFs Ligato/VPP Dose
+        url: "blog/cnf-ligato-fdio"
+  - title: Documentation
+    url: "https://ligato.readthedocs.io/en/latest/"
+  - title: Github
+    sublinks:
+    - title: Infra
+      url: "https://github.com/ligato/cn-infra"
+    - title: VPP Agent
+      url: "https://github.com/ligato/vpp-agent"
+    - title: All Repos
+      url: "https://github.com/ligato"
+#  - title: Log in
+#    url: /
+#  - title: Sign up
+#    url: /
+#    button: true
+  sidebar:
+    # Logo (from /images/logos/___.svg)
+    logo: ligato-diamond
+    sections:
+    - title: User
+      icon: user
+      links:
+      - text: Profile
+        url: /
+      - text: Account
+        url: /
+      - text: Settings
+        url: /
+    - title: Messages
+      icon: envelope
+      links:
+      - text: Inbox
+        url: /
+      - text: Compose
+        url: /
+    - title: Images
+      icon: image
+      links:
+      - text: Library
+        url: /
+      - text: Upload
+        url: /
+    - title: Settings
+      icon: cog
+      links:
+      - text: User settings
+        url: /
+      - text: App settings
+        url: /
+  section1:
+    title:
+    subtitle: Build CNFs!
+    tiles:
+    - title: CNF
+      icon: mouse-globe
+      text: Virtual Network Functions in Containers
+      url: "cnf/cnf-def"
+      buttonText: Learn More
+    - title: Ligato Agent
+      icon: plug-cloud
+      text: Agents/Plugins for CNF Control & Management
+      url: "architecture/lig-agent-stack"
+      buttonText: Learn More
+    - title: Use Cases
+      icon: laptop-cloud
+      text: Solutions enabled by the Ligato Agent
+      url: "use-cases/ligato-use-cases"
+      buttonText: Learn More
+  section2:
+    title: Leveraging the Best in Cloud Native
+    subtitle: for rapid innovation delivery
+    features:
+    - title: High Performance/Feature-Rich Dataplane
+      text: Containerized version bring FD.io/VPP to Cloud Native Environments
+      # Icon (from /images/illustrations/icons/___.svg)
+      icon: fdio
+    - title: Written in Golang
+      text: Goto programming language for its peformance and concurrency
+      icon: golang
+    - title: Kubernetes
+      text: Contains all of the hooks for development and operations in k8s clusters
+      icon: k8s-logo
+#  section3:
+#    title: One platform
+#    subtitle: To rule them all
+#    #image: illustrations/mockups/app-mockup.png
+#    buttonText: Get started
+#    buttonLink: "#"
+#  section4:
+#    title: Our Clients love us!
+#    subtitle: Lorem ipsum sit dolor amet is a dummy text used by typography industry
+#    clients:
+#    - name: Irma Walters
+#      quote: Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
+#      job: Accountant
+#      img: 1
+#    - name: John Bradley
+#      quote: Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
+#      job: Financial Analyst
+#      img: 2
+#    - name: Gary Blackman
+#      quote: Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
+#      job: HR Manager
+#      img: 3
+  footer:
+    # Logo (from /images/logos/___)
+    logo: ligato-diamond.svg
+    # Social media links (GitHub, Twitter, etc.). All are optional.
+    socialmedia:
+    - link: https://github.com/ligato
+      # Icons are from Font Awesome
+      icon: github
+#    - link: https://dribbble.com/#
+#      icon: dribbble
+#    - link: https://facebook.com/#
+#      icon: facebook
+    - link: https://twitter.com/lucperkins
+      icon: twitter
+    - link: https:ligato.slack.com
+      icon: slack
+    bulmalogo: true
+    quicklinks:
+      column1:
+        title: "Product"
+        links:
+        - text: Discover features
+          link: /
+        - text: Why choose our product?
+          link: /
+        - text: Compare features
+          link: /
+        - text: Our roadmap
+          link: /
+        - text: Request features
+          link: /
+      column2:
+        title: "Docs"
+        links:
+        - text: Get started
+          link: /
+        - text: User guides
+          link: /
+        - text: Admin guide
+          link: /
+        - text: Developers
+          link: /
+      column3:
+        title: "Blog"
+        links:
+        - text: Latest news
+          link: /
+        - text: Tech articles
+          link: /
+        - text: Video blog
+          link: /

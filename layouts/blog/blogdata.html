@@ -1,0 +1,49 @@
+<!--Metz: copied content.html from partials/single - for blog format-->
+<!--Metz: Added partials for banner header-->
+<!--Metz: replace section below with blog template from contivpp.io blog-->
+<!--added github-markdown-css to partials/css.html for similar format above -->
+{{ partial "css.html" . }}
+{{ partial "navbar.html" . }}
+{{ partial "navbar-clone.html" . }}
+
+<!--Metz: Commented out this section and replaced with class = "post" for similar format above-->
+<!--<section class="section is-medium">-->
+  <!--<div class="container">-->
+    <!--<div class="columns">-->
+      <!--<div class="column is-centered-tablet-portrait">-->
+        <!--<h1 class="title section-title">{{ .Title }}</h1>-->
+        <!--<h5 class="subtitle is-5 is-muted">{{ .Params.Subtitle }}</h5>-->
+        <!--<div class="divider"></div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;{{ .Content | markdownify }}&ndash;&gt;-->
+    <!--<div class="block markdown-body">-->
+      <!--<p>{{ .Content | markdownify }}</p>-->
+    <!--</div>-->
+    <!--<script>console.log({{"in splash/content"}})</script>-->
+  <!--</div>-->
+<!--</section>-->
+
+<div class="post">
+  <!-- Wrapper Start -->
+  <section class="section" style="border: 1px dotted #ddd;">
+    <div class="container">
+      <div class="row">
+        <div>
+          <div class="block">
+            {{ with .Params.image }}<img src="{{ . | absURL }}" width="100%" alt="post-image"> {{ end }}
+            <h1>{{ .Params.title }}</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">{{ .Params.author }}</span> on <span class="bold">{{ .Site.Params.dateFormat | default "Jan 2, 2006" | .Date.Format}}</span>
+              </p>
+            </div>
+            <hr/>
+            <div class="block markdown-body">
+              <p>{{ .Content | markdownify }}</p>
+            </div>
+          </div>
+        </div><!-- .col-md-7 close -->
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,22 @@
+{{- $hero        := .Site.Params.hero }}
+{{- $clientLogos := index $hero "clientlogos" }}
+<!--Metz: logos on bottom of first page-->
+<!--Metz: hack code to include png images-->
+<div class="hero-foot mb-20">
+  <div class="container">
+    <div class="tabs is-centered">
+      <ul>
+        {{- range $clientLogos }}
+        <li>
+          <a>
+            {{ if (fileExists "static/images/logos/clients/xyz.svg") }}
+            <script>console.log({{"passed"}})</script>
+            {{end}}
+            <img class="partner-logo" src="{{ printf "/images/logos/clients/%s.svg" . | relURL }}">
+          </a>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+</div>

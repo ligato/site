@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    {{ partial "meta.html" . }}
+    <title>{{ block "title" . }}{{ .Site.title }}{{ end }}</title>
+    {{ partial "css.html" . }}
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div id="status"></div>
+      <script>console.log({{"in splash html"}})</script>
+      <script>console.log({{ .Title }})</script>
+    </div>
+
+    {{ block "main" . }}
+
+    <!--{{ partial "single/single.html" . }}-->
+    <!--{{ partial "single/content.html" . }}-->
+    <script>console.log({{"insplash"}})</script>
+    <!-- Back To Top Button -->
+    <!--<div id="backtotop"><a href="#"></a></div>-->
+
+    {{ if .Params.sidebar }}
+    {{ partial "single/sidebar.html" . }}
+    {{ end }}
+
+    {{ end }}
+
+    {{ partial "javascript.html" . }}
+  </body>
+</html>
