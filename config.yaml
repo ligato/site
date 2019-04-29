@@ -21,7 +21,7 @@ params:
     # Where the main hero button links to
     buttonlink: "#"
     # Hero image (from /images/___)
-    image: ligato/ligato-agent-worker-green.png
+    image: ligato/ligato2.svg
     # Footer logos (from /images/logos/clients/___.svg)
     # Metz: replace client logos with FD.io, CNCF, K8S, Contiv VPP
     clientlogos:
