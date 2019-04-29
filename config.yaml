@@ -25,11 +25,11 @@ params:
     # Footer logos (from /images/logos/clients/___.svg)
     # Metz: replace client logos with FD.io, CNCF, K8S, Contiv VPP
     clientlogos:
-    - systek
-    - tribe
-    - kromo
-    - infinite
-    - gutwork
+    - grey-fdio
+    - kubernetes-seeklogo.com
+    - Go-Logo
+    - contiv-icon
+    - etcd
   # Customizable navbar. For a dropdown, add a "sublinks" list.
   navbar:
   - title: Blog
@@ -101,17 +101,17 @@ params:
       buttonText: Learn More
     - title: Use Cases
       icon: laptop-cloud
-      text: Solutions enabled by the Ligato Agent
+      text: Solutions Using the Ligato Agent
       url: "use-cases/ligato-use-cases"
       buttonText: Learn More
   section2:
-    title: Leveraging the Best in Cloud Native
-    subtitle: for rapid innovation delivery
+    title: Leveraging Open Source Technologies
+    subtitle: for Rapid Innovation Development and Deployment
     features:
     - title: High Performance/Feature-Rich Dataplane
       text: Containerized version bring FD.io/VPP to Cloud Native Environments
       # Icon (from /images/illustrations/icons/___.svg)
-      icon: fdio
+      icon: fdio-300x184
     - title: Written in Golang
       text: Goto programming language for its peformance and concurrency
       icon: golang
