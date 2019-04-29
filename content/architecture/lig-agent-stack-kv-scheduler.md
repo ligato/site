@@ -10,4 +10,8 @@ draft: true
 
 {{< figure src="/images/ligato/ligato-agent-stack-kv-scheduler.svg" >}}
 
+## Description
+
+to be added ...
+
 Ligato Agent is a configuration scheduler plugin that coordinates programming state for VPP and/or Linux Kernel dataplanes.

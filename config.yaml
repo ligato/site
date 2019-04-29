@@ -152,25 +152,25 @@ params:
 #      icon: dribbble
 #    - link: https://facebook.com/#
 #      icon: facebook
-    - link: https://twitter.com/lucperkins
+    - link: https://twitter.com/ligatoProject
       icon: twitter
     - link: https:ligato.slack.com
       icon: slack
     bulmalogo: true
     quicklinks:
       column1:
-        title: "Product"
+        title: "Golang"
         links:
-        - text: Discover features
-          link: /
-        - text: Why choose our product?
-          link: /
-        - text: Compare features
-          link: /
-        - text: Our roadmap
-          link: /
-        - text: Request features
-          link: /
+        - text: Golang.org
+          link: https://golang.org
+        - text: Go by Example
+          link: https://gobyexample.com/
+        - text: Hello World in Go
+          link: https://gobyexample.com/hello-world
+#        - text: Our roadmap
+#          link: /
+#        - text: Request features
+#          link: /
       column2:
         title: "Docs"
         links:
@@ -182,12 +182,13 @@ params:
           link: /
         - text: Developers
           link: /
-      column3:
-        title: "Blog"
-        links:
-        - text: Latest news
-          link: /
-        - text: Tech articles
-          link: /
-        - text: Video blog
-          link: /
+#      column3:
+#        title: "Blog"
+#        links:
+#        - text: Latest news
+#          link: /
+#        - text: Tech articles
+#          link: /
+#        - text: Video blog
+#          link: /
+disableKinds: ["taxonomy", "taxonomyTerm", "section"]

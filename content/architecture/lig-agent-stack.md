@@ -7,4 +7,9 @@ sidebarlogo: "ligato-diamond"
 draft: true
 ---
 
+
 {{< figure src="/images/ligato/ligato-agent-stack.svg" >}}
+
+## Description
+
+to be added ...

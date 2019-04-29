@@ -11,4 +11,8 @@ draft: true
 
 {{< figure src="/images/ligato/ligato-agent-stack-northbound-plugins.svg" >}}
 
+## Description
+
+to be added ...
+
 Ligato Agent ships with a set of nouthbound plugins that can be used as building blocks for CNF-based applications and solutions.
