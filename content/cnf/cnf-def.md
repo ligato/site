@@ -5,7 +5,9 @@ layout: "cnf"
 draft: false
 ---
 
-So what is a *cloud-native* virtual network function? 
+So what is a *cloud-native* virtual network function?
+
+ 
 
 A virtual network function (or VNF), as commonly known today, is a software
 implementation of a network function that runs on one or more *virtual 
