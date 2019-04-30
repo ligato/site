@@ -2,7 +2,7 @@
 title: "Definition of a Cloud Native Network Function"
 date: 2019-04-23T14:25:06-07:00
 layout: "cnf"
-draft: true
+draft: false
 ---
 
 So what is a *cloud-native* virtual network function? 
