@@ -19,7 +19,7 @@ params:
     # Button text
     buttontext: Get started
     # Where the main hero button links to
-    buttonlink: "#"
+    buttonlink: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
     # Hero image (from /images/___)
     image: ligato/ligato2.svg
     # Footer logos (from /images/logos/clients/___.svg)

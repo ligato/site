@@ -48,7 +48,7 @@ There are a raft of advantages so let's run through them in no particular order:
 
 * Papid development and innovation delivery. This is especially true if the CNF functions run in user space.
 
-* Performance. Software technologies evolve and a scale/performance ramp up is expected. Of course there are multiple factors that impact performance. So rather than indulge in outlandish, evidence-dodging assertions, let's keep our eye on the informal [CNF testbed](https://github.com/cncf/cnf-testbed) undertaken by the CNCF. 
+* Performance. Software technologies evolve and a scale/performance ramp up is expected. Of course there are multiple factors that impact performance. So rather than indulge in outlandish, evidence-dodging assertions, let's keep our eye on the informal [CNF testbed](https://github.com/cncf/cnf-testbed) undertaken by the CNCF.
 
 And finally, the versatility. Note in the figure above the existence of three different types of CNFs. All running on same hardware, orchestrated from the same master node components (i.e. K8s) and wired up to realize a communication service.
 
