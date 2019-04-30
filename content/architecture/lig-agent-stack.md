@@ -4,7 +4,7 @@ date: 2019-04-16T05:23:30-07:00
 layout: "arch"
 sidebar: "true"
 sidebarlogo: "ligato-diamond"
-draft: true
+draft: false
 ---
 
 
