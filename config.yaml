@@ -106,9 +106,9 @@ params:
       buttonText: Learn More
   section2:
     title: Leveraging Open Source Technologies
-    subtitle: for Rapid Innovation Development and Deployment
+    subtitle: Rapid Innovation Development and Deployment
     features:
-    - title: Key Value Datastores such ETCD
+    - title: Key Value Datastores
       text: Efficient storage and distribution of network configurations
       # Icon (from /images/illustrations/icons/___.svg)
       icon: etcd-blue
@@ -116,7 +116,7 @@ params:
       text: Goto programming language for its peformance and concurrency
       icon: golang
     - title: RPC Enablement
-      text: Plugins including gRPC provide efficient API communications
+      text: Plugins including gRPC for efficient API communications
       icon: grpc
   section3:
     title: One Framework
