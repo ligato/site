@@ -1,5 +1,5 @@
 ---
-title: "Ligato Agent Infra"
+title: "Infra"
 date: 2019-04-15T17:49:53-07:00
 layout: "arch"
 sidebar: "true"

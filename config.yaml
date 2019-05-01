@@ -51,40 +51,40 @@ params:
 #  - title: Sign up
 #    url: /
 #    button: true
-  sidebar:
-    # Logo (from /images/logos/___.svg)
-    logo: ligato-diamond
-    sections:
-    - title: User
-      icon: user
-      links:
-      - text: Profile
-        url: /
-      - text: Account
-        url: /
-      - text: Settings
-        url: /
-    - title: Messages
-      icon: envelope
-      links:
-      - text: Inbox
-        url: /
-      - text: Compose
-        url: /
-    - title: Images
-      icon: image
-      links:
-      - text: Library
-        url: /
-      - text: Upload
-        url: /
-    - title: Settings
-      icon: cog
-      links:
-      - text: User settings
-        url: /
-      - text: App settings
-        url: /
+#  sidebar:
+#    # Logo (from /images/logos/___.svg)
+#    logo: ligato-diamond
+#    sections:
+#    - title: User
+#      icon: user
+#      links:
+#      - text: Profile
+#        url: /
+#      - text: Account
+#        url: /
+#      - text: Settings
+#        url: /
+#    - title: Messages
+#      icon: envelope
+#      links:
+#      - text: Inbox
+#        url: /
+#      - text: Compose
+#        url: /
+#    - title: Images
+#      icon: image
+#      links:
+#      - text: Library
+#        url: /
+#      - text: Upload
+#        url: /
+#    - title: Settings
+#      icon: cog
+#      links:
+#      - text: User settings
+#        url: /
+#      - text: App settings
+#        url: /
   section1:
     title:
     subtitle: Build CNFs!
@@ -121,7 +121,7 @@ params:
   section3:
     title: One Framework
     subtitle: Plugins, Libraries, Agents
-    image: ligato/ligato-4-square.svg
+    image: ligato/ligato-front-pillar2.svg
     buttonText: Get started
     buttonLink: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
 #  section4:

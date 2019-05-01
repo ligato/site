@@ -94,7 +94,39 @@ to be added
 `add picture`
 
 some more comments
+<br />
+<br />
+<br />
+<br />
+## 5. vCMTS
 
+### Requirements
 
+to be added ..
+
+### Solution - StrongSwan IPsec Gateway
+
+to be added
+
+`add picture`
+
+some more comments
+<br />
+<br />
+<br />
+<br />
+## 6. Mobile Cloud
+
+### Requirements
+
+to be added ..
+
+### Solution - StrongSwan IPsec Gateway
+
+to be added
+
+`add picture`
+
+some more comments
 
 
