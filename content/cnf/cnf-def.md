@@ -32,9 +32,15 @@ in centralized KV data stores, communicate over message bus, cloud-friendly
 logging and config, cloud friendly build & deployment process, etc.,
 Depending on the desired functionality, scale and performance, a cloud-
 native VNF may provide a high-performance data plane, such as the [VPP](https://fd.io).
-
+<br />
+<br />
+<br />
 
 {{< figure src="/images/ligato/cnf-net2.svg" class="image-cnf-def" >}}
+
+<br />
+<br />
+<br />
 
 The figure above can help explain why CNFs are so attractive to developers, cloud operators (public, private or hybrid) and customers or rather those that will run apps inside K8s clusters. It depicts a K8s cluster composed of a master and set of worker nodes. The latter contains pods housing containerized CNFs including security gateway, switching/routing and a L7 service proxy supporting a service mesh. 
 

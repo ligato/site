@@ -108,22 +108,22 @@ params:
     title: Leveraging Open Source Technologies
     subtitle: for Rapid Innovation Development and Deployment
     features:
-    - title: High Performance/Feature-Rich Dataplane
-      text: Containerized version bring FD.io/VPP to Cloud Native Environments
+    - title: Key Value Datastores such ETCD
+      text: Efficient storage and distribution of network configurations
       # Icon (from /images/illustrations/icons/___.svg)
-      icon: fdio-300x184
+      icon: etcd-blue
     - title: Written in Golang
       text: Goto programming language for its peformance and concurrency
       icon: golang
-    - title: Kubernetes
-      text: Contains all of the hooks for development and operations in k8s clusters
-      icon: k8s-logo
-#  section3:
-#    title: One platform
-#    subtitle: To rule them all
-#    #image: illustrations/mockups/app-mockup.png
-#    buttonText: Get started
-#    buttonLink: "#"
+    - title: RPC Enablement
+      text: Plugins including gRPC provide efficient API communications
+      icon: grpc
+  section3:
+    title: One Framework
+    subtitle: Plugins, Libraries, Agents
+    image: ligato/ligato-4-square.svg
+    buttonText: Get started
+    buttonLink: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
 #  section4:
 #    title: Our Clients love us!
 #    subtitle: Lorem ipsum sit dolor amet is a dummy text used by typography industry
