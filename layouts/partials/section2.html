@@ -5,20 +5,23 @@
 <section class="section section-feature-grey is-medium">
   <div class="container">
     <div class="columns">
-      <div class="column is-centered-tablet-portrait">
+      <div class="column is-centered-tablet-portrait mt-60">
         <h1 class="title section-title">{{ $title }}</h1>
         <h3 class="subtitle is-5 is-muted">{{ $subtitle }}</h3>
         <div class="divider"></div>
       </div>
-      <div class="column is-7 mt-60">
+      <div class="column is-6 mt-60">
         {{- range $features }}
-        <article class="media icon-box">
+        <!--Metz added align-items center-->
+        <article class="media icon-box" style="align-items:center">
           <figure class="media-left">
+            <!--Metz - replace immage - section2 with style="width:80px"-->
             <p class="image-section2">
               <img src="{{ printf "/images/illustrations/icons/%s.svg" .icon | relURL }}" >
             </p>
           </figure>
-          <div class="media-content mt-50">
+          <!--Metz removed mt-50 is below-->
+          <div class="media-content">
             <div class="content">
               <p>
                 <span class="icon-box-title">{{ .title }}</span>
