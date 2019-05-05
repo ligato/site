@@ -1,5 +1,5 @@
 ---
-title: "Ligato Agent"
+title: "Ligato Framework"
 date: 2019-04-16T05:23:30-07:00
 layout: "arch"
 sidebar: "true"
@@ -30,13 +30,13 @@ draft: false
 <br />
 <br />
 
-{{< figure src="/images/ligato/ligato-agent-stack.svg" >}}
+{{< figure src="/images/ligato/ligato-framework-arch.svg" >}}
 
 <br />
 <br />
 <br />
 
-### Solution - Ligato Agent
+### Solution - Ligato Framework
 
 * framework for controlling and managing CNFs
 

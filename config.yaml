@@ -86,22 +86,22 @@ params:
 #      - text: App settings
 #        url: /
   section1:
-    title:
-    subtitle: Build CNFs!
+    title: All About CNFs, Ligato and Use Cases
+    subtitle:
     tiles:
     - title: CNF
       icon: mouse-globe
       text: Virtual Network Functions in Containers
       url: "cnf/cnf-def"
       buttonText: Learn More
-    - title: Ligato Agent
+    - title: Ligato Framework
       icon: plug-cloud
       text: Agents/Plugins for CNF Control & Management
       url: "architecture/lig-agent-stack"
       buttonText: Learn More
     - title: Use Cases
       icon: laptop-cloud
-      text: Solutions Using the Ligato Agent
+      text: Solutions Using Ligato
       url: "use-cases/ligato-use-cases"
       buttonText: Learn More
   section2:
@@ -113,15 +113,15 @@ params:
       # Icon (from /images/illustrations/icons/___.svg)
       icon: etcd-blue
     - title: Written in Golang
-      text: Goto programming language for its peformance and concurrency
+      text: Programming language of choice for peformance and concurrency
       icon: golang
-    - title: RPC Enablement
-      text: Plugins including gRPC for efficient API communications
+    - title: API Protocols for Process and Apps Communications
+      text: Plugins including gRPC for building and running APIs
       icon: grpc
   section3:
     title: One Framework
-    subtitle: Plugins, Libraries, Agents
-    image: ligato/ligato-front-pillar2.svg
+    subtitle: Develop Advanced CNFs For Existing and Future Networks
+    image: ligato/ligato-front-pillar-grey-bg.svg
     buttonText: Get started
     buttonLink: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
 #  section4:
