@@ -6241,7 +6241,7 @@ Navbar
     .navbar.is-fresh.is-fixed a {
       color: #444F60; }
       .navbar.is-fresh.is-fixed a:hover {
-        color: #A7DC72; }
+        color: #7DB64A; }
 
 #navbar-clone {
   position: fixed;
@@ -6468,8 +6468,8 @@ Classes to change the feel of bulma buttons
 
 .button.primary-btn {
   outline: none;
-  border-color: #A7DC72;
-  background-color: #A7DC72;
+  border-color: #7DB64A;
+  background-color: #7DB64A;
   color: #fff;
   transition: all 0.5s; }
   .button.primary-btn:hover {
@@ -6478,12 +6478,12 @@ Classes to change the feel of bulma buttons
     box-shadow: 0 14px 26px -12px rgba(79, 193, 234, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(79, 193, 234, 0.2) !important;
     opacity: 0.8; }
   .button.primary-btn.btn-outlined {
-    border-color: #A7DC72;
-    color: #A7DC72;
+    border-color: #7DB64A;
+    color: #7DB64A;
     background-color: transparent; }
     .button.primary-btn.btn-outlined:hover {
       color: #fff;
-      background-color: #A7DC72; }
+      background-color: #7DB64A; }
 
 .button.secondary-btn {
   outline: none;
@@ -6570,7 +6570,7 @@ Cards and Card content styles
     .flex-card .navtab-content p {
       padding: 0 0.8rem 20px; }
   .flex-card .navigation-tabs.outlined-pills .tabs.tabs-header.primary {
-    background-color: #A7DC72; }
+    background-color: #7DB64A; }
   .flex-card .navigation-tabs.outlined-pills .tabs.tabs-header.secondary {
     background-color: #6C96C2; }
   .flex-card .navigation-tabs.outlined-pills .tabs.tabs-header.accent {
@@ -6602,9 +6602,9 @@ input.input {
   input.input.rounded {
     border-radius: 100px; }
   input.input.is-primary-focus:focus {
-    border-color: #A7DC72; }
+    border-color: #7DB64A; }
     input.input.is-primary-focus:focus ~ span.icon i {
-      color: #A7DC72; }
+      color: #7DB64A; }
   input.input.is-secondary-focus:focus {
     border-color: #6C96C2; }
     input.input.is-secondary-focus:focus ~ span.icon i {
@@ -6825,7 +6825,7 @@ Sidebar Styles
         border-bottom: 1px solid #303d52;
         font-size: .8rem; }
         .sidebar .inner .sidebar-menu li.have-children li a:hover {
-          color: #A7DC72;
+          color: #7DB64A;
           padding-left: 62px; }
       .sidebar .inner .sidebar-menu li.have-children span::after {
         position: absolute;
