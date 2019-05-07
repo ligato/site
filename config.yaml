@@ -19,7 +19,7 @@ params:
     # Button text
     buttontext: Get started
     # Where the main hero button links to
-    buttonlink: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
+    buttonlink: "http://docs.ligato.io/en/latest/"
     # Hero image (from /images/___)
     image: ligato/ligato2.svg
     # Footer logos (from /images/logos/clients/___.svg)
@@ -36,15 +36,15 @@ params:
     sublinks:
       - title: CNFs with a Dose of Ligato and FD.io/VPP
         url: "blog/cnf-ligato-fdio"
-  - title: Documentation
-    url: "http://docs.ligato.io/en/latest/"
+  - title: Docs
+    url: "http://docs.ligato.io/"
   - title: Github
     sublinks:
     - title: Infra
       url: "https://github.com/ligato/cn-infra"
-    - title: VPP Agent
+    - title: VPP-Agent
       url: "https://github.com/ligato/vpp-agent"
-    - title: All Repos
+    - title: All Repositories
       url: "https://github.com/ligato"
 #  - title: Log in
 #    url: /
@@ -86,8 +86,8 @@ params:
 #      - text: App settings
 #        url: /
   section1:
-    title: All About CNFs, Ligato and Use Cases
-    subtitle:
+    title: Learn more about Ligato
+    subtitle: All About CNFs, Ligato and Use Cases
     tiles:
     - title: CNF
       icon: mouse-globe
@@ -146,17 +146,14 @@ params:
     # Social media links (GitHub, Twitter, etc.). All are optional.
     socialmedia:
     - link: https://github.com/ligato
-      # Icons are from Font Awesome
       icon: github
-#    - link: https://dribbble.com/#
-#      icon: dribbble
-#    - link: https://facebook.com/#
-#      icon: facebook
+    - link: https://hub.docker.com/u/ligato
+      icon: docker
     - link: https://twitter.com/ligatoProject
       icon: twitter
-    - link: https:ligato.slack.com
+    - link: https://ligato.slack.com
       icon: slack
-    bulmalogo: true
+    bulmalogo: false
     quicklinks:
 #      column1:
 #        title: "Golang"
@@ -174,14 +171,14 @@ params:
       column2:
         title: "Docs"
         links:
-        - text: Get started
+        - text: Quickstart Guide
           link: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
-        - text: User guides
-          link: /
-        - text: Admin guide
-          link: /
-        - text: Developers
-          link: /
+        - text: Concepts
+          link: "https://docs.ligato.io/en/latest/user-guide/concepts/"
+        - text: Tutorial 1: Hello World
+          link: "https://docs.ligato.io/en/latest/tutorials/01_hello-world/"
+        - text: FAQ
+          link: "https://docs.ligato.io/en/latest/user-guide/faq/"
 #      column3:
 #        title: "Blog"
 #        links:
