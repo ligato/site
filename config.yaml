@@ -6,7 +6,7 @@ theme: hugo-fresh
 params:
   navbarlogo:
   # Logo (from /images/logos/___)
-   image: logos/new-logo-ligato-dark.png
+   image: logos/ligato-diamond.svg
    link: /
   font:
     name: "Open Sans"
