@@ -89,7 +89,7 @@ params:
     title: Learn more about Ligato
     subtitle: All About CNFs, Ligato and Use Cases
     tiles:
-    - title: CNF
+    - title: What is CNF?
       icon: mouse-globe
       text: Virtual Network Functions in Containers
       url: "cnf/cnf-def"
