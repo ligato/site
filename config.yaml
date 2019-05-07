@@ -89,7 +89,7 @@ params:
     title: Learn more about Ligato
     subtitle: All About CNFs, Ligato and Use Cases
     tiles:
-    - title: What is CNF?
+    - title: What is a CNF?
       icon: mouse-globe
       text: Virtual Network Functions in Containers
       url: "cnf/cnf-def"
@@ -101,7 +101,7 @@ params:
       buttonText: Learn More
     - title: Use Cases
       icon: laptop-cloud
-      text: Solutions Using Ligato
+      text: Solutions Using the Ligato VPP Agent
       url: "use-cases/ligato-use-cases"
       buttonText: Learn More
   section2:
