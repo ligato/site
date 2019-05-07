@@ -169,7 +169,7 @@ params:
 #        - text: Request features
 #          link: /
       column2:
-        title: "Docs"
+        title: "Documentation"
         links:
         - text: Quickstart
           link: "https://docs.ligato.io/en/latest/user-guide/quickstart/"
