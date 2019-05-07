@@ -1,10 +1,8 @@
 +++
-title = "CNFs with a Dose of Ligato and FD.io/VPP"
+title = "CNFs with a Dose of Ligato and FD.io/VPP (Updated)"
 author = "Chris Metz"
-date = "17 Nov 2018"
+date = "02 May 2019"
 layout = "blogdata"
-sidebar = "true"
-sidebarlogo = "fresh-white-alt"
 [blackfriday]
   extensions = ["hardLineBreak"]
 +++ 
@@ -60,8 +58,10 @@ So, what exactly is a cloud native network function (CNF)? We could go with “ 
 Let’s proceed to the “built” in this definition by cracking open a physical or virtual host with its own host operating system (i.e. Linux) allegedly supporting one or more CNFs. Inside you might find one or more of these CNFs (and/or application containers too) living inside Kubernetes pods. To simplify the discussion, let’s stay with containers and CNFs and assume they exist in pods. A VNF stack is now a CNF stack.
 
 The CNFs could run a portion of their functions in what is referred to as user space. You will also find the host OS kernel providing various utilities including a TCP/IP network stack. All of the containers on this host rely on this single network stack. All packets in and out of user space must pass through the kernel. In this scenario, a CNF consists of one piece of function in user space and the other piece, the network stack, residing in the kernel. We can capture this notion with a figure below.
+<br />
+<br />
 
-![Container Use Space and Host Kernel](/img/blog/user-space-kernel.png)
+{{< figure src="/images/ligato/user-space-kernel.png" class="image-center figcaption" caption="User Space and Kernel Networking" >}}
 
 Does the CNF stack belong in the kernel? Must new CNFs rely on the kernel network functions? 
 
@@ -73,17 +73,18 @@ How does a CNF residing in user space help?
 
 * __Accelerated network innovation__ development and roll-out. CNF developers can go to town and paint their innovations on a large user space canvas. It is THE opportunity to mandate all CNFs run in user space. It just make sense.
 
-* __Fast recovery__. If anything happens to the user space CNF stack (e.g. upgrade, crash, etc.), it DOES NOT bring down the whole node. You just restart it quickly and continue on with your work.
+* __Fast recovery__. If anything happens to the user space CNF stack (e.g. upgrade, crash, etc.), it DOES NOT bring down the whole node. You just restart it quickly and continue on with your work. More on the quickly part below. Hint: it is pretty cool.
 
 * __[12-Factor App Methodology](https://12factor.net/) applied to CNFs.__The nexus of innovation lives in the cloud. Adopting all or some of the principles in the design, development and deployment of CNFs is a no brainer. There is no downside. Just do it. 
 
 
+<br />
+<br />
 
-![CNFs in User Space](/img/blog/user-space-CNF.png)
+{{< figure src="/images/ligato/user-space-CNF.png" class="image-center figcaption" caption="CNFs in User Space" >}}
+<br />
 
-
-
-Take a look at these two figures and see if they resonate. The CNFs avoid the kernel altogether. Note that other pods (not shown) using the kernel can continue to operate business as usual.
+Take a look at these two figures and see if they resonate. The CNFs avoid the kernel altogether. Note that other pods (not shown) using the kernel can continue to operate business as usual. Peaceful coexistence. And being honest - reality into perpetuity because there will always be pods that use the host's kernel networking stack.
 
 
 ## Don't Touch That! I'll Make You a New One.
@@ -136,7 +137,7 @@ FD.io/VPP is an open source project sponsored by the Linux Foundation. It enjoys
 
 * Operates in bare metal, VM and container platforms.
 
-* Programmability. This is necessary (see below).
+* Programmability. This is necessary. Can't live without it. Tablestakes. (see below).
 
 We can be pretty confident that with the FD.io/VPP dataplane, CNF performance will be there as needed. Feature extensibility and plugin-ability offers future protection, developers will be down with it and operations folks will love it. 
 
@@ -147,30 +148,38 @@ For more information, you can tune into the [FD.io YouTube channel]( https://www
 
 We have our CNF data plane. But a data plane alone, no matter how fast, doth not a network make. We need a programmable data plane. We need the ability for CNFs to communicate with other control and management microservices in the cloud native network. How can we do that?
 
-[Ligato]( https://ligato.io/) is the answer.  The bumper sticker version of Ligato follows.
+[Ligato]( https://ligato.io/) is the answer.  The bumper sticker version of Ligato follows:
 
-__Ligato is an open source project that provides a platform and code samples for development of cloud native VNFs. It includes a VNF agent for VPP ( FD.io ) and a Service Function Chain (SFC) Controller for stitching virtual and physical networking.__
+_Ligato is an open source framework for building applications to control and manage Cloud Native Network Functions (CNF). It comes with a VPP Agent serving as the control plane for FD.io/VPP-enabled CNFs. It also provides a whole raft of different plugin building blocks developers can use to create their own cloud native containerized masterpieces._
+<br />
+<br />
 
+{{< figure src="/images/ligato/ligato-framework-arch.svg" class="image-center figcaption"caption="Ligato Framework" >}}
+<br />
+<br />
 
-For those looking into Ligato for the first time, it might not be 100% clear about what it is. How does it relate to CNFs? What apps and plugins are we talking about? Let’s clear that up right now. 
+For those looking into Ligato for the first time, it might not be 100% clear about what it is. How does it relate to CNFs? What are plugins and how are they used? Do I need VPP? Let’s clear that up right now using the picture above as a reference.
 
-Ligato is composed of 3 x basic components: CN-infra, VPP agent and the SFC controller, all written in Go. Let's describe each.
+For starters it is laid out as a classic stack; apps on top and packet forwarding ala VPP or the linux kernel on the bottom. The Ligato stuff is inside the green box in the middle and that is pretty much all you need to know. But if you are looking for more, here you go:
 
-* __[CN-infra](https://github.com/ligato/cn-infra)__, is a software platform that allows developers to build cloud native microservices. It is largely comprised of a set of plugins (<sigh> … an overloaded term for sure) where each plugin performs a specific function. They come with lifecycle management (i.e. initialization and graceful shutdown). It is the combination of plugins and lifecycle management that define the CN-infra platform is and can do.
+* Developers use Ligato to build CNF and non-CNF applications. It is largely comprised of a set of plugins (<sigh> … an overloaded term for sure) where each plugin performs a specific function. They come with lifecycle management (i.e. initialization and graceful shutdown). It is the combination of plugins and lifecycle management that define what CNF can do. 
 
-* CN-infra comes OOTB (out-of-the-box) with plugins galore to choose from. If we scan the [CN-infra github examples folder(https://github.com/ligato/cn-infra/tree/master/examples), you will find an abundance of plugins supporting different functions including those for APIs, datastores, messaging and logging. One more point about plugins and that is the developer is not required to use all plugins – merely those specific to the microservice(s) they wish to build. 
+* Comes OOTB (out-of-the-box) with plugins galore to choose from. [Here](https://docs.ligato.io/en/latest/plugins/plugin-overview/) you will find an abundance of plugins supporting different functions including those for APIs, datastores, messaging and logging. One more point about plugins and that is the developer is not required to use all plugins – merely those specific to the microservice(s) they wish to build. 
 
-* App developers can create their own application-specific plugins. For example, if a new microservice requires kafka messages to be consumed and written to a database, the developer could use the CN-infra Kafka plugin to ingest the messages and an application plug-in to write the messages to a database. 
+* Developers can create their own application-specific plugins. For example, if a new microservice requires kafka messages to be consumed and written to a database, the developer could use the CN-infra Kafka plugin to ingest the messages and an application plug-in to write the messages to a database. 
 
 The __[VPP agent]( https://github.com/ligato/vpp-agent) is the second family member living under the Ligato roof.__ Basically it is a set of VPP-specific plugins built on top of CN-Infra. The use of one or more of these plugins (along with any other application plugins) exposes FD.io/VPP functionality (e.g. forwarding, packet service treatment, stats generation, etc.) to other CN-infra plugin and/or external control/management applications.
 	
-![VPP Agent](/img/blog/vpp-agent-single.png)
+<br />
+<br />
+
+{{< figure src="/images/ligato/vpp-agent-single.png" class="image-center figcaption"caption="Ligato VPP Agent" >}}
+<br />
+<br />
 
 Let’s examine how the VPP agent fits into a CNF with an FD.io/VPP dataplane. In figure above we show a container (in user space of course) with an FD.io/VPP dataplane and the VPP agent. We described earlier the notion of user space CNFs and so DPDK drivers are used here to speak directly to the NIC and bypass the kernel.  
 
 On top of is the VPP agent. There is a set of OOTB plugins providing northbound APIs for configuring and managing default VPP functions such interface configuration, L2 bridge domains, L3 IP routing/VRFs, L4 namespaces, ACLs and segment routing. Other plugins extending FD.io/VPP control and management API access can be incorporated into the agent. [GoVPP]( https://wiki.fd.io/view/GoVPP) is a Go-based toolset allowing plugins to communicate with the VPP process. And finally, the VPP agent and all sundry pieces inherit lifecycle management from CN-infra. Pretty cool, heh?
-
-The __[SFC Controller]( https://github.com/ligato/sfc-controller)__ is the third piece of the Ligato puzzle. The “SFC” in SFC Controller offers a hint of what it is supposed to do. Yes, that’s right – it strings together a set of CNFs into a service function chain. 
 
 We are fast approaching the well-known attention span threshold and I need to go to the store. Let’s punt on the SFC Controller for now and save it for a future blog. 
 
@@ -195,7 +204,12 @@ Where do we go from here? The answer is …
 
 _By bolting the control plane VPP agent and VPP data plane together, a programmable VPP vSwitch is created – a CNF really - a basic CNF building block - the foundation for high-performance container network solutions._
 
-![programmable vpp vswitch](/img/blog/prog-vpp-vswitch.png)
+<br />
+<br />
+
+{{< figure src="/images/ligato/ligato-cnf-evolve.svg" class="image-center figcaption"caption="Programmable VPP vSwitch" >}}
+<br />
+<br />
 
 Absent the requisite cloud native management and control plane pieces, it is perfectly legal to picture this as a CNF. Modern networks (physical or virtual) require that switches are outfitted with a variety of interfaces accommodating different devices, hosts, capacities, services and network configurations. Same applies here but now we are dealing with the new (memifs) and the legacy (e.g.veth). 
 

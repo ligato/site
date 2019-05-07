@@ -32,11 +32,11 @@ params:
     - etcd
   # Customizable navbar. For a dropdown, add a "sublinks" list.
   navbar:
-  - title: Blog
-    sublinks:
-      - title: CNFs with a Dose of Ligato and FD.io/VPP
-        url: "blog/cnf-ligato-fdio"
-  - title: Docs
+#  - title: Blog
+#    sublinks:
+#      - title: CNFs with a Dose of Ligato and FD.io/VPP
+#        url: "blog/cnf-ligato-fdio"
+  - title: Documentation
     url: "https://docs.ligato.io/"
   - title: Github
     sublinks:
@@ -46,6 +46,16 @@ params:
       url: "https://github.com/ligato/vpp-agent"
     - title: All Repositories
       url: "https://github.com/ligato"
+  - title: Videos
+    sublinks:
+      - title: Fosdem 2019 "VPP & Ligato use cases" talk
+        url: https://fosdem.org/2019/schedule/event/vpp_ligato_as_ipsec_gateway/
+      - title: Contiv VPP User Interface
+        url: https://youtu.be/GKaJkskZAnQ
+  - title: Blog
+    sublinks:
+      - title: CNFs with a Dose of Ligato and FD.io/VPP
+        url: "blog/cnf-ligato-fdio"
 #  - title: Log in
 #    url: /
 #  - title: Sign up
