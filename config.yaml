@@ -34,7 +34,7 @@ params:
   navbar:
   - title: Blog
     sublinks:
-      - title: CNFs Ligato/VPP Dose
+      - title: CNFs with a Dose of Ligato and FD.io/VPP
         url: "blog/cnf-ligato-fdio"
   - title: Documentation
     url: "http://docs.ligato.io/en/latest/"
@@ -158,15 +158,15 @@ params:
       icon: slack
     bulmalogo: true
     quicklinks:
-      column1:
-        title: "Golang"
-        links:
-        - text: Golang.org
-          link: https://golang.org
-        - text: Go by Example
-          link: https://gobyexample.com/
-        - text: Hello World in Go
-          link: https://gobyexample.com/hello-world
+#      column1:
+#        title: "Golang"
+#        links:
+#        - text: Golang.org
+#          link: https://golang.org
+#        - text: Go by Example
+#          link: https://gobyexample.com/
+#        - text: Hello World in Go
+#          link: https://gobyexample.com/hello-world
 #        - text: Our roadmap
 #          link: /
 #        - text: Request features
@@ -175,7 +175,7 @@ params:
         title: "Docs"
         links:
         - text: Get started
-          link: /
+          link: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
         - text: User guides
           link: /
         - text: Admin guide
