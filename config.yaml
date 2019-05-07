@@ -19,7 +19,7 @@ params:
     # Button text
     buttontext: Get started
     # Where the main hero button links to
-    buttonlink: "http://docs.ligato.io/en/latest/"
+    buttonlink: "https://docs.ligato.io/en/latest/"
     # Hero image (from /images/___)
     image: ligato/ligato2.svg
     # Footer logos (from /images/logos/clients/___.svg)
@@ -37,7 +37,7 @@ params:
       - title: CNFs with a Dose of Ligato and FD.io/VPP
         url: "blog/cnf-ligato-fdio"
   - title: Docs
-    url: "http://docs.ligato.io/"
+    url: "https://docs.ligato.io/"
   - title: Github
     sublinks:
     - title: Infra
@@ -123,7 +123,7 @@ params:
     subtitle: Build CNFs for Existing and Future Networks
     image: ligato/ligato-front-pillar-grey-bg.svg
     buttonText: Get started
-    buttonLink: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
+    buttonLink: "https://docs.ligato.io/en/latest/user-guide/quickstart/"
 #  section4:
 #    title: Our Clients love us!
 #    subtitle: Lorem ipsum sit dolor amet is a dummy text used by typography industry
@@ -171,11 +171,11 @@ params:
       column2:
         title: "Docs"
         links:
-        - text: Quickstart Guide
-          link: "http://docs.ligato.io/en/latest/user-guide/quickstart/"
+        - text: Quickstart
+          link: "https://docs.ligato.io/en/latest/user-guide/quickstart/"
         - text: Concepts
           link: "https://docs.ligato.io/en/latest/user-guide/concepts/"
-        - text: Tutorial 1: Hello World
+        - text: Hello World
           link: "https://docs.ligato.io/en/latest/tutorials/01_hello-world/"
         - text: FAQ
           link: "https://docs.ligato.io/en/latest/user-guide/faq/"
