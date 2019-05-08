@@ -163,13 +163,16 @@ For starters it is laid out as a classic stack; apps on top and packet forwardin
 
 * Comes OOTB (out-of-the-box) with plugins galore to choose from. [__Here__](https://docs.ligato.io/en/latest/plugins/plugin-overview/) you will find an abundance of plugins supporting different functions including those for APIs, datastores, messaging and logging. One more point about plugins and that is the developer is not required to use all plugins – merely those specific to the microservice(s) they wish to build.
 
-* Comes with tutorials, docs and examples to get you going. Here is the requisite [__"Hello World"__](https://docs.ligato.io/en/latest/tutorials/01_hello-world/) example.
+* Comes with tutorials, docs and examples to get you going. Here is the requisite [__"Hello World"__](https://docs.ligato.io/en/latest/tutorials/01_hello-world/) example. Makes it easier for newcomers and veterans alike.
 
 * Developers can create their own application-specific plugins. For example, if a new microservice requires kafka messages to be consumed and written to a database, the developer could use the [__Kafka plugin__](https://docs.ligato.io/en/latest/plugins/infra-plugins/#kafka-plugin) to ingest the messages and an application plug-in to write the messages to a database. 
 
 Ligato is plugin-rich so developers are free to use whatever combination they like. What's next?
 
-The __[VPP agent](https://docs.ligato.io/en/latest/intro/agent/)__. Again referencing the figure above, it is comprised of a set of VPP-specific plugins inheriting the infra lifecycle management. The use of one or more of these plugins (along with any other application plugins) exposes FD.io/VPP functionality (e.g. forwarding, packet service treatment, stats generation, etc.) to other Ligato plugins and/or external control/management applications.
+
+## VPP Agent 
+
+Again referencing the figure above, it is positioned in the Ligato framework as a set of [VPP-specific plugins](https://docs.ligato.io/en/latest/plugins/vpp-plugins/) inheriting the infra lifecycle management. The use of one or more of these plugins (along with any other application plugins) exposes FD.io/VPP functionality (e.g. forwarding, packet service treatment, stats generation, etc.) to other Ligato plugins and/or external control/management applications.
 	
 <br />
 <br />
@@ -178,9 +181,19 @@ The __[VPP agent](https://docs.ligato.io/en/latest/intro/agent/)__. Again refere
 <br />
 <br />
 
-Let’s examine how the VPP agent fits into a CNF with an FD.io/VPP dataplane. In the figure above we show a container (in user space of course) with an FD.io/VPP dataplane and the VPP agent. The container packaging is lightweight and eliminates version mismatches. We described earlier the notion of user space CNFs so DPDK drivers are used here to speak directly to the NIC and bypass the kernel.  
+Let’s examine how the VPP agent fits into a CNF architecture with an FD.io/VPP dataplane. In the figure directly above we show a container (in user space of course) with an FD.io/VPP dataplane and the VPP agent. The container packaging is lightweight and eliminates version mismatches. We described earlier the notion of user space CNFs so DPDK drivers are used here to speak directly to the NIC and bypass the kernel.  
 
-The VPP agent plugins provide northbound APIs for configuring and managing default VPP functions such interface configuration, L2 bridge domains, L3 IP routing/VRFs, L4 namespaces, ACLs and segment routing and so on. Other plugins extending FD.io/VPP control and management API access can be incorporated into the agent. [GoVPP]( https://wiki.fd.io/view/GoVPP) is a Go-based toolset allowing plugins to communicate with the VPP process. And finally, the VPP agent and all sundry pieces inherit lifecycle management from CN-infra. Pretty cool, heh?
+The VPP agent plugins provide northbound APIs for configuring and managing default VPP functions such interface configuration, L2 bridge domains, L3 IP routing/VRFs, L4 namespaces, ACLs and segment routing and so on. Other plugins extending FD.io/VPP control and management API access can be incorporated into the agent. 
+
+The [GoVPP](https://wiki.fd.io/view/GoVPP) plugin is mandatory for the VPP agent. This is essentially a Go-based toolset allowing plugin(s) to communicate with the VPP dataplane process(es). Note the plural in both plugins and VPP processes.
+
+At the risk of "stack layer jumping", brief mention should be made here of the KVScheduler] (KV stands for Key Value) plugin. Technically is not a VPP agent plugin but communicates directly with VPP agent plugins to ensure that consistent and correct configuration is installed in the VPP dataplane. Its importance cannot be overstated in both the architecture, development and operation of CNF (and non-CNF) solution. 
+
+A problem arose when the number of configuration items (i.e. VPP plugins) scaled upwards due to the necessary turn up of features in the VPP dataplane. The configurator plugins built each configuration item (e.g. interface, route, bridge domain, etc.) from scratch leading to lots of code duplication. Configurators used notifications to talk with each other and react to changes asynchronously. At some point it became untenable for the configurators to sort through and sequence in correct order all of the different configuration items. It was like a bunch of people standing around, shouting different directions to a restaurant. Hunger pains continue. Chaos ensues. Not happy.     
+ 
+KVScheduler to the rescue! It uplevels configuration item dependencies and ordering into a graph abstraction. The configuration items are nodes, the relationship between them as links. The graph is used to build configuration state to be programmed into the VPP dataplane of the CNF.
+
+Much detail omitted but you can find out more about the __[KVScheduler](https://docs.ligato.io/en/latest/developer-guide/kvscheduler/) here__.  
 
 We are fast approaching the well-known attention span threshold and I need to go to the store. Let’s punt on the SFC Controller for now and save it for a future blog. 
 

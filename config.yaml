@@ -52,6 +52,8 @@ params:
         url: https://fosdem.org/2019/schedule/event/vpp_ligato_as_ipsec_gateway/
       - title: Contiv VPP User Interface
         url: https://youtu.be/GKaJkskZAnQ
+      - title: FD.io in a Cloud Native World, Ed Warnicke, Cisco Systems
+        url: https://www.youtube.com/watch?v=SdLwSb0JSAs
   - title: Blog
     sublinks:
       - title: CNFs with a Dose of Ligato and FD.io/VPP
