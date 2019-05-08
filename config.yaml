@@ -1,4 +1,4 @@
-baseURL: https://ligato.io
+baseURL: https://ligato.io/
 languageCode: en-us
 title: Ligato
 theme: hugo-fresh
@@ -21,7 +21,7 @@ params:
     # Where the main hero button links to
     buttonlink: "https://docs.ligato.io/en/latest/"
     # Hero image (from /images/___)
-    image: ligato/ligato2.svg
+    image: ligato/ligato3.svg
     # Footer logos (from /images/logos/clients/___.svg)
     # Metz: replace client logos with FD.io, CNCF, K8S, Contiv VPP
     clientlogos:
@@ -42,7 +42,7 @@ params:
     sublinks:
     - title: Infra
       url: "https://github.com/ligato/cn-infra"
-    - title: VPP-Agent
+    - title: VPP Agent
       url: "https://github.com/ligato/vpp-agent"
     - title: All Repositories
       url: "https://github.com/ligato"

@@ -3,9 +3,8 @@ title = "CNFs with a Dose of Ligato and FD.io/VPP (Updated)"
 author = "Chris Metz"
 date = "02 May 2019"
 layout = "blogdata"
-[blackfriday]
-  extensions = ["hardLineBreak"]
 +++ 
+
 Cloud Native Network Functions (CNFs) are containerized instances of a classic physical or virtual network functions (VNF). A fast dataplane incorporating current and future VNFs functions is tablestakes. Exposing the CNF dataplane to applications and plugins requires a control plane agent with APIs.
  <!--more--> 
 
@@ -155,6 +154,7 @@ _Ligato is an open source framework for building applications to control and man
 <br />
 
 {{< figure src="/images/ligato/ligato-framework-arch.svg" class="image-center figcaption"caption="Ligato Framework" >}}
+<br />
 For those looking into Ligato for the first time, it might not be 100% clear about what it is. How does it relate to CNFs? What are plugins and how are they used? Do I need VPP? Let’s clear that up right now using the picture above as a reference.
 
 For starters it is laid out as a classic stack; apps on top and packet forwarding ala VPP or the linux kernel on the bottom. The Ligato stuff is inside the green box in the middle and that is pretty much all you need to know. But if you are looking for more, here you go:
@@ -179,8 +179,6 @@ Again referencing the figure above, it is positioned in the Ligato framework as 
 
 {{< figure src="/images/ligato/vpp-agent-single.png" class="image-center figcaption"caption="Ligato VPP Agent" >}}
 <br />
-<br />
-
 Let’s examine how the VPP agent fits into a CNF architecture with an FD.io/VPP dataplane. In the figure directly above we show a container (in user space of course) with an FD.io/VPP dataplane and the VPP agent. The container packaging is lightweight and eliminates version mismatches. We described earlier the notion of user space CNFs so DPDK drivers are used here to speak directly to the NIC and bypass the kernel.  
 
 The VPP agent plugins provide northbound APIs for configuring and managing default VPP functions such interface configuration, L2 bridge domains, L3 IP routing/VRFs, L4 namespaces, ACLs and segment routing and so on. Other plugins extending FD.io/VPP control and management API access can be incorporated into the agent. 
@@ -222,9 +220,8 @@ _By bolting the control plane VPP agent and VPP data plane together, a programma
 <br />
 
 {{< figure src="/images/ligato/ligato-cnf-evolve.svg" class="image-center figcaption"caption="Programmable VPP vSwitch" >}}
-<br />
-<br />
 
+<br />
 Absent the requisite cloud native management and control plane pieces, it is perfectly legal to picture this as a CNF. Modern networks (physical or virtual) require that switches are outfitted with a variety of interfaces accommodating different devices, hosts, capacities, services and network configurations. Same applies here but now we are dealing with the new (memifs) and the legacy (e.g.veth). 
 
 Switches provide high-throughput L2/L3 forwarding. And not just for slinging packets - also present are policies, QoS, stats export and so on. These cannot, I repeat cannot impact performance. This is the case here with the VPP vSwitch. And it is programmable. And fast. Very.

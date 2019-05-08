@@ -47,7 +47,7 @@ There are a raft of advantages so let's run through them in no particular order:
 
 * __Immutability.__ CNFs are not fiddled with while in service. If something is broke or new functions needed, then tear down the old one and deploy a new one.
 
-* __Smaller footprint vis-a-vis physical or virtual devices.__ This reduces VNF density and frees up more resources for the things people care about: the apps.
+* __Smaller footprint vis-a-vis physical or virtual devices.__ This reduces VNF resource consumption region and frees up more resources for the things people care about: the apps.
 
 * __Rapid development and innovation delivery.__ This is especially true if the CNF functions run in user space because there is no need to modify the linux kernel.
 

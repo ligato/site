@@ -62,6 +62,7 @@
               {{- range .sublinks }}
               <a href="{{ .url }}" class="navbar-item">
                 {{ .title }}
+                <script>console.log({{ .url }})</script>
               </a>
               {{- end }}
             </div>
