@@ -8,5 +8,9 @@
 }
 /*centers captions in fig shortcodes*/
 .figcaption {
+    padding-top: 10px;
     text-align: center;
+    font-weight: bold;
+    color: blue;
+
 }

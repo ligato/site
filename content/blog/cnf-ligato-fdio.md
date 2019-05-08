@@ -21,9 +21,9 @@ Applications are king in cloud native land. But, you don’t hear a whole lot ab
   
 * __Networking has its own language spoken only by fellow network geeks__ (full disclosure: I am a network geek). They get IPv4, ACLs, /32s, BGP, VXLAN tunnels, IPv6, Segment Routing, MPLS GRE, Service Chains and all that stuff (please consult your favorite network lexicon for more). What does all of that mean to the cloud native apps developer!? Nothing. Zero. Zip.
 
-* __Speed mismatch between classic and cloud native network deployment and operations.__ The former is big monolithic “boxes” (physical or virtual), installed in one location in the network by smart network people, occasionally visited by smart network people for upgrades/troubleshooting (this is mutable infrastructure! See below) and generally left alone. Forever. The latter is bang-bang: PODs up! Here are the PODs you can talk to! Here are the services. Speak. PODs Out! All automated. All game time decisions. This is an absurdly simple comparison but you get the picture.
+* __Speed mismatch between classic and cloud native network deployment and operations.__ The former is big monolithic “boxes” (physical or virtual), installed in one location in the network by smart network people, occasionally visited by smart network people for upgrades/troubleshooting (this is mutable infrastructure! See below) and generally left alone. Forever. The latter is bang-bang: Locate/execute configs. PODs up! Here are the PODs you can talk to! Here are the services. Speak. PODs Out! All automated. All game time decisions. This is an absurdly simple comparison but you get the picture.
 
-<br>
+
 To be fair, Kubernetes (k8s) does define the [Container Network Interface (CNI)](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) – an API for network plugins that “bootstrap” and manage inter-POD communications. In other words, this provides network connectivity and makes the network transparent to PODs. That’s all good, but it also means PODs can’t really use other network services, such as security or QoS. Furthermore, k8s defines services and policies, which also have to be mapped into network configurations but there is no formal API to achieve this. Therefore it’s up to the network plugin implementers to figure out the mapping. 
 
 Fortunately, the cloud native community is beginning to realize that networking is really important. Spurred on by innovations such as [FD](https://fd.io/).io (user space software data plane) and [BPF](https://opensource.com/article/17/9/intro-ebpf) (enhanced Berkeley Packet Filter), throughput is now seen as critical. The need for cloud native network functions (CNF) has been identified. CNF-enabling open source projects are active and code is up there in github repos. Vendors (legacy “big box” and new startups) are implementing and shipping CNFs. 
@@ -59,9 +59,12 @@ Let’s proceed to the “built” in this definition by cracking open a physica
 
 The CNFs could run a portion of their functions in what is referred to as user space. You will also find the host OS kernel providing various utilities including a TCP/IP network stack. All of the containers on this host rely on this single network stack. All packets in and out of user space must pass through the kernel. In this scenario, a CNF consists of one piece of function in user space and the other piece, the network stack, residing in the kernel. We can capture this notion with a figure below.
 <br />
-<br />
 
 {{< figure src="/images/ligato/user-space-kernel.png" class="image-center figcaption" caption="User Space and Kernel Networking" >}}
+
+ <br />
+  
+  
 
 Does the CNF stack belong in the kernel? Must new CNFs rely on the kernel network functions? 
 
@@ -73,16 +76,14 @@ How does a CNF residing in user space help?
 
 * __Accelerated network innovation__ development and roll-out. CNF developers can go to town and paint their innovations on a large user space canvas. It is THE opportunity to mandate all CNFs run in user space. It just make sense.
 
-* __Fast recovery__. If anything happens to the user space CNF stack (e.g. upgrade, crash, etc.), it DOES NOT bring down the whole node. You just restart it quickly and continue on with your work. More on the quickly part below. Hint: it is pretty cool.
+* __Fast recovery__. If anything happens to the user space CNF stack (e.g. upgrade, crash, restart, etc.), it DOES NOT bring whole node down. You just start it up quickly and continue on with your work. More on the quickly part below. Hint: it is pretty cool.
 
 * __[12-Factor App Methodology](https://12factor.net/) applied to CNFs.__The nexus of innovation lives in the cloud. Adopting all or some of the principles in the design, development and deployment of CNFs is a no brainer. There is no downside. Just do it. 
 
-
 <br />
-<br />
-
+  
 {{< figure src="/images/ligato/user-space-CNF.png" class="image-center figcaption" caption="CNFs in User Space" >}}
-<br />
+
 
 Take a look at these two figures and see if they resonate. The CNFs avoid the kernel altogether. Note that other pods (not shown) using the kernel can continue to operate business as usual. Peaceful coexistence. And being honest - reality into perpetuity because there will always be pods that use the host's kernel networking stack.
 
@@ -152,23 +153,23 @@ We have our CNF data plane. But a data plane alone, no matter how fast, doth not
 
 _Ligato is an open source framework for building applications to control and manage Cloud Native Network Functions (CNF). It comes with a VPP Agent serving as the control plane for FD.io/VPP-enabled CNFs. It also provides a whole raft of different plugin building blocks developers can use to create their own cloud native containerized masterpieces._
 <br />
-<br />
 
 {{< figure src="/images/ligato/ligato-framework-arch.svg" class="image-center figcaption"caption="Ligato Framework" >}}
-<br />
-<br />
-
 For those looking into Ligato for the first time, it might not be 100% clear about what it is. How does it relate to CNFs? What are plugins and how are they used? Do I need VPP? Let’s clear that up right now using the picture above as a reference.
 
 For starters it is laid out as a classic stack; apps on top and packet forwarding ala VPP or the linux kernel on the bottom. The Ligato stuff is inside the green box in the middle and that is pretty much all you need to know. But if you are looking for more, here you go:
 
-* Developers use Ligato to build CNF and non-CNF applications. It is largely comprised of a set of plugins (<sigh> … an overloaded term for sure) where each plugin performs a specific function. They come with lifecycle management (i.e. initialization and graceful shutdown). It is the combination of plugins and lifecycle management that define what CNF can do. 
+* Developers use Ligato to _build CNF and non-CNF applications_. It is largely comprised of a set of plugins (<sigh> … an overloaded term for sure; analogy is React components or Go packages but I digress) where each plugin performs a specific function. They come with lifecycle management (i.e. initialization and graceful shutdown). It is the combination of plugins and lifecycle management enabled by the Infra functions that define roughly what the CNF can do. Note from the figure above that the VPP Agent includes plugins so the previous statement remains true.
 
-* Comes OOTB (out-of-the-box) with plugins galore to choose from. [Here](https://docs.ligato.io/en/latest/plugins/plugin-overview/) you will find an abundance of plugins supporting different functions including those for APIs, datastores, messaging and logging. One more point about plugins and that is the developer is not required to use all plugins – merely those specific to the microservice(s) they wish to build. 
+* Comes OOTB (out-of-the-box) with plugins galore to choose from. [__Here__](https://docs.ligato.io/en/latest/plugins/plugin-overview/) you will find an abundance of plugins supporting different functions including those for APIs, datastores, messaging and logging. One more point about plugins and that is the developer is not required to use all plugins – merely those specific to the microservice(s) they wish to build.
 
-* Developers can create their own application-specific plugins. For example, if a new microservice requires kafka messages to be consumed and written to a database, the developer could use the CN-infra Kafka plugin to ingest the messages and an application plug-in to write the messages to a database. 
+* Comes with tutorials, docs and examples to get you going. Here is the requisite [__"Hello World"__](https://docs.ligato.io/en/latest/tutorials/01_hello-world/) example.
 
-The __[VPP agent]( https://github.com/ligato/vpp-agent) is the second family member living under the Ligato roof.__ Basically it is a set of VPP-specific plugins built on top of CN-Infra. The use of one or more of these plugins (along with any other application plugins) exposes FD.io/VPP functionality (e.g. forwarding, packet service treatment, stats generation, etc.) to other CN-infra plugin and/or external control/management applications.
+* Developers can create their own application-specific plugins. For example, if a new microservice requires kafka messages to be consumed and written to a database, the developer could use the [__Kafka plugin__](https://docs.ligato.io/en/latest/plugins/infra-plugins/#kafka-plugin) to ingest the messages and an application plug-in to write the messages to a database. 
+
+Ligato is plugin-rich so developers are free to use whatever combination they like. What's next?
+
+The __[VPP agent](https://docs.ligato.io/en/latest/intro/agent/)__. Again referencing the figure above, it is comprised of a set of VPP-specific plugins inheriting the infra lifecycle management. The use of one or more of these plugins (along with any other application plugins) exposes FD.io/VPP functionality (e.g. forwarding, packet service treatment, stats generation, etc.) to other Ligato plugins and/or external control/management applications.
 	
 <br />
 <br />
@@ -177,9 +178,9 @@ The __[VPP agent]( https://github.com/ligato/vpp-agent) is the second family mem
 <br />
 <br />
 
-Let’s examine how the VPP agent fits into a CNF with an FD.io/VPP dataplane. In figure above we show a container (in user space of course) with an FD.io/VPP dataplane and the VPP agent. We described earlier the notion of user space CNFs and so DPDK drivers are used here to speak directly to the NIC and bypass the kernel.  
+Let’s examine how the VPP agent fits into a CNF with an FD.io/VPP dataplane. In the figure above we show a container (in user space of course) with an FD.io/VPP dataplane and the VPP agent. The container packaging is lightweight and eliminates version mismatches. We described earlier the notion of user space CNFs so DPDK drivers are used here to speak directly to the NIC and bypass the kernel.  
 
-On top of is the VPP agent. There is a set of OOTB plugins providing northbound APIs for configuring and managing default VPP functions such interface configuration, L2 bridge domains, L3 IP routing/VRFs, L4 namespaces, ACLs and segment routing. Other plugins extending FD.io/VPP control and management API access can be incorporated into the agent. [GoVPP]( https://wiki.fd.io/view/GoVPP) is a Go-based toolset allowing plugins to communicate with the VPP process. And finally, the VPP agent and all sundry pieces inherit lifecycle management from CN-infra. Pretty cool, heh?
+The VPP agent plugins provide northbound APIs for configuring and managing default VPP functions such interface configuration, L2 bridge domains, L3 IP routing/VRFs, L4 namespaces, ACLs and segment routing and so on. Other plugins extending FD.io/VPP control and management API access can be incorporated into the agent. [GoVPP]( https://wiki.fd.io/view/GoVPP) is a Go-based toolset allowing plugins to communicate with the VPP process. And finally, the VPP agent and all sundry pieces inherit lifecycle management from CN-infra. Pretty cool, heh?
 
 We are fast approaching the well-known attention span threshold and I need to go to the store. Let’s punt on the SFC Controller for now and save it for a future blog. 
 
