@@ -57,7 +57,7 @@ params:
   - title: Blog
     sublinks:
       - title: CNFs with a Dose of Ligato and FD.io/VPP
-        url: "blog/cnf-ligato-fdio"
+        url: "/blog/cnf-ligato-fdio"
 #  - title: Log in
 #    url: /
 #  - title: Sign up
