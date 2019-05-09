@@ -1,4 +1,4 @@
-# ligato.io
+# ligato.io [![Netlify Status](https://api.netlify.com/api/v1/badges/3cafe370-cf40-4fba-97f1-1451bf0a22d6/deploy-status)](https://app.netlify.com/sites/ligato/deploys)
 
 Contains the code for the Hugo-based Ligato.io website. Upon changes detected in the github repo, it will be deployed using Netlify to replace the existing Ligato.io site.
 
