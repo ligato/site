@@ -5,9 +5,9 @@ theme: hugo-fresh
 
 params:
   navbarlogo:
-  # Logo (from /images/logos/___)
-   image: logos/new-logo-ligato-dark.png
-   link: /
+    # Logo (from /images/logos/___)
+    image: logos/new-logo-ligato-dark.png
+    link: /
   font:
     name: "Open Sans"
     sizes: [400,600]
@@ -15,11 +15,11 @@ params:
     # Main hero title
     title: Ligato
     # Hero subtitle (optional)
-    subtitle: An open source framework for building applications to control and manage Cloud Native Network Functions (CNF)
+    subtitle: An open source Go framework for building applications to control and manage Cloud Native Network Functions (CNF)
     # Button text
     buttontext: Get started
     # Where the main hero button links to
-    buttonlink: "https://docs.ligato.io/en/latest/"
+    buttonlink: "https://docs.ligato.io/"
     # Hero image (from /images/___)
     image: ligato/ligato3.svg
     # Footer logos (from /images/logos/clients/___.svg)
@@ -32,10 +32,6 @@ params:
     - etcd
   # Customizable navbar. For a dropdown, add a "sublinks" list.
   navbar:
-#  - title: Blog
-#    sublinks:
-#      - title: CNFs with a Dose of Ligato and FD.io/VPP
-#        url: "blog/cnf-ligato-fdio"
   - title: Documentation
     url: "https://docs.ligato.io/"
   - title: Github
@@ -58,45 +54,6 @@ params:
     sublinks:
       - title: CNFs with a Dose of Ligato and FD.io/VPP
         url: "/blog/cnf-ligato-fdio"
-#  - title: Log in
-#    url: /
-#  - title: Sign up
-#    url: /
-#    button: true
-#  sidebar:
-#    # Logo (from /images/logos/___.svg)
-#    logo: ligato-diamond
-#    sections:
-#    - title: User
-#      icon: user
-#      links:
-#      - text: Profile
-#        url: /
-#      - text: Account
-#        url: /
-#      - text: Settings
-#        url: /
-#    - title: Messages
-#      icon: envelope
-#      links:
-#      - text: Inbox
-#        url: /
-#      - text: Compose
-#        url: /
-#    - title: Images
-#      icon: image
-#      links:
-#      - text: Library
-#        url: /
-#      - text: Upload
-#        url: /
-#    - title: Settings
-#      icon: cog
-#      links:
-#      - text: User settings
-#        url: /
-#      - text: App settings
-#        url: /
   section1:
     title: Learn more about Ligato
     subtitle: All About CNFs, Ligato and Use Cases
@@ -136,22 +93,6 @@ params:
     image: ligato/ligato-front-pillar-grey-bg.svg
     buttonText: Get started
     buttonLink: "https://docs.ligato.io/en/latest/user-guide/quickstart/"
-#  section4:
-#    title: Our Clients love us!
-#    subtitle: Lorem ipsum sit dolor amet is a dummy text used by typography industry
-#    clients:
-#    - name: Irma Walters
-#      quote: Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
-#      job: Accountant
-#      img: 1
-#    - name: John Bradley
-#      quote: Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
-#      job: Financial Analyst
-#      img: 2
-#    - name: Gary Blackman
-#      quote: Lorem ipsum dolor sit amet, elit deleniti dissentias quo eu, hinc minim appetere te usu, ea case duis scribentur has. Duo te consequat elaboraret, has quando suavitate at.
-#      job: HR Manager
-#      img: 3
   footer:
     # Logo (from /images/logos/___)
     logo: ligato-diamond.svg
@@ -163,7 +104,7 @@ params:
       icon: docker
     - link: https://twitter.com/ligatoProject
       icon: twitter
-    - link: https://ligato.slack.com
+    - link: https://ligato.slack.com/
       icon: slack
     bulmalogo: false
     quicklinks:
@@ -191,13 +132,4 @@ params:
           link: "https://docs.ligato.io/en/latest/tutorials/01_hello-world/"
         - text: FAQ
           link: "https://docs.ligato.io/en/latest/user-guide/faq/"
-#      column3:
-#        title: "Blog"
-#        links:
-#        - text: Latest news
-#          link: /
-#        - text: Tech articles
-#          link: /
-#        - text: Video blog
-#          link: /
 disableKinds: ["taxonomy", "taxonomyTerm", "section"]
