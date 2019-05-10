@@ -15,7 +15,7 @@ params:
     # Main hero title
     title: Ligato
     # Hero subtitle (optional)
-    subtitle: An open source Go framework for building applications to control and manage Cloud Native Network Functions (CNF)
+    subtitle: An Open Source Go Framework for Building Applications to Control and Manage Cloud Native Network Functions (CNF)
     # Button text
     buttontext: Get started
     # Where the main hero button links to
@@ -90,7 +90,7 @@ params:
   section3:
     title: One Framework
     subtitle: Build CNFs for Existing and Future Networks
-    image: ligato/ligato-front-pillar-grey-bg.svg
+    image: ligato/ligato-front-pillar-grey-bg2.svg
     buttonText: Get started
     buttonLink: "https://docs.ligato.io/en/latest/user-guide/quickstart/"
   footer:
