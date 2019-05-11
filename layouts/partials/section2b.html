@@ -1,0 +1,38 @@
+{{- $section2 := .Site.Params.section2 }}
+{{- $title    := index $section2 "title" }}
+{{- $subtitle := index $section2 "subtitle" }}
+{{- $features := index $section2 "features" }}
+<section class="section section-feature-grey is-medium">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-centered-tablet-portrait mt-60">
+        <h1 class="title section-title">{{ $title }}</h1>
+        <h3 class="subtitle is-5 is-muted">{{ $subtitle }}</h3>
+        <div class="divider"></div>
+      </div>
+      <div class="column is-6 mt-60">
+        {{- range $features }}
+        <!--Metz added align-items center-->
+        <article class="media icon-box" style="align-items:center">
+          <figure class="media-left">
+            <!--Metz - replace immage - section2 with style="width:80px"-->
+            <p class="image-section2">
+              <img src="{{ printf "/images/illustrations/icons/%s.svg" .icon | relURL }}" >
+            </p>
+          </figure>
+          <!--Metz removed mt-50 is below-->
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <span class="icon-box-title">{{ .title }}</span>
+
+                <span class="icon-box-text">{{ .text }}</span>
+              </p>
+            </div>
+          </div>
+        </article>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</section>

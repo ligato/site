@@ -80,13 +80,16 @@ params:
     - title: Key Value Datastores
       text: Efficient storage and distribution of network configurations
       # Icon (from /images/illustrations/icons/___.svg)
-      icon: etcd-blue
+      icon: laptop-globe
     - title: Written in Golang
       text: Programming language of choice for peformance and concurrency
-      icon: golang
+      icon: mobile-feed
     - title: API Protocols for Process and Apps Communications
       text: Plugins including gRPC for building and running APIs
-      icon: grpc
+      icon: doc-sync
+    - title: API Protocols for Process and Apps Communications
+      text: Plugins including gRPC for building and running APIs
+      icon: saturn-shape
   section3:
     title: One Framework
     subtitle: Build CNFs for Existing and Future Networks

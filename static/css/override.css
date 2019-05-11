@@ -12,5 +12,9 @@
     text-align: center;
     font-weight: bold;
     color: blue;
+}
 
+.saturn-shape {
+    padding-left: 45px;
+    padding-right: 45px;
 }
