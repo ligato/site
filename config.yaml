@@ -74,22 +74,28 @@ params:
       url: "use-cases/ligato-use-cases"
       buttonText: Learn More
   section2:
-    title: Leveraging Open Source Technologies
-    subtitle: Rapid Innovation Development and Deployment
+    title: Rapid Innovation Development
+    subtitle: Packaging, Programming and Performance
     features:
-    - title: Key Value Datastores
-      text: Efficient storage and distribution of network configurations
-      # Icon (from /images/illustrations/icons/___.svg)
+    - title: Small Compact Footprint
+      text: Packaged in Docker container together with VPP
       icon: laptop-globe
     - title: Written in Golang
-      text: Programming language of choice for peformance and concurrency
+      text: Programming language for peformance and concurrency in cloud native environments
+      icon: mouse-globe
+    - title: Key Value Datastores
+      text: Fast, lightweight distribution of network configurations
+      # Icon (from /images/illustrations/icons/___.svg)
+      icon: laptop-cloud
+    - title: Modular and Extensible
+      text: Plugins for VPP, Linux, APIs, datastore, security, database systems
+      icon: plug-cloud
+    - title: Protobufs Data Structure
+      text: Common for RPC, datastore and message brokers
+      icon: mouse-globe
+    - title: Configuration Scheduler
+      text: Transaction-based for correct ordering, auto-healing, restarts
       icon: mobile-feed
-    - title: API Protocols for Process and Apps Communications
-      text: Plugins including gRPC for building and running APIs
-      icon: doc-sync
-    - title: API Protocols for Process and Apps Communications
-      text: Plugins including gRPC for building and running APIs
-      icon: saturn-shape
   section3:
     title: One Framework
     subtitle: Build CNFs for Existing and Future Networks

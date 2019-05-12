@@ -2,7 +2,7 @@
 {{- $title    := index $section2 "title" }}
 {{- $subtitle := index $section2 "subtitle" }}
 {{- $features := index $section2 "features" }}
-<section class="section section-feature-grey is-medium">
+<section class="section">
   <div class="container">
     <div class="title-wrapper has-text-centered">
       <h2 class="title is-2">{{ $title }}</h2>
@@ -17,8 +17,8 @@
               <article class="media icon-box" style="align-items:center">
                 <figure class="media-left">
                   <!--Metz - replace immage - section2 with style="width:80px"-->
-                  <p class="image">
-                    <img src="{{ printf "/images/illustrations/icons/%s.svg" .icon | relURL }}" >
+                  <p class="image" >
+                    <img src="{{ printf "/images/illustrations/icons/%s.svg" .icon | relURL }}">
                   </p>
                 </figure>
                 <!--Metz removed mt-50 is below-->
