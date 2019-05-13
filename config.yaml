@@ -79,23 +79,23 @@ params:
     features:
     - title: Small Compact Footprint
       text: Packaged in Docker container together with VPP
-      icon: laptop-globe
+      icon: laptop-globe2
     - title: Written in Golang
       text: Programming language for peformance and concurrency in cloud native environments
-      icon: mouse-globe
+      icon: mouse-globe2
     - title: Key Value Datastores
       text: Fast, lightweight distribution of network configurations
       # Icon (from /images/illustrations/icons/___.svg)
-      icon: laptop-cloud
+      icon: database
     - title: Modular and Extensible
       text: Plugins for VPP, Linux, APIs, datastore, security, database systems
-      icon: plug-cloud
+      icon: plug-cloud2
     - title: Protobufs Data Structure
       text: Common for RPC, datastore and message brokers
-      icon: mouse-globe
+      icon: code
     - title: Configuration Scheduler
       text: Transaction-based for correct ordering, auto-healing, restarts
-      icon: mobile-feed
+      icon: calendar-full
   section3:
     title: One Framework
     subtitle: Build CNFs for Existing and Future Networks
