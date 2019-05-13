@@ -87,21 +87,13 @@ Reference: [Contiv-VPP](https://contivpp.io)
 <br />
 ## 3. Network Service Mesh
 
-### Requirements
+The Network Service Mesh (NSM) is novel approach that manages L2/L3 "pipes" (another term is "wires) between client Pods that require a service and server pods that host the service. It is separate from CNI plugins but can co-exist in a K8s cluster network with any CNI plugin.
 
-to be added ..
+NSM addresses the problem of "too much network configuration complexity" for developers and operators who merely need to connect client pods (network service clients or NSCs) to service Pods (network service endpoints or NSEs).
 
-### Solution - Network Service Mesh
+An Ligato/VPP-based CNF is one implementation supporting the x-connect of local and remote interfaces (e.g. tap, memif, SRv6, vxlan tunnels, etc.) that when strung together form the aforementioned client to service pod wires.
 
-to be added
-
-`add picture`
-
-some more comments
-<br />
-<br />
-<br />
-<br />
+Reference: [Network Service Mesh](https://networkservicemesh.io/)   
 
 
 
