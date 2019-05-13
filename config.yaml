@@ -30,6 +30,7 @@ params:
     - Go-Logo
     - contiv-icon
     - etcd
+    - nsm-grey
   # Customizable navbar. For a dropdown, add a "sublinks" list.
   navbar:
   - title: Documentation
@@ -48,8 +49,10 @@ params:
         url: https://fosdem.org/2019/schedule/event/vpp_ligato_as_ipsec_gateway/
       - title: Contiv VPP User Interface
         url: https://youtu.be/GKaJkskZAnQ
-      - title: FD.io in a Cloud Native World, Ed Warnicke, Cisco Systems
+      - title: FD.io in a Cloud Native World
         url: https://www.youtube.com/watch?v=SdLwSb0JSAs
+      - title: Network Service Mesh Deep Dive
+        url: https://networkservicemesh.io/docs/videos/deepdive/
   - title: Blog
     sublinks:
       - title: CNFs with a Dose of Ligato and FD.io/VPP
