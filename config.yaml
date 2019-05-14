@@ -45,7 +45,7 @@ params:
       url: "https://github.com/ligato"
   - title: Videos
     sublinks:
-      - title: Fosdem 2019 "VPP & Ligato use cases" talk
+      - title: Fosdem 2019 "VPP & Ligato Use Cases" talk
         url: https://fosdem.org/2019/schedule/event/vpp_ligato_as_ipsec_gateway/
       - title: Contiv VPP User Interface
         url: https://youtu.be/GKaJkskZAnQ
@@ -77,7 +77,7 @@ params:
       url: "use-cases/ligato-use-cases"
       buttonText: Learn More
   section2:
-    title: Rapid Innovation Development
+    title: Rapid Innovation & Development
     subtitle: Packaging, Programming and Performance
     features:
     - title: Small Compact Footprint
