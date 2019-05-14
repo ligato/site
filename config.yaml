@@ -115,7 +115,7 @@ params:
     - link: https://ligato.slack.com
       icon: slack
     - link: https://groups.google.com/d/forum/ligato
-      icon: envelope-open-text
+      icon: envelope-o
     - link: https://twitter.com/ligatoProject
       icon: twitter
     bulmalogo: false
