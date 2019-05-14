@@ -112,12 +112,12 @@ params:
     socialmedia:
     - link: https://github.com/ligato
       icon: github
-    - link: https://hub.docker.com/u/ligato
-      icon: docker
+    - link: https://ligato.slack.com
+      icon: slack
+    - link: https://groups.google.com/d/forum/ligato
+      icon: envelope-open-text
     - link: https://twitter.com/ligatoProject
       icon: twitter
-    - link: https://ligato.slack.com/
-      icon: slack
     bulmalogo: false
     quicklinks:
 #      column1:
