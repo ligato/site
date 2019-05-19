@@ -53,6 +53,11 @@ params:
         url: https://www.youtube.com/watch?v=SdLwSb0JSAs
       - title: Network Service Mesh Deep Dive
         url: https://networkservicemesh.io/docs/videos/deepdive/
+  - title: Community
+    url: "/community/community"
+#    sublinks:
+#      - title: Community Page
+#        url: "/community/community"
   - title: Blog
     sublinks:
       - title: CNFs with a Dose of Ligato and FD.io/VPP

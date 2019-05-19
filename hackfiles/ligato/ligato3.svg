@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="50 0 755 730">
+  <title>Ligato logo</title>
+  <style>
+    .st0 {
+      fill: #7eb74a;
+    }
+    .st1 {
+      fill: #7bb642;
+    }
+    .st2 {
+      fill: #fff;
+    }
+    .st3 {
+      fill: #353323;
+    }
+  </style>
+  <circle cx="176.5" cy="354.7" r="21.4" class="st2" />
+  <circle cx="557.1" cy="491.6" r="24" class="st2" />
+  <circle cx="436.4" cy="615" r="21.4" class="st2" />
+  <circle cx="557.1" cy="491.6" r="21.4" class="st2" />
+  <path
+    d="M648.99 493.29L429.932 712.355l-106.704-106.7 219.057-219.066z"
+    class="st0"
+  />
+  <path
+    d="M188.694 257.77l347.254 347.266-106.705 106.7L81.99 364.472z"
+    class="st0"
+  />
+  <path
+    d="M183.014 365.98l7.778-7.778 238.37 238.361-7.778 7.778zm245.829 256.918l-7.778-7.779 137.251-137.247 7.778 7.779z"
+    class="st2"
+  />
+  <circle cx="555.6" cy="490.2" r="21.4" class="st2" />
+  <circle cx="434.6" cy="609.1" r="21.4" class="st2" />
+  <circle cx="179.7" cy="354.1" r="21.4" class="st2" />
+  <path
+    d="M207.416 238.345L426.474 19.28l106.704 106.7L314.12 345.046z"
+    class="st3"
+  />
+  <path
+    d="M667.684 473.803L320.43 126.536l106.704-106.7L774.39 367.102z"
+    class="st3"
+  />
+</svg>
