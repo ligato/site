@@ -177,7 +177,7 @@ Again referencing the figure above, it is positioned in the Ligato framework as 
 <br />
 <br />
 
-{{< figure src="/images/ligato/vpp-agent-single.png" class="image-center figcaption"caption="Ligato VPP Agent" >}}
+{{< figure src="/images/ligato/ligato-vpp-agent.png" class="image-center figcaption"caption="Ligato VPP Agent" >}}
 <br />
 Let’s examine how the VPP agent fits into a CNF architecture with an FD.io/VPP dataplane. In the figure directly above we show a container (in user space of course) with an FD.io/VPP dataplane and the VPP agent. The container packaging is lightweight and eliminates version mismatches. We described earlier the notion of user space CNFs so DPDK drivers are used here to speak directly to the NIC and bypass the kernel.  
 
