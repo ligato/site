@@ -43,6 +43,10 @@ params:
       url: "https://github.com/ligato/vpp-agent"
     - title: All Repositories
       url: "https://github.com/ligato"
+  - title: Presentations
+    sublinks:
+      - title: Ligato Overview
+        url: https://drive.google.com/open?id=1gE2-Y7R3o8V2tKvT2QN9OfekNrx3q4xh
   - title: Videos
     sublinks:
       - title: Fosdem 2019 "VPP & Ligato Use Cases" talk
@@ -54,7 +58,13 @@ params:
       - title: Network Service Mesh Deep Dive
         url: https://networkservicemesh.io/docs/videos/deepdive/
   - title: Community
-    url: "/community/community"
+    sublinks:
+      - title: Slack
+        url: https://ligato.slack.com/
+      - title: Twitter
+        url: https://twitter.com/ligatoProject
+      - title: Google Groups
+        url: https://groups.google.com/d/forum/ligato
 #    sublinks:
 #      - title: Community Page
 #        url: "/community/community"
