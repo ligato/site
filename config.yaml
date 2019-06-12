@@ -46,7 +46,7 @@ params:
   - title: Presentations
     sublinks:
       - title: Ligato Overview
-        url: https://drive.google.com/open?id=1gE2-Y7R3o8V2tKvT2QN9OfekNrx3q4xh
+        url: https://docs.google.com/presentation/d/1SlfBPgn3Uwi316OWU4-l0oQRSeqiLdmacnHcX0qNdxQ/present?usp=sharing
   - title: Videos
     sublinks:
       - title: Fosdem 2019 "VPP & Ligato Use Cases" talk
