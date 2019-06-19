@@ -24,13 +24,13 @@ params:
     image: ligato/ligato3.svg
     # Footer logos (from /images/logos/clients/___.svg)
     # Metz: replace client logos with FD.io, CNCF, K8S, Contiv VPP
-    clientlogos:
-    - grey-fdio
-    - kubernetes-seeklogo.com
-    - Go-Logo
-    - contiv-icon
-    - etcd
-    - nsm-grey
+    #clientlogos:
+#    - grey-fdio
+#    - kubernetes-seeklogo.com
+#    - Go-Logo
+#    - contiv-icon
+#    - etcd
+#    - nsm-grey
   # Customizable navbar. For a dropdown, add a "sublinks" list.
   navbar:
   - title: Documentation

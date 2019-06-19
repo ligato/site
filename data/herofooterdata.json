@@ -1,0 +1,56 @@
+[
+  {
+    "title": "FD.io/VPP",
+    "description": "Open source dataplane running in user space with rich feature set ideal for CNFs.",
+    "image": "images/logos/clients/fdio-300x184.svg",
+    "url": "https://fd.io"
+  },
+  {
+    "title": "Kubernetes",
+    "description": "Container Orchestration & Scheduling",
+    "image": "images/logos/clients/k8s-logo.svg",
+    "url": "https://kubernetes.io/"
+  },
+  {
+    "title": "Go",
+    "description": "Programming language for distributed networks",
+    "image": "images/logos/clients/golang.svg",
+    "url": "https://golang.org/"
+  },
+  {
+    "title": "Docker",
+    "description": "First class citizen with seamless management and operations",
+    "image": "images/logos/clients/docker-icon-whale.svg",
+    "url": "https://www.docker.com/"
+  },
+  {
+    "title": "CNI",
+    "description": "CNI",
+    "image": "images/logos/clients/cni-icon-color.svg",
+    "url": "https://github.com/containernetworking/cni"
+  },
+  {
+    "title": "Contiv VPP",
+    "description": "Contiv vswitch is a CNF using VPP Agent + VPP data-plane",
+    "image": "images/logos/clients/contiv-anchor.svg",
+    "url": "https://contivpp.io/"
+  },
+  {
+    "title": "Etcd",
+    "description": "KV datastore for cloud native networks",
+    "image": "images/logos/clients/etcd-blue.svg",
+    "url":"https://etcd.io/" 
+  },
+  {
+    "title": "Network Service Mesh",
+    "description": "Network Service Mesh",
+    "image": "images/logos/clients/networkservicemesh-icon-color.svg",
+    "url": "https://networkservicemesh.io"
+  },
+  {
+    "title": "gRPC",
+    "description": "gRPC",
+    "image": "images/logos/clients/g-rpc.svg",
+    "url": "https://grpc.io"
+  }
+]
