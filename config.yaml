@@ -58,13 +58,7 @@ params:
       - title: Network Service Mesh Deep Dive
         url: https://networkservicemesh.io/docs/videos/deepdive/
   - title: Community
-    sublinks:
-      - title: Slack
-        url: https://ligato.slack.com/
-      - title: Twitter
-        url: https://twitter.com/ligatoProject
-      - title: Google Groups
-        url: https://groups.google.com/d/forum/ligato
+    url: "/community/community"
 #    sublinks:
 #      - title: Community Page
 #        url: "/community/community"
