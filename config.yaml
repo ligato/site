@@ -58,10 +58,10 @@ params:
       - title: Network Service Mesh Deep Dive
         url: https://networkservicemesh.io/docs/videos/deepdive/
   - title: Community
-    url: "/community/community"
+    url: "/community/page"
 #    sublinks:
 #      - title: Community Page
-#        url: "/community/community"
+#        url: "/community/page/"
   - title: Blog
     sublinks:
       - title: CNFs with a Dose of Ligato and FD.io/VPP
