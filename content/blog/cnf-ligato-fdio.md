@@ -185,15 +185,15 @@ The VPP agent plugins provide northbound APIs for configuring and managing defau
 
 The [GoVPP](https://wiki.fd.io/view/GoVPP) plugin is mandatory for the VPP agent. This is essentially a Go-based toolset allowing plugin(s) to communicate with the VPP dataplane process(es). Note the plural in both plugins and VPP processes.
 
-At the risk of "stack layer jumping", brief mention should be made here of the KVScheduler] (KV stands for Key Value) plugin. Technically is not a VPP agent plugin but communicates directly with VPP agent plugins to ensure that consistent and correct configuration is installed in the VPP dataplane. Its importance cannot be overstated in both the architecture, development and operation of CNF (and non-CNF) solution. 
+At the risk of "stack layer jumping", brief mention should be made here of the KVScheduler (KV stands for Key Value) plugin. Technically it is not a VPP agent plugin but communicates directly with VPP agent plugins to ensure that consistent and correct configuration is installed in the VPP dataplane. Its importance cannot be overstated in the architecture, development, management and operation of CNF (and non-CNF) solutions. 
 
 A problem arose when the number of configuration items (i.e. VPP plugins) scaled upwards due to the necessary turn up of features in the VPP dataplane. The configurator plugins built each configuration item (e.g. interface, route, bridge domain, etc.) from scratch leading to lots of code duplication. Configurators used notifications to talk with each other and react to changes asynchronously. At some point it became untenable for the configurators to sort through and sequence in correct order all of the different configuration items. It was like a bunch of people standing around, shouting different directions to a restaurant. Hunger pains continue. Chaos ensues. Not happy.     
  
-KVScheduler to the rescue! It uplevels configuration item dependencies and ordering into a graph abstraction. The configuration items are nodes, the relationship between them as links. The graph is used to build configuration state to be programmed into the VPP dataplane of the CNF.
+KVScheduler to the rescue! It uplevels configuration item dependencies and ordering into a graph abstraction. The configuration items are nodes, the relationship between them, links. The graph is used to build configuration state to be programmed into the VPP dataplane of the CNF.
 
 Much detail omitted but you can find out more about the __[KVScheduler](https://docs.ligato.io/en/latest/developer-guide/kvscheduler/) here__.  
 
-We are fast approaching the well-known attention span threshold and I need to go to the store. Let’s punt on the SFC Controller for now and save it for a future blog. 
+We are fast approaching the well-known attention span threshold and I need to go to the store.
 
   
 # Almost Done
