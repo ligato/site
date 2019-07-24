@@ -42,7 +42,7 @@ This uses live reload so any changes will be instantaneous.
 
 ### Some Comments
 
-* all content is written in markdown. Usual markdown links or hugo shortcodes including those for images to work.
+* all content is written in markdown. For images, use markdown links or hugo shortcodes for images to work.
 
 * all content is contained in the content/ folder. You can see how sub-folders under content/ relate to specific content and corresponding templates in the layouts/ on the site.
 
