@@ -37,6 +37,11 @@ Ligato is an open source framework for developing solutions for managing and con
 
 <br />
 
-### Reference: [Ligato Overview](http://docs.ligato.io/en/latest/intro/overview/)
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/intro/framework/"class="button is-success">Ligato Framework</a>
+                        </div>
+</div>
+
 
 
