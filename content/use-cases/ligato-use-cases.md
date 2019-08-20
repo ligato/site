@@ -190,10 +190,11 @@ Extensions to Contiv - VPP in development are support for IPv6, SRv6 and SFC:
         <div class="tile is-parent is-vertical is-4">
                         <article class="tile is-child box">
                             <p class="title">Problem To Solve</p>
-                            <p class="subtitle">capacity & performance needs</p>                                      
+                            <p class="subtitle">Capacity, performance & networking needs</p>                                      
                             <ul class="is-size-6">
                                 <li>Tunnel b/w from Mbps to multi-Gbps</li>
-                                <li>Tunnel termination scale up to tens of thousands</li>
+                                <li>Tunnel setup & termination scales</li>
+                                <li>Heterogeneous Tunnel Internetworking</li>
                                 <li>Per-client tunnel stats and telemetry</li>
                                 <li>K8s cloud native operations and lifecycle</li>
                                 <li>IPsec and IKEv2 support</li>                               
@@ -203,8 +204,10 @@ Extensions to Contiv - VPP in development are support for IPv6, SRv6 and SFC:
                             <p class="title">Solution</p>
                             <p class="subtitle">StrongSwan VPN control plane with VPP dataplane</p>
                             <ul class="is-size-6">
-                                <li>Leverages complete IPsec VPP feature set</li>
+                                <li>Leverages complete IPsec tunnel VPP feature set</li>
                                 <li>Scales up to Multi-Gbps throughput</li>
+                                <li>Scales up to thousands of tunnels per node</li>
+                                <li>IPsec VPN - SD-WAN Interworking</li>
                                 <li>Extensive client tunnel stats/telemetry</li>
                                 <li>Pod/container horizontal scaling</li>
                                 <li>IPsec and IKEv2 standard feature support</li> 
