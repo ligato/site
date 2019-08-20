@@ -47,6 +47,8 @@ params:
     sublinks:
       - title: Ligato Overview
         url: https://docs.google.com/presentation/d/1SlfBPgn3Uwi316OWU4-l0oQRSeqiLdmacnHcX0qNdxQ/present?usp=sharing
+      - title: Ligato - A Platform for the Development of Cloud Native VNFs
+        url: https://www.cisco.com/c/dam/m/en_us/network-intelligence/service-provider/digital-transformation/knowledge-network-webinars/pdfs/0530-techad-ckn.pdf
   - title: Videos
     sublinks:
       - title: Fosdem 2019 "VPP & Ligato Use Cases" talk
