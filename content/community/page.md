@@ -5,44 +5,35 @@ layout: "page"
 draft: false
 ---
 
-### For VPP Agent Developers
+## Development
 
+[![GitHub](https://img.shields.io/badge/Ligato-GitHub-yellowgreen.svg?logo=github&logoColor=white&style=popout)](https://github.com/ligato)
+[![TravisCI](https://img.shields.io/badge/Ligato-TravisCI-yellow.svg?logo=travis-ci&logoColor=white&style=popout)](https://travis-ci.com/ligato)
+[![DockerHub](https://img.shields.io/badge/Ligato-DockerHub-blue.svg?logo=docker&logoColor=white&style=popout)](https://hub.docker.com/r/ligato)
 
-[![Github Repo](https://img.shields.io/badge/Code-GitHub-brightgreen.svg?style=plastic)](https://github.com/ligato/vpp-agent)
+**VPP-Agent** 
+![GitHub stars](https://img.shields.io/github/stars/ligato/vpp-agent?style=social)
 
+[![Github Repo](https://img.shields.io/badge/Code-GitHub-brightgreen.svg)](https://github.com/ligato/vpp-agent)
+![GitHub contributors](https://img.shields.io/github/contributors/ligato/vpp-agent.svg?color=#262)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ligato/vpp-agent)
 ![GitHub issues](https://img.shields.io/github/issues/ligato/vpp-agent.svg)
 
-[![Coverage Status](https://coveralls.io/repos/github/ligato/vpp-agent/badge.svg?branch=master)](https://coveralls.io/github/ligato/vpp-agent?branch=master)
-
 [![GoDoc](https://godoc.org/github.com/ligato/vpp-agent?status.svg)](https://godoc.org/github.com/ligato/vpp-agent)
-[![GitHub license](https://img.shields.io/badge/license-Apache%20license%202.0-blue.svg)](https://github.com/ligato/vpp-agent/blob/master/LICENSE)
-[![Docker](https://img.shields.io/badge/Code-Docker%20Production%20Image-purple.svg?style=plastic)](https://hub.docker.com/r/ligato/vpp-agent)
-[![Docker](https://img.shields.io/badge/Code-Docker%20Development%20Image-purple.svg?style=plastic)](https://hub.docker.com/r/ligato/vpp-agent)
 
+**CN-Infra** 
+![GitHub stars](https://img.shields.io/github/stars/ligato/cn-infra?style=social)
 
-<br/>
+[![Github Repo](https://img.shields.io/badge/Code-GitHub-brightgreen.svg)](https://github.com/ligato/cn-infra)
+![GitHub contributors](https://img.shields.io/github/contributors/ligato/cn-infra.svg?color=#262)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ligato/cn-infra)
+![GitHub issues](https://img.shields.io/github/issues/ligato/cn-infra.svg)
 
+[![GoDoc](https://godoc.org/github.com/ligato/cn-infra?status.svg)](https://godoc.org/github.com/ligato/cn-infra)
 
-### Social
-
-[![Mailing List](https://img.shields.io/badge/Mailing%20List-Ligato-blue.svg?style=plastic)](https://groups.google.com/forum/#!forum/ligato)
+## Social
 
 [![Slack Channel](https://img.shields.io/badge/Slack:-Ligato-blue.svg?style=plastic&logo=slack)](https://ligato.slack.com)
 [![Slack Invite](https://img.shields.io/badge/Slack:-Ligato Slack Invite-blue.svg?style=plastic&logo=slack)](https://ligatoslack.herokuapp.com/)
 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
+[![Mailing List](https://img.shields.io/badge/Mailing%20List-Ligato-blue.svg?style=plastic)](https://groups.google.com/forum/#!forum/ligato)
