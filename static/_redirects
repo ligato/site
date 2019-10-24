@@ -1,2 +1,2 @@
-/pkg/infra* go-get=1 /golang/infra.html 200
+/cn-infra* go-get=1 /golang/cn-infra.html 200
 /vpp-agent* go-get=1 /golang/vpp-agent.html 200
