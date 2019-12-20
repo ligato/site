@@ -1,2 +1,3 @@
 /cn-infra* go-get=1 /golang/cn-infra.html 200
 /vpp-agent* go-get=1 /golang/vpp-agent.html 200
+/vpp-binapi/* go-get=1 /golang/vpp-binapi.html 200
