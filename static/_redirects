@@ -1,6 +1,6 @@
 # Go vanity import paths
 
-/cn-infra/v2* go-get=1 /golang/cn-infra_v2.html 200
+/cn-infra/v2* /golang/cn-infra_v2.html 200
 /cn-infra* /golang/cn-infra.html 200
 /vpp-agent* go-get=1 /golang/vpp-agent.html 200
 /vpp-binapi/* go-get=1 /golang/vpp-binapi.html 200
