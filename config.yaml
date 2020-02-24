@@ -91,7 +91,7 @@ params:
     title: Rapid Innovation & Development
     subtitle: Packaging, Programming and Performance
     features:
-    - title: Small Compact Footprint
+    - title: Compact Footprint
       text: Packaged in Docker container together with VPP
       icon: laptop-globe3
     - title: Written in Golang
@@ -105,7 +105,7 @@ params:
       text: Plugins for VPP, Linux, APIs, datastore, security, database systems
       icon: plug-cloud-new
     - title: Protobufs Data Structure
-      text: Common for RPC, datastore and message brokers
+      text: Model-driven APIs; common transport
       icon: code
     - title: Configuration Scheduler
       text: Transaction-based for correct ordering, auto-healing, restarts
