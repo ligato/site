@@ -12,7 +12,7 @@ draft: false
         <div class="tile is-child box notification is-success">
             <p class="title">Core CNF</p>
         </div>
-    </div>>
+    </div>
 </div>
 
 
