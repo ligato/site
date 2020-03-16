@@ -10,4 +10,5 @@
 
 # Other redirects
 
+/ https://ligato.io/ 301
 /* https://ligato.io/ 301
