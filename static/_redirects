@@ -1,10 +1,13 @@
-# Go vanity import paths
+# Go vanity import path redirects
 
+# -> cn-infra
 /cn-infra/v2* /golang/cn-infra_v2.html 200
-#/cn-infra* /golang/cn-infra.html 200
-
+# -> vpp-agent
 /vpp-agent/v3* /golang/vpp-agent_v3.html 200
 #/vpp-agent/v2* /golang/vpp-agent_v2.html 200
-#/vpp-agent* /golang/vpp-agent.html 200
+# -> vpp-binapi
+/vpp-binapi/* /golang/vpp-binapi.html 200
 
-/vpp-binapi/* go-get=1 /golang/vpp-binapi.html 200
+# Other redirects
+
+/* https://ligato.io/ 200
