@@ -5,47 +5,90 @@ layout: "cnf"
 draft: false
 ---
 
-## Problem to Solve
+## Virtualized Network Function (VNF)
 
-* Network functions (NF) are physical or virtual devices that process packets supporting a network and/or application service. Performance, features, scale and operational control are paramount. Routers, campus switches and firewalls are example NFs.
-* VM-based virtual network functions (VNF) are available, mature, deployable, manageable and service-enabled.
-* Cloud Native is _new_; NFs implemented for and running in Cloud Native networks is _new_.
-* Container networking needs high-performance network functions (NFs) such as NAT, Firewalls, VPN gateways, load balancers, IPS, DPI, L2/L3 forwarding and more.
-* Reasons why they are needed: Fast, flexible, elastic and resilient container orchestration; For spinning up advanced communication services, composed of NF service chains; Rapid development and introduction of new network and services innovations to cloud native environments.
-* What about Kubernetes container network interface (CNI)? Not ideal for this purpose; Only provides simple application pod networking
-* Kernel network stack currently used for VM and container networks can hinder throughput for some applications
+Network functions (NF) are physical devices that process packets supporting a network and/or application service. Performance, features, scale and operational control are paramount. Routers, campus switches and firewalls are NF examples. A topology composd of similar or dissimilar interconnected NFs, form a network. Interconnected networks are assembled into larger networks supporting a broad range of applications, services, customers, and connectivity. This network model applies in all cases, from the Internet all the way down to residential wifi networks, where physical network infrastructure is used.
 
-A solution for building and operating NFs for cloud native networks must exhibit the following:
+A virtual machine (VM) abstracts a physical server machine and runs a complete instance of the application code, a guest OS/kernel, a hypervisor to coordinate VM resource management, all operating on commodity-off-the-shelf (COTS) hardware. A host OS/kernel is also present. The advantages of VMs include: cost savings due to NF hardware decoupling; automated configuration and operations using mature VM management tools; multi-tenancy; security and isolation. The disadvantages is the overhead of virtualizing all software and hardware components that normally run physical servers. By their very nature, VMs operate in public or private clouds largely comprised of data center server farms.
 
-* Foster developer productivity with modern toolsets, standard/customized APIs, documentation, libraries, 12-factor, modularity, open source and cloud native project integration, large and engaged community.
-* Adhere to K8s lifecycle management.
-* Observability through logging, tracing, telemetry, diagnostic/troubleshooting APIs and CLI.
-* Feature rich, programmable and extensible for control plane, data plane and customization
-* High-performance user space data plane
+Applications that run on dedicated, single tenant physical servers are referred to as bare-metal. The advantages of bare-metal are single tenancy, security, isolation, and predictable performance. The disadvantages are slower deployment operations, kernel network bottlenecks, and additional hardware costs.
+
+A virtualized network function (VNF) is an NF designed to run in a virtualized environment. By convention, VNFs run in VMs and accrue all aforementioned VM advantages and disadvantages. VNFs can be networked together into a virtual overlay running on top of a physical underlay network. Excluding performance and scale, VNFs mirror just about all of the functions and features found in dedicated hardware NFs, modulo the requisite adaptations for running in cloud environments.
+
+Additional VNF advantages include:
+
+- VNFs can be easily staged to handle increased traffic workloads driven by customer growth and/or new services.
+- Service Chaining. A choreographed formation of VNFs can be assembled into a uniform customer application or service.
+- Performance and Scale numbers are well understood. There should be no surprises with proper capacity planning, a statement applicable to any network environment.  
+
+VNF challenges include :
+
+- Performance impact due to VM resource overhead including the host OS/kernel and hypervisor. This includes boot times under normal maintenance and failure restart scenarios.
+- VNF scale out requires investment in more servers and network gear including routers, switches and load balancers.
+- Potential for VM resources to sit idle. VNFs can only be deployed in coarse VM increments. This makes it challenging to optimize VNF resource allocations sufficient to meet traffic workload demands. Over-provisioning is needed and by definition, resources will sit idle. This is a classic traffic engineering problem with the exception here being those idle VM resources could be assigned to application processing.   
+- Implemented as indivisible code monoliths meaning all development, testing, feature development, maintenance, deployment and troubleshooting must consider the VNF as a single atomic unit.
+
+VNFs are the current defacto standard for standing up network functions in cloud environments.   
+
+## Cloud Native
+
+Cloud Native is a new approach for developing and running applications in a virtualized cloud environment. The cornerstone principles of cloud native are:
+
+- Applications are "carved up" into smaller units called microservices. Application monoliths are replaced by a constellation of smaller inter-connected microservices.
+- Containers house the microservices and provide a run-time environment. Containers dispense with VM overhead, and instead contain the application code, binaries and dependencies. They share a guest and/or OS kernel. 
+- Orchestration provides complete container lifecycle support including scheduling, placement, start/stop/re-start and visibility. Kubernetes is the cloud native orchestration platform. In the Kubernetes environment, one or more containers are grouped into pods that run on physical or virtual hosts. A pod is the smallest unit of work supported by Kubernetes. A collection of hosts and pods managed by Kubernetes is referred to as a cluster.
+
+Cloud native further incorporates the notions of open source, 12-factor app, and devops CI/CD pipelines.      
+
+These principles can be encapsulated in the Cloud Native Compute Foundation (CNCF) definition:
+ 
+`“using open source software stack to be containerized, where each part of the app is packaged in its own container, dynamically orchestrated so each part is actively scheduled and managed to optimize resource utilization, and microservices-oriented to increase the overall agility and maintainability of applications.”`
+
+### Container Networking Requirements
+
+One aspect of K8s networking involves inter-pod connectivity provided by the Kubernetes Container Network Interface (CNI) specification. There are multiple CNI solutions for establishing different forms of virtual L2/L3 overlay networks between pods. CNI solutions are quite suitable for web traffic workloads. However, they are not ideal for enabling services that leverage VNF-like functionality, process high-volume traffic workloads, or exploit the agility and dynamics of cloud native environments. 
+
+A new set of requirements emerge for augmenting basic container networking with VNF-like capabilities:
+
+- __(NFs) adapted for cloud native deployment and operations__. This assumes a container (pod) form-factor under K8s orchestration control, or a control/management plane co-existing or compatible with K8s. The latter is necessary if pods need to be wired up into a mesh topology. Note that K8s does not currently support "mesh" or "service function chain" provisioning. 
+- __Lightweight NF data plane configuration__. NF and VNF configuration has traditionally been performed by human operators, or centralized management systems communicating over a pre-established control channel to a configuration agent. Netconf/restconf or VPP honeycomb come to mind. The dynamics and velocity of container start/stop activity preclude central control. Stateless and lightweight data plane configuration performed at cloud native velocity is a must.     
+- __High-performance, feature-rich data plane__. Growth in high-volume traffic workloads coupled with per-service processing options such as ACL, NAT, tunnel encap/decap, load-balancing and encrypt/decrypt necessitate a fast, and multi-feature software data plane. 
+- __User space networking__. Performance gains with user space packet processing vs kernel networking are well documented. In addition, placing NF processing in user space isolates the kernel. Developers can innovate without kernel dependencies. Operators can start/stop NF processes without fear of impacting the kernel and possibly taking down the host. The kernel is and should remain immutable.
+
+Although not per se a new requirement for cloud environments, observability through logging, tracing, telemetry, diagnostic/troubleshooting APIs and CLI is mandatory for operations. 
 
 ---
-
 ## Cloud Native Network Functions (CNF) is the Solution
 
-A cloud native network function (CNF) is a VNF designed and implemented to run inside containers. CNFs inherit all cloud native architectural and operational principles including, 12-factor app, immutability and K8s lifecycle management.
+A cloud native network function (CNF) is a VNF designed and implemented to run inside containers. CNFs inherit all cloud native architectural and operational principles including K8s lifecycle management, agility, resilience, and observability.
 
+{{< figure src="/images/ligato/cnf-net5.svg" class="image-center figcaption" caption="Figure 1 - Kubernetes cluster with application and CNF pods" >}}
+
+Items to highlight:
+
+- __Application and CNF pods are deployed on workers__. As mentioned, a CNF is just another pod, albeit with specialized network functionality.
+- __CNFs are versatile__. They can be implemented with a single purpose in mind, an example being a load balancer. Or can be designed and built for programming and executing specific data plane functions supporting an application or service. Consider a CNF platform that can be programmed through APIs/agent to perform L3 routing in one instantiation, and firewall/NAT functions in another.   
+- __CNFs capabilities can be embedded in an application pod__. For example, a high performance pt-pt memif interface can connect a CNF to an application pod. This enhances performance and bypass the linux kernel.        
+ 
 CNF advantages include:
 
-* __Lifecycle management parity with application containers.__ Existing best practicies applied to application microservice containers related to development, CI/CD, K8s orchestration and scheduling, distributed management, telemetry collection are available to CNFs.
+* __Lifecycle management parity with application containers.__ Existing best practices applied to application pods related to development, CI/CD, K8s orchestration and scheduling, distributed management and telemetry collection are available to CNFs.  
 
-* __Stateless Configuration.__ CNFs operate in container pods. Pods are durable, but if something breaks or new functions are needed, then Pods can be torn down and a new instance started up. The dynamic nature of cloud native environments precludes centralized or stateful CNF config management.  Instead, a stateless approach is incorporated where CNFs “watch” for and then process config updates stored in an external data store.
+* __Stateless Configuration.__ CNFs operate in container pods. Pods are durable, but if something breaks or new functions are needed, then pods can be torn down and a new instance started up. The dynamic nature of cloud native environments precludes centralized or stateful CNF config management.  Instead, a stateless approach is incorporated where CNFs “watch” for and then process config updates stored in an external data store. Another lightweight option uses a service request to trigger a local gRPC call that pushes configuration state into the CNF data plane.
 
-* __Smaller footprint vis-a-vis physical or virtual devices.__ This reduces NF resource consumption, with the savings allocated to applications.
+* __Smaller footprint vis-a-vis physical or virtual devices.__ This reduces resource consumption, with the potential savings allocated to applications. 
 
-* __Rapid development, innovation and immutability.__ CNF functions should run in user space where new features and innovations can be applied. There is no need to modify the linux kernel; It becomes immutable.
+* __Rapid development, innovation and immutability.__ CNF functions should run in user space where new features and innovations can be developed and applied. There is no need to modify the linux kernel; It becomes immutable.
 
 * __Performance.__ Bypassing the Linux kernel has shown to increase performance. New CNFs are being developed to run in user space.
 
+* __Agnostic to host environments__. Bare-metal and VMs are the most common. Since VMs do not add value to CNFs, bare-metal could become the preferred host of choice.
+
 ---
 
-## CNFs are Multi-Purpose
+## CNF Solution Scenarios
 
-CNF are built and implemented with functions suited for their role in a cloud native network. For illustrative purposes, the figure below depicts several different scenarios.
+CNF are rolled out with functions suited for their role in a cloud native network. For illustrative purposes, the figure below depicts several different scenarios. 
 
 <div class="tile is-ancestor">
     <div class="tile is-parent">
@@ -60,7 +103,7 @@ CNF are built and implemented with functions suited for their role in a cloud na
     <div class="tile is-parent">
         <article class="tile is-child box">
             <p class="title">Cluster Networking</p>
-            <p class="subtitle">Improved CNI / NSM Pipes</p>
+            <p class="subtitle">Improved CNI / NSM vWires</p>
             <figure class="image is-4by3">
                 <img src="/images/ligato/cnf-pod-network-example.png">
             </figure>
@@ -77,63 +120,75 @@ CNF are built and implemented with functions suited for their role in a cloud na
     </div>
 </div>
 
-* Scaling load balancing functions for steering traffic towards application pods
-* Enhanced cluster networking can be achieved using a CNF vswitch for policy/service-aware switching (CNI-formed L2 bridge domain as an example), or as an x-connect for network service mesh (NSM) L2/L3 pipes setup between pods
-* Service Function Chains orchestrated to deliver different application services to customers. Examples show a cloud storage service on top, and a machine learning training application on the bottom.
+__Load Balancer__
 
+An inherent property of cloud native networking is service scalability and resiliency. In this scenario, a CNF load balancer directs traffic to a bank of application service pods. In another scenario, a CNF acts as a policy-driven forwarder to steer traffic towards a specific application pod. While it is true that load balancing and policy-driven forwarding can be achieved today using existing methods, the introduction of high-volume, process-intensive traffic workloads will necessitate a CNF with requisite data plane functions and scale.  
+
+__Enhanced Cluster Networking__
+
+New CNF implementations can improve upon existing solutions, or enable a brand new network service. The top portion of the `Cluster Networking figure` shows a CNI providing L2 bridge domain functions for pod connectivity. Included is a CNF vSwitch for policy/service-aware switching of traffic workloads between pods. The CNF vSwitch pods can support multiple interfaces, and data plane "awareness" for K8s service or policy traffic. The latter is significant: QoS, NAT or ACLs can be programmed into the CNF vSwitch based on K8s services or policies. supp offers a multi-interface  (CNI-formed L2 bridge domain as an example), or as an x-connect for network service mesh (NSM) L2/L3 pipes setup between pods
+
+The bottom portion of the figure depicts a CNF serving as a network service mesh (NSM) x-connect for a vWire connecting an NSM client to an NSM server. 
+
+Two additional items:
+
+- CNI relies on existing K8s CNI orchestration methods augmented with multi-interface pod support, and programming of K8s services/policies into a low-level data plane configuration functions.
+- NSM applies its own and very simple control plane to program x-connects needed for vWire setup. 
+- Both solutions are mutually exclusive; Both can co-exist in a cluster network.
+
+__SFC Service Bundles__ 
+
+CNFs can be wired up into a chain of contiguous network functions supporting an application or network service offering. This is NOT supported in current K8s CNI solutions. A customized SFC control plane or CLI could handle function. It could even be the NSM control plane because in fact, an SFC topology is a partial mesh. 
+
+In the top figure, an SFC is created to support a cloud storage service. In the bottom, an ML training app.
+
+Note that the cloud storage and ML training app pods could employ CNF functions such as the memif example described above.  
 
 ---
 
-## CNF Pods in a Kubernetes Cluster
+text-decoration: underline;
+## CNF Architecture
 
+Developers make design choices tailored for specific implementations. Simplifying the options to meet expectations requires an architectural approach:
+ 
+- targeted on performance, flexibility, programmability, observability, and scale 
+- adhering to cloud native principles
+- embracing evolvability as cloud native matures and support for new services emerges
 
-<div>
-<figure class="image is-1by1">
-  <img src="/images/ligato/cnf-in-k8s-cluster.svg">
-</figure>
-</div>
+With these in mind, we can paint a picture of a composite CNF architecture. Note this is inspired by and reflects an architecture supported by the Ligato framework.
 
-<div class="tile is-ancestor">
-  <div class="tile">
-    <!-- Add content or other tiles -->
-  </div>
-  <div class="tile">
-    <!-- Add content or other tiles -->
-  </div>
-</div>
+`Note: To simplify the picture, the pod, host, kernels, NIC and physical underlay components have been omitted.` 
 
----
+{{< figure src="/images/ligato/cnf-generic-arch2.svg" class="image-center figcaption" caption="Composite CNF Architecture" >}}
 
-## Composite CNF Architecture
+The architecture is assembled from and presented as a system using a layered approach: applications/orchestration/management plane on top; software data plane on the bottom. The term, `plugin`, is used in several layers as a placeholder for integrated and/or configured software components supporting a function, useful, necessary and/or customized, for CNF behavior and operations. 
+ 
+ A discussion follows beginning with the data plane.
 
-<div class="tile is-ancestor">
-    <div class="tile is-12">
-        <div class="tile">
-            <div class="tile is-parent is-8">
-                <article class="tile is-child box">
-                    <p class="title"></p>
-                    <figure class="image is-4by3">
-                        <img src="/images/ligato/cnf-generic-arch.svg">
-                    </figure>
-                 </article>
-            </div>
-            <div class="tile is-parent is-vertical is-4">
-                <article class="tile is-child box markdown-body">
-                <div class="is-size-6 text">
-                    <p>Developers make design choices tailored for specific implementations. Simplifying the options to meet expectations requires flexible and adaptable focused on performance, flexibility, programmability and scale allows one to paint a picture of a composite CNF architecture.</p>
-                    <ul>
-                        <li>User space data plane for best performance</li>
-                        <li>Control plane agent contains southbound, low-level API for data plane programming, plugins to add new features and and generate northbound APIs for application and orchestrator control</li>
-                        <li>Custom plugin and application integration component integrations</li>
-                        <li>Infra plugins for logging, tracing, internal APIs, health checks</li>
-                        <li>Plugins/APIs for external application access</li>
-                    </ul>
-                    </div>
-                </article>
-             </div>
-        </div>
-    </div>
-</div>
+__Data Plane__
+
+* A user space data plane was discussed earlier and clearly is the best option. FD.io is open source project with large community support. It has been implemented in products for 10+ years and provides a rich feature set.  
+* Linux kernel support. Of course there is the performance ceiling and feature upgrade delivery lag to contend with. But it is the most common data plane in virtual cloud environments. Work on kernel extensions such as eBPF improves performance.
+* A CNF can be generalized to a containerized function serving as a network control plane. For example, a BGP container could be configured with eBGP Multihop to exchange prefixes with an external domain, even one operating physical routers only. 
+
+__Control Plane Agent__
+
+* Exposes northbound APIs to: internal applications, processes, plugins; external applications, KV data stores, orchestrators and management plane functions.
+* Implements a low-level southbound API for programming data plane functions.
+* Agent plugins are turned on to enable one or more CNF functions. This includes plugin for data plane programmability, internal communications with custom applications, communications with external applications. 
+
+__Custom Applications / Plugins__
+
+* Customized applications and plugins can be wired into the CNF for additional functions needed for a particular service. For example, an IPsec VPN CNF could integrate an IKE control plane supporting IKEv2 negotioans for SA setup. 
+
+__External Applications/Orchestration/CNF Management Plane__
+
+* Cloud native is dynamic and evolving environment. New features, open source projects, customizations, tools are being added all of the time. One need only examine the CNCF landscape to understand the breadth of this work.
+* External components that directly or indirectly support CNF development, implementation, programmability, observability and operations are certain candidates for current and evolving CNF environments.  
+ 
+In any domain, networking plays a crucial role. This is especially true in cloud networks. The momentum behind cloud native, the architecture, applications, the greater ecosystem has inadvertently pushed networking into the background.  
+
+The advent of CNFs can serve as a vehicle to re-establish network architectures, disciplines and best practices, all needed for cloud native to succeed.
 
 
 
