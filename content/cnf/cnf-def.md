@@ -51,10 +51,10 @@ One aspect of K8s networking involves inter-pod connectivity provided by the Kub
 
 A new set of requirements emerge for augmenting basic container networking with VNF-like capabilities:
 
-- __(NFs) adapted for cloud native deployment and operations__. This assumes a container (pod) form-factor under K8s orchestration control, or a control/management plane co-existing or compatible with K8s. The latter is necessary if pods need to be wired up into a mesh topology. Note that K8s does not currently support "mesh" or "service function chain" provisioning. 
-- __Lightweight NF data plane configuration__. NF and VNF configuration has traditionally been performed by human operators, or centralized management systems communicating over a pre-established control channel to a configuration agent. Netconf, Restconf or VPP honeycomb come to mind. The dynamics and velocity of container start/stop activity preclude central control. Stateless and lightweight data plane configuration performed at cloud native speed is a must.     
-- __High-performance, feature-rich data plane__. Growth in high-volume traffic workloads coupled with per-service processing options such as ACL, NAT, tunnel encap/decap, load-balancing and encrypt/decrypt necessitate a robust, and multi-feature software data plane. 
-- __User space networking__. Performance gains with user space packet processing vs kernel networking are well documented. In addition, placing NF processing in user space isolates the kernel. Developers are free to innovate without kernel dependencies. Operators can start/stop NF processes without fear of somehow disrupting kernel functions. The kernel is and should remain immutable in a CNF network.
+- __(NFs) adapted for cloud native deployment and operations__. This assumes a container (pod) form-factor under K8s orchestration control, or a control/management plane co-existing or compatible with K8s. The latter is useful if pods need to be wired up into a mesh topology. Note that K8s does not currently support "mesh" or "service function chain" provisioning. 
+- __Lightweight NF data plane configuration__. NF and VNF configurations have traditionally been performed by human operators, or centralized management systems communicating over a pre-established control channel to a configuration agent. Netconf, Restconf and VPP honeycomb come to mind. The dynamics and velocity of container start/stop activity preclude central control. Stateless and lightweight data plane configuration performed at cloud native speed is a must.     
+- __Feature-rich data plane__. Increases in traffic workload volumes coupled with per-service processing options such as ACL, NAT, tunnel encap/decap, load-balancing and encrypt/decrypt necessitate a robust, and multi-feature software data plane. 
+- __User space networking__. Performance gains with user space packet processing vs kernel networking are well documented. User space permits the  network function processes to talk directly to physical NIC components, and bypass the kernel altogether. Developers are free to innovate without kernel dependencies. Operators can start/stop NF processes without fear of disrupting kernel functions. The kernel is and should remain immutable in a CNF network.
 
 Although not per se a new requirement for cloud environments, observability through logging, tracing, UI/UX visualization, telemetry, diagnostic/troubleshooting APIs and CLI is mandatory for operations. 
 
@@ -71,8 +71,8 @@ A cloud native network function (CNF) is a network function designed and impleme
 Items to highlight from the figure above:
 
 - __Application and CNF pods are deployed on workers__. As mentioned, a CNF is just another pod, albeit with specialized network functionality.
-- __CNFs are versatile__. They can be implemented with a single purpose in mind, an example being a load balancer. Or can be designed and built for programming and executing specific data plane functions supporting an application or service. Consider a CNF platform that can be programmed through APIs/agent to perform L3 routing in one instantiation, and firewall/NAT functions in another.   
-- __CNF capabilities can be embedded in an application pods__. For example, a memif interface can run on both CNF and application pods. The result is a high-performance point-to-point communications channel that bypasses the kernel. In fact, a topology of CNF and application pods interconnected with memif links is optimal for performance and operational flexibility.          
+- __CNFs are versatile__. They can implementated with a single purpose in mind, an example being a load balancer. Or can be designed and built for programming and executing specific data plane functions. Consider a CNF platform that can be programmed through APIs/agent to perform L3 routing in one instantiation, and firewall/NAT functions in another. Operators can and will choose from a broad portfolio CNF options. 
+- __CNF capabilities can be embedded in an application pods__. For example, a memif interface can run on both CNF and application pods. The result is a point-to-point communications channel, with kernel bypass, enabling efficient and performant data transport between CNF and application pods. In fact, a topology of CNF and application pods interconnected with memif links is optimal for performance and operational flexibility.          
  
 CNF advantages include:
 
@@ -81,11 +81,11 @@ CNF advantages include:
 
 * __Stateless Configuration.__ CNFs operate in pods. Pods are durable, but if something breaks or new functions are needed, then pods can be torn down and a new instance started up. The dynamic nature of cloud native environments precludes centralized or stateful CNF configuration management.  Instead, a stateless approach is employed where CNFs “watch” for and then process configuration updates stored in an external data store. Another lightweight option uses a service request to trigger a local gRPC call that pushes configuration state into the CNF data plane. 
 
-* __Smaller footprint vis-a-vis physical or virtual devices.__ This reduces resource consumption, with the potential savings allocated to applications and/or infrastruction expansion. 
+* __Smaller footprint vis-a-vis physical or virtual devices.__ This reduces resource consumption, with the potential savings allocated to applications and/or infrastructure expansion. 
 
 * __Rapid development, innovation and immutability.__ CNF functions should run in user space where new features and innovations can be developed and applied. There is no need to interact with the linux kernel.
 
-* __Performance.__ Bypassing the Linux kernel has shown to increase performance. New CNFs are being developed to run in user space.
+* __Performance.__ CNF processing in user space, NIC hardware control, multi-core tuning and kernel bypass all contribute to maximum throughput and resource efficiency. 
 
 * __Agnostic to host environments__. Bare-metal and VMs are the most common. Since VMs do not add value to CNFs, bare-metal could become the preferred host of choice.
 
@@ -93,13 +93,13 @@ CNF advantages include:
 
 ## CNF Solution Scenarios
 
-CNF are rolled out with functions suited for their role in a cloud native network. For illustrative purposes, the figure below depicts several different scenarios. 
+CNFs are rolled out with functions suited for their role in a cloud native network. For illustrative purposes, the figure below depicts several scenarios. 
 
 <div class="tile is-ancestor">
     <div class="tile is-parent">
         <article class="tile is-child box">
-            <p class="title">Load Balancer</p>
-            <p class="subtitle">Ingress Controller/K8s Services</p>
+            <p class="title">Load Distribution</p>
+            <p class="subtitle">Ingress Controller/Load Balancer</p>
             <figure class="image is-4by3">
                 <img src="/images/ligato/cnf-LB-example.svg">
             </figure>
@@ -125,9 +125,9 @@ CNF are rolled out with functions suited for their role in a cloud native networ
     </div>
 </div>
 
-__Load Balancer__
+__Load Distribution__
 
-An inherent property of cloud native networking is service scalability and resiliency. In this scenario, a CNF load balancer directs traffic to a bank of application service pods. In another example, a CNF acts as a policy-driven forwarder to steer traffic towards a specific application pod. While it is true that load balancing and policy-driven forwarding can be achieved today using existing methods, the introduction of high-volume, process-intensive traffic workloads will necessitate a CNF with requisite data plane functions and scale.  
+An inherent property of cloud native networking is service scalability and resiliency. In this scenario, a CNF can act as a load balancer directing traffic to back-end pods supporting a K8s service, or as a policy-based forwarder for steering traffic to a specific application pod. While it is true that both functions can be achieved with kube-proxy, a CNF might be a better fit playing the role of ingress or loadbalancer for multiple reasons: better throughput, flexible load distribution and observability. It also provides a "face" to this function vital to K8s service access.   
 
 __Enhanced Cluster Networking__
 
