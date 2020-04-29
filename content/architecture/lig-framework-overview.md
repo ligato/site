@@ -1,5 +1,5 @@
 ---
-title: "CNF Building Components"
+title: "Building Framework"
 date: 2019-04-16T05:23:30-07:00
 layout: "arch"
 draft: false
@@ -10,9 +10,9 @@ draft: false
 
 ### Overview
 
-Ligato is an open source framework for building and developing solutions for managing and controlling CNFs. Reusable software components, model/protobuf-modelled APIs, dependency injection, and logging/REST/CLI visibility are provided. Standard coding patterns along with accompanying documentation, tutorials and examples are supplied to facilitate development. 
+Ligato is an open source Go framework for building and developing solutions for managing and controlling CNFs. Reusable software components, model/protobuf-modelled APIs, dependency injection, and logging/REST/CLI visibility are provided. Documentation, tutorials and examples are supplied to facilitate development. 
 
-A set of VPP and Linux plugins including a transaction-based configuration scheduler are implemented into a VPP agent enabling agile and resilient deployments. Infrastructure plugins offer K8s lifecycle management, health care checking, notifications, data store/database integration, and logging for cloud-native operational affinities.  
+A set of VPP and Linux plugins, including a transaction-based configuration scheduler, are implemented in the VPP agent enabling agile and resilient deployments. Infrastructure plugins offer K8s lifecycle management, health care checking, notifications, data store/database integration, and logging for cloud-native operational affinities.  
   
  Ligato is written in Golang as its programming language for the performance, concurrency, scale, readability, and broad community support necessary for developing and implementing cloud-native network solutions. 
 
@@ -30,8 +30,112 @@ A set of VPP and Linux plugins including a transaction-based configuration sched
 
 ### Plugins
 
+Component-based architecture (CBA) has and will become fundamental in software development, engineering and operations. System platforms are decomposed into smaller components that can be "wired up" into a complete solution. React and Go are two popular examples illustrating this trend.
 
-### Models
+Ligato embraces CBA by providing a set of plugins for CNF configuration and telemetry, and cloud-native infrastructure lifecyclement management, APIs, health checking and data store/database integration.
+
+#### Southbound Plugins
+
+{{< figure src="/images/ligato/components-vpp-agent-stack-southbound-plugins3.svg" class="image-center figcaption"caption="Southbound Plugins" >}}
+
+##### VPP Agent plugins
+
+
+
+<div>
+    <pre>
+        <code>
+$ tree vpp-agent/plugins -L 1
+
+vpp-agent/plugins
+├── configurator
+├── govppmux
+├── kvscheduler
+├── linux
+├── netalloc
+├── orchestrator
+├── restapi
+├── telemetry
+└── vpp
+        </code>
+    </pre>
+</div>
+
+
+
+##### VPP network configuration plugins:
+<div>
+    <pre>
+        <code>
+$ tree vpp-agent/plugins/vpp -L 1
+
+vpp-agent/plugins/vpp
+├── abfplugin // ACL-based forwarding
+├── aclplugin
+├── ifplugin
+├── ipsecplugin
+├── l2plugin
+├── l3plugin
+├── natplugin
+├── puntplugin
+├── srplugin
+├── stnplugin
+...
+        </code>
+    </pre>
+</div>
+
+
+##### Linux network configuration plugins:
+
+<div>
+    <pre>
+        <code>
+$ tree vpp-agent/plugins/linux -L 1
+
+vpp-agent/plugins/linux
+├── ifplugin
+├── iptablesplugin
+├── l3plugin
+└── nsplugin
+...
+        </code>
+    </pre>
+</div>
+
+#### Northbound Plugins
+
+{{< figure src="/images/ligato/components-cn-infra-northbound-plugins.svg" class="image-center figcaption"caption="Northbound Plugins" >}}
+
+##### Data Store Connector plugins:
+
+<div>
+    <pre>
+        <code>
+$ $ tree cn-infra/db/keyval -U -L 1
+
+cn-infra/db/keyval
+├── bolt
+├── redis
+├── consul
+├── etcd
+└── filedb
+...
+        </code>
+    </pre>
+</div>
+
+
+
+### Models & Protobufs
+
+{{< figure src="/images/ligato/components-model-proto-KV-store.svg" class="image-center figcaption"caption="Model-protoBuf-KV-data-store" >}}
+
+#### Models
+
+The model represents an abstraction of an object that can be managed through northbound APIs exposed by the VPP agent. The model is used to generate a complete key associated with a value for the object stored in a KV data store.
+
+
 
 
 #### Proto
@@ -72,6 +176,22 @@ A set of VPP and Linux plugins including a transaction-based configuration sched
 </div>
 
 ---
+
+### Plugins
+
+
+
+### Models
+
+### Protobufs
+
+
+### Keys
+
+
+### KV Data Store
+
+
 
 ### KV Scheduler
 
