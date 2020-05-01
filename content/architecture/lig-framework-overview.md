@@ -280,7 +280,7 @@ message Route {
 
 The runtime configuration  of a CNF must accurately reflect the desired network function. One configuration item could be dependent on the successful configuration of another item. Example: a route cannot be configured without an interface, therefore we say the interface is a dependency configuration item of the route. And these dependencies must be tracked and coordinated to ensure the proper configure sequence. 
 
-{{< figure src="/images/ligato/components-kvs-architecture-lite.svg" class="image-center figcaption"caption="KV Scheduler" >}}
+{{< figure src="/images/ligato/components-high-level-architecture-lite2.svg" class="image-center figcaption"caption="KV Scheduler" >}}
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
@@ -292,31 +292,17 @@ The KV scheduler is plugin that works with VPP and Linux agents on the SB side, 
 
 #### Stash
 
-### Requirements:
+- Plugins
 
-* Control and management of container-based VNFs (CNFs)
+- Models / Protobufs
 
-* Re(usability) to the greatest extent possible for code, functions, plugins (components), APIs, development patterns, development patterns
+- KV Data Store
 
-* Architecturally layered
+- KV Scheduler
 
-* VPP and Linux Kernel dataplane support
+- Agentctl
 
-* Modularized so developers can use(re-use) software plugins (like Go packages) 
-
-* Developer - friendly with documentation, tutorials, examples and libraries
-
-* Programming language developed for speed, efficiency, ease of use and broad community support with an extensive suite of libraries
-
-* Agnostic to control/management platforms including K8s
-
-* Implemented in running code. No better way to prove feasibility than in real networks.
-
-<br />
-
-{{< figure src="/images/ligato/ligato-framework-arch.svg" class="image-center figcaption"caption="Ligato Framework" >}}
-
-<br />
+- Logs
 
 
 
