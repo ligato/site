@@ -30,13 +30,21 @@ A set of VPP and Linux plugins, including a transaction-based configuration sche
 
 ### Plugins
 
-Component-based architecture (CBA) has and will become fundamental in software development, engineering and operations. System platforms are decomposed into smaller components that can be "wired up" into a complete solution. React and Go are two popular examples illustrating this trend.
+Component-based architecture (CBA) have become fundamental in software development, engineering and operations. System platforms are decomposed into smaller components that can be "wired up" into a complete solution. React and Go are two popular examples illustrating this trend.
 
 Ligato embraces CBA by providing a set of plugins for CNF configuration and telemetry, and cloud-native infrastructure lifecyclement management, APIs, health checking and data store/database integration.
+
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/plugins/plugin-overview/"class="button is-success">More on Ligato Plugins</a>
+                        </div>
+</div>
 
 #### Southbound Plugins
 
 {{< figure src="/images/ligato/components-vpp-agent-stack-southbound-plugins3.svg" class="image-center figcaption"caption="Southbound Plugins" >}}
+
+---
 
 ##### VPP Agent plugins
 
@@ -61,9 +69,9 @@ vpp-agent/plugins
     </pre>
 </div>
 
+---
 
-
-##### VPP network configuration plugins:
+##### VPP Configuration Plugins:
 <div>
     <pre>
         <code>
@@ -85,8 +93,15 @@ vpp-agent/plugins/vpp
     </pre>
 </div>
 
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/plugins/vpp-plugins/"class="button is-success">More on VPP Plugins</a>
+                        </div>
+</div>
 
-##### Linux network configuration plugins:
+---
+
+##### Linux Configuration Plugins:
 
 <div>
     <pre>
@@ -102,6 +117,14 @@ vpp-agent/plugins/linux
         </code>
     </pre>
 </div>
+
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/plugins/linux-plugins/"class="button is-success">More on Linux Plugins</a>
+                        </div>
+</div>
+
+---
 
 #### Northbound Plugins
 
@@ -125,50 +148,110 @@ cn-infra/db/keyval
     </pre>
 </div>
 
+---
 
+### Models / Protobufs / Keys
 
-### Models & Protobufs
+A fundamental concept of Ligato are the notions of a model combined with a protobuf definition to identify, manage, and generate NB APIs. 
 
 {{< figure src="/images/ligato/components-model-proto-KV-store.svg" class="image-center figcaption"caption="Model-protoBuf-KV-data-store" >}}
 
+---
+
 #### Models
 
-The model represents an abstraction of an object that can be managed through northbound APIs exposed by the VPP agent. The model is used to generate a complete key associated with a value for the object stored in a KV data store.
+The model represents an abstraction of an object that can be managed through northbound APIs exposed by the VPP agent. It consists of a model specification and a proto.Message.
 
+Here is a snippet of model.Spec code for a VPP L3 route. 
 
+<div>
+    <pre>
+        <code>
+// ModuleName is the module name used for models.
+const ModuleName = "vpp"
+...
+	ModelRoute = models.Register(&Route{}, models.Spec{
+		Module:  ModuleName,
+		Type:    "route",
+		Version: "v2",
+	}, models.WithNameTemplate(
+		`{{if .OutgoingInterface}}{{printf "if/%s/" .OutgoingInterface}}{{end}}`+
+			`vrf/{{.VrfId}}/`+
+			`{{with ipnet .DstNetwork}}{{printf "dst/%s/%d/" .IP .MaskSize}}`+
+			`{{else}}{{printf "dst/%s/" .DstNetwork}}{{end}}`+
+			`{{if .NextHopAddr}}gw/{{.NextHopAddr}}{{end}}`,
+	))
+...
+        </code>
+    </pre>
+</div>
 
+---
 
 #### Proto
 
 <div>
     <pre>
         <code>
-        // Interface defines a VPP interface.
-        message Interface {
-            // Name is mandatory field representing logical name for the interface.
-            // It must be unique across all configured VPP interfaces.
-            string name = 1;
-        
-            // Type defines VPP interface types.
-            enum Type {
-                UNDEFINED_TYPE = 0;
-                SUB_INTERFACE = 1;
-                SOFTWARE_LOOPBACK = 2;
-                DPDK = 3;
-                MEMIF = 4;
-                TAP = 5;
-                AF_PACKET = 6;
-                VXLAN_TUNNEL = 7;
-                IPSEC_TUNNEL = 8 [deprecated=true]; // Deprecated in VPP 20.01+. Use IPIP_TUNNEL + ipsec.TunnelProtection instead.
-                VMXNET3_INTERFACE = 9;
-                BOND_INTERFACE = 10;
-                GRE_TUNNEL = 11;
-                GTPU_TUNNEL = 12;
-                IPIP_TUNNEL = 13;
-            };       
+syntax = "proto3";
+
+package ligato.vpp.l3;
+
+option go_package = "go.ligato.io/vpp-agent/v3/proto/ligato/vpp/l3;vpp_l3";
+
+message Route {
+    enum RouteType {
+        // Forwarding is being done in the specified vrf_id only, or according to
+        // the specified outgoing interface.
+        INTRA_VRF = 0;
+        // Forwarding is being done by lookup into a different VRF,
+        // specified as via_vrf_id field. In case of these routes, the outgoing
+        // interface should not be specified. The next hop IP address
+        // does not have to be specified either, in that case VPP does full
+        // recursive lookup in the via_vrf_id VRF.
+        INTER_VRF = 1;
+        // Drops the network communication designated for specific IP address.
+        DROP = 2;
+    }
+    RouteType type = 10;
+
+    // VRF identifier, field required for remote client. This value should be
+    // consistent with VRF ID in static route key. If it is not, value from
+    // key will be preffered and this field will be overriden.
+    // Non-zero VRF has to be explicitly created (see api/models/vpp/l3/vrf.proto)
+    uint32 vrf_id = 1;
+
+    // Destination network defined by IP address and prefix.
+    string dst_network = 3;
+
+    // Next hop address.
+    string next_hop_addr = 4;
+
+    // Interface name of the outgoing interface.
+    string outgoing_interface = 5;
+
+    // Weight is used for unequal cost load balancing.
+    uint32 weight = 6;
+
+    // Preference defines path preference. Lower preference is preferred.
+    // Only paths with the best preference contribute to forwarding (a poor man's primary and backup).
+    uint32 preference = 7;
+
+    // Specifies VRF ID for the next hop lookup / recursive lookup
+    uint32 via_vrf_id = 8;
+}
         </code>
-    </pre> 
+    </pre>
 </div>
+
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/intro/framework/"class="button is-success">More on Protobufs</a>
+                        </div>
+</div>
+
+---
+
 <div style="padding-top: 50px">
                         <div style="text-align: center">
                             <a href="https://docs.ligato.io/en/latest/intro/framework/"class="button is-success">More about the Ligato Framework</a>
