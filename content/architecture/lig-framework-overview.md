@@ -26,6 +26,12 @@ A set of VPP and Linux plugins, including a transaction-based configuration sche
                         </div>
 </div>
 
+
+
+- test
+
+- blah
+
 ---
 
 ### Plugins
@@ -40,82 +46,65 @@ Ligato embraces CBA by providing a set of plugins for CNF configuration and tele
                         </div>
 </div>
 
-#### Southbound Plugins
-
-{{< figure src="/images/ligato/components-vpp-agent-stack-southbound-plugins3.svg" class="image-center figcaption"caption="Southbound Plugins" >}}
 
 ---
 
-##### VPP Agent plugins
+### VPP Agent plugins
+
+some text on VPP agent
+
+{{< figure src="/images/ligato/ligato-framework-vpp-agent2-picture.svg" class="image-center figcaption"caption="VPP Agent Southbound Plugins" >}}
 
 
 
-<div>
-    <pre>
-        <code>
-$ tree vpp-agent/plugins -L 1
-
-vpp-agent/plugins
-├── configurator
-├── govppmux
-├── kvscheduler
-├── linux
-├── netalloc
-├── orchestrator
-├── restapi
-├── telemetry
-└── vpp
-        </code>
-    </pre>
-</div>
-
----
-
-##### VPP Configuration Plugins:
-<div>
-    <pre>
-        <code>
-$ tree vpp-agent/plugins/vpp -L 1
-
+<div class="tile is-ancestor">
+    <div class="tile is-12">
+        <div class="tile">
+            <div class="tile is-parent is-7">
+                <article class="tile is-child box">
+                    <p class="title">VPP Agent Plugins</p>
+                    <div>
+                        <pre>
+                            <code>
 vpp-agent/plugins/vpp
-├── abfplugin // ACL-based forwarding
-├── aclplugin
-├── ifplugin
-├── ipsecplugin
-├── l2plugin
-├── l3plugin
+├── abfplugin // ACL-based forewarding
+├── aclplugin // ACL
+├── ifplugin // Interfaces
+├── ipsecplugin // IPsec
+├── l2plugin // L2 including bridge domain, x-connect and FIB
+├── l3plugin // routes, VRFs
 ├── natplugin
 ├── puntplugin
 ├── srplugin
 ├── stnplugin
-...
-        </code>
-    </pre>
+                           </code>
+                        </pre>
+                    </div>
+                </article>
+            </div>
+            <div class="tile is-parent is-vertical is-5">
+                <article class="tile is-child box">
+                    <div>
+                        <pre>
+                            <code>
+ vpp-agent/plugins/linux
+├── ifplugin
+├── iptablesplugin
+├── l3plugin
+└── nsplugin
+                            </code>
+                        </pre>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
                             <a href="https://docs.ligato.io/en/latest/plugins/vpp-plugins/"class="button is-success">More on VPP Plugins</a>
                         </div>
-</div>
-
----
-
-##### Linux Configuration Plugins:
-
-<div>
-    <pre>
-        <code>
-$ tree vpp-agent/plugins/linux -L 1
-
-vpp-agent/plugins/linux
-├── ifplugin
-├── iptablesplugin
-├── l3plugin
-└── nsplugin
-...
-        </code>
-    </pre>
 </div>
 
 <div style="padding-top: 50px">
@@ -126,27 +115,23 @@ vpp-agent/plugins/linux
 
 ---
 
-#### Northbound Plugins
+### Infra / Connection / Database Plugins
 
-{{< figure src="/images/ligato/components-cn-infra-northbound-plugins.svg" class="image-center figcaption"caption="Northbound Plugins" >}}
+some text on ... other plugins
 
-##### Data Store Connector plugins:
+{{< figure src="/images/ligato/ligato-framework-arch-infra.svg" class="image-center figcaption"caption="Infra/Connection/DB plugins" >}}
 
-<div>
-    <pre>
-        <code>
-$ $ tree cn-infra/db/keyval -U -L 1
 
-cn-infra/db/keyval
-├── bolt
-├── redis
-├── consul
-├── etcd
-└── filedb
-...
-        </code>
-    </pre>
+
+
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/plugins/plugin-overview/"class="button is-success">More on Ligato Plugins</a>
+                        </div>
 </div>
+
+
+
 
 ---
 
@@ -260,27 +245,23 @@ message Route {
 
 ---
 
-### Plugins
-
-
-
-### Models
-
-### Protobufs
-
-
 ### Keys
 
+some text on keys ...
+
+---
 
 ### KV Data Store
 
+some text on data stores
 
+---
 
 ### KV Scheduler
 
 The runtime configuration  of a CNF must accurately reflect the desired network function. One configuration item could be dependent on the successful configuration of another item. Example: a route cannot be configured without an interface, therefore we say the interface is a dependency configuration item of the route. And these dependencies must be tracked and coordinated to ensure the proper configure sequence. 
 
-{{< figure src="/images/ligato/components-high-level-architecture-lite2.svg" class="image-center figcaption"caption="KV Scheduler" >}}
+{{< figure src="/images/ligato/ligato-framework-arch-KVS2.svg" class="image-center figcaption"caption="KV Scheduler" >}}
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
@@ -289,6 +270,16 @@ The runtime configuration  of a CNF must accurately reflect the desired network 
 </div>
 
 The KV scheduler is plugin that works with VPP and Linux agents on the SB side, and orchestrators/external data sources such as KV data stores and RPC clients on the NB side. In a nutshell, it keeps track of the correct configuration order and associated dependencies.
+
+---
+
+### Agentctl
+
+some agentctl text
+
+{{< figure src="/images/ligato/agentctl.png" class="image-center figcaption"caption="Agentctl" >}}
+
+---
 
 #### Stash
 
@@ -304,5 +295,36 @@ The KV scheduler is plugin that works with VPP and Linux agents on the SB side, 
 
 - Logs
 
+
+
+
+---
+
+---
+
+
+
+##### Data Store Connector plugins:
+
+<div>
+    <pre>
+        <code>
+$ $ tree cn-infra/db/keyval -U -L 1
+
+cn-infra/db/keyval
+├── bolt
+├── redis
+├── consul
+├── etcd
+└── filedb
+...
+        </code>
+    </pre>
+</div>
+
+
+#### Northbound Plugins
+
+{{< figure src="/images/ligato/components-cn-infra-northbound-plugins.svg" class="image-center figcaption"caption="Northbound Plugins" >}}
 
 
