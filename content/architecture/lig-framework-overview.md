@@ -22,23 +22,21 @@ A set of VPP and Linux plugins, including a transaction-based configuration sche
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/intro/framework/"class="button is-success">More about the Ligato Framework</a>
+                            <a href="https://docs.ligato.io/en/latest/intro/framework/"class="button is-success">More on the Ligato Framework</a>
                         </div>
 </div>
 
-
-
-- test
-
-- blah
 
 ---
 
 ### Plugins
 
-Component-based architecture (CBA) have become fundamental in software development, engineering and operations. System platforms are decomposed into smaller components that can be "wired up" into a complete solution. React and Go are two popular examples illustrating this trend.
+The VPP agent and cn-infra are the two constituent frameworks that together, form the basis of the Ligato framework. With Ligato, each management or control plane applicaton (app)utilize one or modules called plugins. Each plugin provides a specific function or functions. Some plugins come with the cn-infra framework; Others come with the VPP agent; Yet others created by app developers perform custom tasks.
 
-Ligato embraces CBA by providing a set of plugins for CNF configuration and telemetry, and cloud-native infrastructure lifecyclement management, APIs, health checking and data store/database integration.
+Plugins can be assembled in any combination to build solutions ranging from simple elementary tasks such as basic configuration, to larger more complex operations such as managing configuration state across multiple nodes in a network. Plugins are designed to be setup and/or modified at startup based on a configuration file. The plugin definition is standardized in the Ligato framework, and can be easily extended with customized plugins to create new solutions and applications.
+
+
+
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
@@ -49,20 +47,36 @@ Ligato embraces CBA by providing a set of plugins for CNF configuration and tele
 
 ---
 
-### VPP Agent plugins
+### VPP Agent
 
-some text on VPP agent
+A fundamental component of the Ligato framework is the the VPP agent. It provides configuration and monitoring services for the VPP data plane
+
+* Supplies VPP-specific plugins
+* VPP agent and VPP packaged up in single container
+* Dependency handling between related configuration items
+* Transaction-based configuration processing and tracking
+* Failover synchronization mechanisms, also known as resync
+* Stateless configuration management based on a KV data store "watch" paradigm
+* Direct access via REST or gRPC
+* Component health checks
+
+---
+
+### VPP Agent Plugins
+
+The VPP Agent is composed of a set of VPP-specific plugins. Used in combination with cn-infra, CNFs and apps can be developed to interact with other services/microservices in a cloud-native environment. 
+
 
 {{< figure src="/images/ligato/ligato-framework-vpp-agent2-picture.svg" class="image-center figcaption"caption="VPP Agent Southbound Plugins" >}}
 
-
+---
 
 <div class="tile is-ancestor">
     <div class="tile is-12">
         <div class="tile">
             <div class="tile is-parent is-7">
                 <article class="tile is-child box">
-                    <p class="title">VPP Agent Plugins</p>
+                <p>VPP network function plugins</p>
                     <div>
                         <pre>
                             <code>
@@ -73,8 +87,8 @@ vpp-agent/plugins/vpp
 ├── ipsecplugin // IPsec
 ├── l2plugin // L2 including bridge domain, x-connect and FIB
 ├── l3plugin // routes, VRFs
-├── natplugin
-├── puntplugin
+├── natplugin // NAT
+├── puntplugin // Punt to Host
 ├── srplugin
 ├── stnplugin
                            </code>
@@ -84,6 +98,7 @@ vpp-agent/plugins/vpp
             </div>
             <div class="tile is-parent is-vertical is-5">
                 <article class="tile is-child box">
+                <p>Linux network function plugins</p>
                     <div>
                         <pre>
                             <code>
@@ -117,7 +132,9 @@ vpp-agent/plugins/vpp
 
 ### Infra / Connection / Database Plugins
 
-some text on ... other plugins
+cn-infra can be decomposed into a suite of plugins supporting capabilities present in modern cloud-native CNFs and apps. Plugins offering logging, health checks, messaging, KV data store connectivity, REST and gRPC APIs are available. Developers can implement a mix of cn-infra plugins, that together with other VPP agent and/or custom plugins, define CNF functionality. cn-infra provides plugin lifecycle management such as initialization and graceful shutdown.
+
+
 
 {{< figure src="/images/ligato/ligato-framework-arch-infra.svg" class="image-center figcaption"caption="Infra/Connection/DB plugins" >}}
 
