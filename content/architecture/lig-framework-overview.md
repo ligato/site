@@ -14,7 +14,7 @@ Ligato is an open source Go framework for building and developing solutions for 
 
 A set of VPP and Linux plugins, including a transaction-based configuration scheduler, are implemented in the VPP agent enabling agile and resilient deployments. Infrastructure plugins offer K8s lifecycle management, health care checking, notifications, data store/database integration, and logging for cloud-native operational affinities.  
   
- Ligato is written in Golang as its programming language for the performance, concurrency, scale, readability, and broad community support necessary for developing and implementing cloud-native network solutions. 
+Ligato is written in Golang as its programming language for the performance, concurrency, scale, readability, and broad community support necessary for developing and implementing cloud-native network solutions. 
 
 <br />
 
@@ -22,7 +22,7 @@ A set of VPP and Linux plugins, including a transaction-based configuration sche
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/intro/framework/"class="button is-success">More on the Ligato Framework</a>
+                            <a href="https://docs.ligato.io/en/latest/intro/framework/" class="button btn-align-md secondary-btn raised">More on the Ligato Framework</a>
                         </div>
 </div>
 
@@ -40,7 +40,7 @@ Plugins can be assembled in any combination to build solutions ranging from simp
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/plugins/plugin-overview/"class="button is-success">More on Ligato Plugins</a>
+                            <a href="https://docs.ligato.io/en/latest/plugins/plugin-overview/"class="button btn-align-md secondary-btn raised">Plugins Doc</a>
                         </div>
 </div>
 
@@ -120,13 +120,7 @@ vpp-agent/plugins/vpp
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/plugins/vpp-plugins/"class="button is-success">More on VPP Plugins</a>
-                        </div>
-</div>
-
-<div style="padding-top: 50px">
-                        <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/plugins/linux-plugins/"class="button is-success">More on Linux Plugins</a>
+                            <a href="https://docs.ligato.io/en/latest/plugins/vpp-plugins/"class="button btn-align-md secondary-btn raised">VPP Plugins Doc</a>
                         </div>
 </div>
 
@@ -134,7 +128,7 @@ vpp-agent/plugins/vpp
 
 ### cn-infra Plugins
 
-cn-infra provides the plugins needed for CNF and application operating in modern cloud-native CNFs and apps. Plugins offering logging, health checks, messaging, KV data store connectivity, REST and gRPC APIs are available. Developers can implement a mix of cn-infra plugins, that together with other VPP agent and/or custom plugins, define CNF functionality. 
+cn-infra provides the plugins needed for CNF and application operating in modern cloud-native CNFs and apps. Plugins offering logging, health checks, messaging, KV data store connectivity, REST/gRPC APIs are available. Developers can implement a mix of cn-infra plugins, together with other VPP agent and/or custom plugins, and define CNF functionality. 
 
 
 {{< figure src="/images/ligato/ligato-framework-arch-infra.svg" class="image-center figcaption"caption="" >}}
@@ -143,9 +137,9 @@ cn-infra provides the plugins needed for CNF and application operating in modern
 
 cn-infra plugins fall into one of three categories: 
 
-- Infra for logging, messaging, status checking and process management
-- Connections for external connectivity to data stores
-- RPC supporting gRPC and REST
+- Infra for logging, messaging, process management, status checking and service label
+- Database for external data store connectivity and database integration
+- RPC connections supporting gRPC/REST APIs
 
 ---
 
@@ -154,120 +148,60 @@ cn-infra plugins fall into one of three categories:
         <div class="tile">
             <div class="tile is-parent is-4">
                 <article class="tile is-child box">
-                    <p>Connection: Data Store</p>
-                    <div>
-                        <pre>
-                            <code>
-cn-infra/db/keyval
-├── bolt
-├── redis
-├── consul
-├── etcd
-└── filedb
-...
-                           </code>
-                        </pre>
-                    </div>
+                    <p class="subtitle">Infra Plugins</p>
+                    <ul>
+                        <li>Status Check</li>
+                        <li>Index Map</li>                    
+                        <li>Log Manager</li>
+                        <li>Messaging/Kafka</li>
+                        <li>Process Manager</li>
+                        <li>Supervisor</li>
+                        <li>Service Label</li>
+                    </ul>           
                 </article>
             </div>
             <div class="tile is-parent is-vertical is-4">
                 <article class="tile is-child box">
-                    <p>Infra: Health Check</p>
-                    <div>
-                        <pre>
-                            <code>
-cn-infra/health
-├── probe
-└── statuscheck
-...
-                            </code>
-                        </pre>
-                    </div>
+                    <p class="subtitle">Database Plugins</p>
+                    <ul>
+                        <li>Datasync</li>
+                        <li>Data Broker</li>                    
+                        <li>etcd</li>
+                        <li>Redis</li>
+                        <li>Consul</li>
+                        <li>Bolt</li>
+                    </ul>                    
                 </article>
             </div>
             <div class="tile is-parent is-4">
                 <article class="tile is-child box">
-                    <p>RPC</p>
-                    <div>
-                        <pre>
-                            <code>
-cn-infra/rpc
-├── grpc
-├── prometheus
-└── rest
-...
-                           </code>
-                        </pre>
-                    </div>
+                    <p class="subtitle">RPC Connection Plugins</p>
+                    <ul>
+                        <li>REST</li>
+                        <li>gRPC</li>                    
+                     </ul> 
                 </article>
             </div>
         </div>
     </div>
 </div>
-
----
-
-<div class="tile is-ancestor">
-    <div class="tile is-12">
-        <div class="tile">
-            <div class="tile is-parent is-4">
-                <article class="tile is-child box">
-                    <p>Infra: Process Management</p>
-                    <div>
-                        <pre>
-                            <code>
-cn-infra/exec
-├── processmanager
-└── supervisor
-...
-                           </code>
-                        </pre>
-                    </div>
-                </article>
-            </div>
-            <div class="tile is-parent is-vertical is-4">
-                <article class="tile is-child box">
-                    <p>Infra: Logging</p>
-                    <div>
-                        <pre>
-                            <code>
-cn-infra/logging
-├── logmanager
-├── logrus
-└── measure
-...
-                            </code>
-                        </pre>
-                    </div>
-                </article>
-            </div>
-            <div class="tile is-parent is-4">
-                <article class="tile is-child box">
-                    <p>Infra: Messaging</p>
-                    <div>
-                        <pre>
-                            <code>
-cn-infra/messaging
-└── kafka
-...
-                           </code>
-                        </pre>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
+<div class="columns">
+    <div class="column is-one-third">
+        <div style="text-align: center">
+            <a href="https://docs.ligato.io/en/latest/plugins/infra-plugins/"class="button btn-align-md secondary-btn raised">Infra Plugins Doc</a>
+       </div> 
+  </div>    
+  <div class="column">
+        <div style="text-align: center">
+          <a href="https://docs.ligato.io/en/latest/plugins/db-plugins/"class="button btn-align-md secondary-btn raised">Database Plugins Doc</a>
+        </div>  
+  </div>
+  <div class="column">
+        <div style="text-align: center">
+          <a href="https://docs.ligato.io/en/latest/plugins/connection-plugins/"class="button btn-align-md secondary-btn raised">RPC Connection Plugins Doc</a>
+        </div>  
+  </div>
 </div>
-
-
-<div style="padding-top: 50px">
-                        <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/plugins/plugin-overview/"class="button is-success">More on Ligato Plugins</a>
-                        </div>
-</div>
-
-
-
 
 ---
 
@@ -279,6 +213,12 @@ Model abstractions, protobufs, key identifiers and KV data stores are fundamenta
 
 <br/>
 In Ligato, each object is defined by a model. The model is composed of a model specification and protobuf .proto defintion. A key is generated for the model, and that key is used to read/write configuration and status information into a KV data store. The key is also used in REST API calls for retrieving configuration information.
+
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/user-guide/concepts/"class="button btn-align-md secondary-btn raised">Concepts Doc</a>
+                        </div>
+</div>
 
 ---
 
@@ -310,13 +250,14 @@ const ModuleName = "vpp"
     </pre>
 </div>
 
+
 ---
 
 #### Proto
 
 Protobufs is method that defines the structure and serialized format of the data associated with an object. Ligato implements a .proto definition for each configuration object.
 
-The is the .proto file for the VPP L3 route:  
+Here is a snippet of the .proto file for a VPP L3 route:  
 
 <div>
     <pre>
@@ -333,10 +274,7 @@ message Route {
         // the specified outgoing interface.
         INTRA_VRF = 0;
         // Forwarding is being done by lookup into a different VRF,
-        // specified as via_vrf_id field. In case of these routes, the outgoing
-        // interface should not be specified. The next hop IP address
-        // does not have to be specified either, in that case VPP does full
-        // recursive lookup in the via_vrf_id VRF.
+        ...
         INTER_VRF = 1;
         // Drops the network communication designated for specific IP address.
         DROP = 2;
@@ -344,9 +282,8 @@ message Route {
     RouteType type = 10;
 
     // VRF identifier, field required for remote client. This value should be
-    // consistent with VRF ID in static route key. If it is not, value from
-    // key will be preffered and this field will be overriden.
-    // Non-zero VRF has to be explicitly created (see api/models/vpp/l3/vrf.proto)
+    // consistent with VRF ID in static route key. 
+    ...
     uint32 vrf_id = 1;
 
     // Destination network defined by IP address and prefix.
@@ -360,9 +297,8 @@ message Route {
 
     // Weight is used for unequal cost load balancing.
     uint32 weight = 6;
-
     // Preference defines path preference. Lower preference is preferred.
-    // Only paths with the best preference contribute to forwarding (a poor man's primary and backup).
+    
     uint32 preference = 7;
 
     // Specifies VRF ID for the next hop lookup / recursive lookup
@@ -374,15 +310,7 @@ message Route {
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/intro/framework/"class="button is-success">More on Protobufs</a>
-                        </div>
-</div>
-
----
-
-<div style="padding-top: 50px">
-                        <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/intro/framework/"class="button is-success">More about the Ligato Framework</a>
+                            <a href="https://github.com/ligato/vpp-agent/tree/master/proto/ligato"class="button btn-align-md secondary-btn raised">VPP Agent Proto Folder</a>
                         </div>
 </div>
 
@@ -409,6 +337,20 @@ agentctl kvdb put /vnf-agent/vpp1/config/vpp/v2/route/vrf/0/dst/10.1.1.3/32/gw/1
     "weight":6
 }'
 ```
+<br/>
+
+<div class="columns">
+    <div class="column is-half">
+        <div style="text-align: center">
+            <a href="https://docs.ligato.io/en/latest/user-guide/concepts/#key-prefix"class="button btn-align-md secondary-btn raised">Keys Concepts Doc</a>
+       </div> 
+  </div>    
+  <div class="column">
+        <div style="text-align: center">
+          <a href="https://docs.ligato.io/en/latest/user-guide/reference/"class="button btn-align-md secondary-btn raised">Keys Reference Doc</a>
+        </div>  
+  </div>
+</div>
 
 ---
 
@@ -421,21 +363,42 @@ agentctl kvdb put /vnf-agent/vpp1/config/vpp/v2/route/vrf/0/dst/10.1.1.3/32/gw/1
 
 {{< figure src="/images/ligato/components-KVDB_microservice_label.png" class="image-center figcaption"caption="" >}}
 
+<br/>
+
+
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/user-guide/concepts/#key-value-data-store"class="button btn-align-md secondary-btn raised">KV Data Store Doc</a>
+                        </div>
+</div>
+
 ---
 
 ### KV Scheduler
 
-The runtime configuration  of a CNF must accurately reflect the desired network function. One configuration item could be dependent on the successful configuration of another item. Example: a route cannot be configured without an interface, therefore we say the interface is a dependency configuration item of the route. And these dependencies must be tracked and coordinated to ensure the proper configure sequence. 
+The runtime configuration  of a CNF must accurately reflect the desired network function. One configuration item could be dependent on the successful configuration of another item. Example: a route cannot be configured without an interface, therefore we say the interface is a dependency configuration item of the route. And these dependencies must be tracked and coordinated to ensure the proper configure sequence.
 
-{{< figure src="/images/ligato/components-ligato-framework-arch-KVS2.svg" class="image-center figcaption"caption="KV Scheduler" >}}
+<br/> 
 
-<div style="padding-top: 50px">
-                        <div style="text-align: center">
-                            <a href="https://docs.ligato.io/en/latest/intro/framework/#kv-scheduler"class="button is-success">More about the KV Scheduler</a>
-                        </div>
-</div>
+{{< figure src="/images/ligato/components-ligato-framework-arch-KVS2.svg" class="image-center figcaption"caption="" >}}
+
 
 The KV Scheduler is plugin that works with VPP and Linux agents on the SB side, and orchestrators/external data sources such as KV data stores, and RPC clients on the NB side. In a nutshell, it keeps track of the correct configuration order and associated dependencies.
+
+<br/>
+
+<div class="columns">
+    <div class="column is-half">
+        <div style="text-align: center">
+            <a href="https://docs.ligato.io/en/latest/plugins/kvs-plugin/"class="button btn-align-md secondary-btn raised">KV Scheduler Plugin Doc</a>
+       </div> 
+  </div>    
+  <div class="column">
+        <div style="text-align: center">
+          <a href="https://docs.ligato.io/en/latest/developer-guide/kvscheduler/"class="button btn-align-md secondary-btn raised">KV Scheduler Development Guide</a>
+        </div>  
+  </div>
+</div>
 
 ---
 
@@ -444,6 +407,12 @@ The KV Scheduler is plugin that works with VPP and Linux agents on the SB side, 
 Agenctl is a CLI command line tool for managing and interacting with the software components of the Ligato framework. The CLI that enables the developer or operator to check status, control VPP, view models, configure logs, gather metrics, and includes commands for a select or complete system dump.
 
 {{< figure src="/images/ligato/agentctl.svg" class="image-center figcaption"caption="Agentctl" >}}
+
+<div style="padding-top: 50px">
+                        <div style="text-align: center">
+                            <a href="https://docs.ligato.io/en/latest/user-guide/agentctl/"class="button btn-align-md secondary-btn raised">Agentctl Doc</a>
+                        </div>
+</div>
 
 ---
 
