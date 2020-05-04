@@ -31,9 +31,9 @@ A set of VPP and Linux plugins, including a transaction-based configuration sche
 
 ### Plugins
 
-The VPP agent and cn-infra are the two constituent frameworks that together, form the basis of the Ligato framework. With Ligato, each management or control plane applicaton (app)utilize one or modules called plugins. Each plugin provides a specific function or functions. Some plugins come with the cn-infra framework; Others come with the VPP agent; Yet others created by app developers perform custom tasks.
+The VPP agent and cn-infra are the two constituent frameworks that, together, form the basis of the Ligato framework. With Ligato, each management or control plane applicaton utilize one or modules called plugins. Each plugin supports a specific function or functions. Some plugins come with the cn-infra framework; Others come with the VPP agent; Yet others created by app developers perform custom tasks.
 
-Plugins can be assembled in any combination to build solutions ranging from simple elementary tasks such as basic configuration, to larger more complex operations such as managing configuration state across multiple nodes in a network. Plugins are designed to be setup and/or modified at startup based on a configuration file. The plugin definition is standardized in the Ligato framework, and can be easily extended with customized plugins to create new solutions and applications.
+Plugins can be assembled in any combination to build solutions ranging from simple configuration tasks to larger more complex operations such as managing configuration state across multiple nodes in a network. The plugin definition is standardized in the Ligato framework, and can be easily extended with customized plugins to create new solutions and applications.
 
 
 
@@ -49,7 +49,7 @@ Plugins can be assembled in any combination to build solutions ranging from simp
 
 ### VPP Agent
 
-A fundamental component of the Ligato framework is the the VPP agent. It provides configuration and monitoring services for the VPP data plane
+The VPP agent provides configuration and monitoring services for the VPP data plane.
 
 * Supplies VPP-specific plugins
 * VPP agent and VPP packaged up in single container
@@ -154,9 +154,12 @@ cn-infra can be decomposed into a suite of plugins supporting capabilities prese
 
 ### Models / Protobufs / Keys
 
-A fundamental concept of Ligato are the notions of a model combined with a protobuf definition to identify, manage, and generate NB APIs. 
+Model abstractions, protobufs, key identifiers and KV data stores are fundamental concepts for managing configuration objects in a network. It is the application of the models and protobuf definitions that define northbound 
 
-{{< figure src="/images/ligato/components-model-proto-KV-store.svg" class="image-center figcaption"caption="Model-protoBuf-KV-data-store" >}}
+{{< figure src="/images/ligato/components-model-proto-KV-store2.svg" class="image-center figcaption"caption="" >}}
+
+<br/>
+In Ligato, each object is defined by a model. The model is composed of a model specification and .proto protobuf defintion. A key is generated for the model, and that key is used to read/write configuration and status information into a KV data store.
 
 ---
 
@@ -164,7 +167,7 @@ A fundamental concept of Ligato are the notions of a model combined with a proto
 
 The model represents an abstraction of an object that can be managed through northbound APIs exposed by the VPP agent. It consists of a model specification and a proto.Message.
 
-Here is a snippet of model.Spec code for a VPP L3 route. 
+Here is a snippet of model.Spec code for a VPP L3 route:
 
 <div>
     <pre>
@@ -191,6 +194,10 @@ const ModuleName = "vpp"
 ---
 
 #### Proto
+
+Protobufs is method that defines the structure and serialized format of the data associated with an object. Ligato implements a .proto definition for each configuration object.
+
+The is the .proto file for the VPP L3 route:  
 
 <div>
     <pre>
@@ -264,13 +271,29 @@ message Route {
 
 ### Keys
 
-some text on keys ...
+Key identifiers are used to identify objects controlled and managed by Ligato-built CNFs.
+
+The key for our VPP L3 route is:
+```json
+/vnf-agent/vpp1/config/vpp/v2/route/vrf/<vrf_id>/dst/<dst_network>/gw/<next_hop_addr>
+```   
+<br/>
+
+This key is used to PUT L3 route values into a KV data store.
+```json
+agentctl kvdb put /vnf-agent/vpp1/config/vpp/v2/route/vrf/0/dst/10.1.1.3/32/gw/192.168.1.13 
+'{  
+    "type": "INTRA_VRF",
+    "dst_network":"10.1.1.3/32",
+    "next_hop_addr":"192.168.1.13",
+    "outgoing_interface":"tap1",
+    "weight":6
+}'
+```
 
 ---
 
-### KV Data Store
 
-some text on data stores
 
 ---
 
@@ -286,7 +309,7 @@ The runtime configuration  of a CNF must accurately reflect the desired network 
                         </div>
 </div>
 
-The KV scheduler is plugin that works with VPP and Linux agents on the SB side, and orchestrators/external data sources such as KV data stores and RPC clients on the NB side. In a nutshell, it keeps track of the correct configuration order and associated dependencies.
+The KV Scheduler is plugin that works with VPP and Linux agents on the SB side, and orchestrators/external data sources such as KV data stores and RPC clients on the NB side. In a nutshell, it keeps track of the correct configuration order and associated dependencies.
 
 ---
 
