@@ -10,7 +10,7 @@ draft: false
 
 ### Overview
 
-Ligato is an open source Go framework for building and developing solutions for managing and controlling CNFs. Reusable software components, model/protobuf-modelled APIs, dependency injection, and logging/REST/CLI visibility are provided. Documentation, tutorials and examples are supplied to facilitate development. 
+Ligato is an open source Go framework for building and developing solutions for managing and controlling CNFs. Reusable software components, protobuf-modelled APIs, dependency injection, and logging/REST/CLI visibility are provided. Documentation, tutorials and examples are supplied to facilitate development. 
 
 A set of VPP and Linux plugins, including a transaction-based configuration scheduler, are implemented in the VPP agent enabling agile and resilient deployments. Infrastructure plugins offer K8s lifecycle management, health care checking, notifications, data store/database integration, and logging for cloud-native operational affinities.  
   
@@ -31,9 +31,9 @@ A set of VPP and Linux plugins, including a transaction-based configuration sche
 
 ### Plugins
 
-The VPP agent and cn-infra are the two constituent frameworks that, together, form the basis of the Ligato framework. With Ligato, each management or control plane applicaton utilize one or modules called plugins. Each plugin supports a specific function or functions. Some plugins come with the cn-infra framework; Others come with the VPP agent; Yet others created by app developers perform custom tasks.
+The VPP agent and cn-infra are the two constituent frameworks that, together, form the basis of the Ligato framework. With Ligato, each management / control plane application utilize one or modules called plugins. Each plugin supports a specific function or functions. Some plugins come with the cn-infra framework; Others come with the VPP agent; Yet others created by app developers perform custom tasks.
 
-Plugins can be assembled in any combination to build solutions ranging from simple configuration tasks to larger more complex operations such as managing configuration state across multiple nodes in a network. The plugin definition is standardized in the Ligato framework, and can be easily extended with customized plugins to create new solutions and applications.
+Plugins can be assembled in any combination to build solutions ranging from simple configuration tasks, to larger more complex operations such as managing configuration state across multiple nodes in a network. The plugin definition is standardized in the Ligato framework, and plugin behavior at startup can be modified through the use of configuration files. 
 
 
 
@@ -51,7 +51,7 @@ Plugins can be assembled in any combination to build solutions ranging from simp
 
 The VPP agent provides configuration and monitoring services for the VPP data plane.
 
-* Supplies VPP-specific plugins
+* Supplies VPP and Linux plugins
 * VPP agent and VPP packaged up in single container
 * Dependency handling between related configuration items
 * Transaction-based configuration processing and tracking
@@ -64,10 +64,10 @@ The VPP agent provides configuration and monitoring services for the VPP data pl
 
 ### VPP Agent Plugins
 
-The VPP Agent is composed of a set of VPP-specific plugins. Used in combination with cn-infra, CNFs and apps can be developed to interact with other services/microservices in a cloud-native environment. 
+The VPP Agent includes VPP and Linux plugins for network configuration and visibility. CNFs and cloud-native network applications can be developed using VPP agent plugins to interact with other services/microservices in a cloud-native environment. 
 
 
-{{< figure src="/images/ligato/ligato-framework-vpp-agent2-picture.svg" class="image-center figcaption"caption="VPP Agent Southbound Plugins" >}}
+{{< figure src="/images/ligato/components-ligato-framework-vpp-agent-SB-picture.svg" class="image-center figcaption"caption="" >}}
 
 ---
 
@@ -81,6 +81,7 @@ The VPP Agent is composed of a set of VPP-specific plugins. Used in combination 
                         <pre>
                             <code>
 vpp-agent/plugins/vpp
+
 ├── abfplugin // ACL-based forewarding
 ├── aclplugin // ACL
 ├── ifplugin // Interfaces
@@ -89,8 +90,8 @@ vpp-agent/plugins/vpp
 ├── l3plugin // routes, VRFs
 ├── natplugin // NAT
 ├── puntplugin // Punt to Host
-├── srplugin
-├── stnplugin
+├── srplugin // segment routing
+├── stnplugin // steal the nic
                            </code>
                         </pre>
                     </div>
@@ -103,10 +104,11 @@ vpp-agent/plugins/vpp
                         <pre>
                             <code>
  vpp-agent/plugins/linux
-├── ifplugin
-├── iptablesplugin
-├── l3plugin
-└── nsplugin
+ 
+├── ifplugin // host interface
+├── iptablesplugin // Linux IP tables
+├── l3plugin // routing, arp
+└── nsplugin // namespace
                             </code>
                         </pre>
                     </div>
@@ -130,15 +132,132 @@ vpp-agent/plugins/vpp
 
 ---
 
-### Infra / Connection / Database Plugins
+### cn-infra Plugins
 
-cn-infra can be decomposed into a suite of plugins supporting capabilities present in modern cloud-native CNFs and apps. Plugins offering logging, health checks, messaging, KV data store connectivity, REST and gRPC APIs are available. Developers can implement a mix of cn-infra plugins, that together with other VPP agent and/or custom plugins, define CNF functionality. cn-infra provides plugin lifecycle management such as initialization and graceful shutdown.
-
-
-
-{{< figure src="/images/ligato/ligato-framework-arch-infra.svg" class="image-center figcaption"caption="Infra/Connection/DB plugins" >}}
+cn-infra provides the plugins needed for CNF and application operating in modern cloud-native CNFs and apps. Plugins offering logging, health checks, messaging, KV data store connectivity, REST and gRPC APIs are available. Developers can implement a mix of cn-infra plugins, that together with other VPP agent and/or custom plugins, define CNF functionality. 
 
 
+{{< figure src="/images/ligato/ligato-framework-arch-infra.svg" class="image-center figcaption"caption="" >}}
+
+---
+
+cn-infra plugins fall into one of three categories: 
+
+- Infra for logging, messaging, status checking and process management
+- Connections for external connectivity to data stores
+- RPC supporting gRPC and REST
+
+---
+
+<div class="tile is-ancestor">
+    <div class="tile is-12">
+        <div class="tile">
+            <div class="tile is-parent is-4">
+                <article class="tile is-child box">
+                    <p>Connection: Data Store</p>
+                    <div>
+                        <pre>
+                            <code>
+cn-infra/db/keyval
+├── bolt
+├── redis
+├── consul
+├── etcd
+└── filedb
+...
+                           </code>
+                        </pre>
+                    </div>
+                </article>
+            </div>
+            <div class="tile is-parent is-vertical is-4">
+                <article class="tile is-child box">
+                    <p>Infra: Health Check</p>
+                    <div>
+                        <pre>
+                            <code>
+cn-infra/health
+├── probe
+└── statuscheck
+...
+                            </code>
+                        </pre>
+                    </div>
+                </article>
+            </div>
+            <div class="tile is-parent is-4">
+                <article class="tile is-child box">
+                    <p>RPC</p>
+                    <div>
+                        <pre>
+                            <code>
+cn-infra/rpc
+├── grpc
+├── prometheus
+└── rest
+...
+                           </code>
+                        </pre>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+---
+
+<div class="tile is-ancestor">
+    <div class="tile is-12">
+        <div class="tile">
+            <div class="tile is-parent is-4">
+                <article class="tile is-child box">
+                    <p>Infra: Process Management</p>
+                    <div>
+                        <pre>
+                            <code>
+cn-infra/exec
+├── processmanager
+└── supervisor
+...
+                           </code>
+                        </pre>
+                    </div>
+                </article>
+            </div>
+            <div class="tile is-parent is-vertical is-4">
+                <article class="tile is-child box">
+                    <p>Infra: Logging</p>
+                    <div>
+                        <pre>
+                            <code>
+cn-infra/logging
+├── logmanager
+├── logrus
+└── measure
+...
+                            </code>
+                        </pre>
+                    </div>
+                </article>
+            </div>
+            <div class="tile is-parent is-4">
+                <article class="tile is-child box">
+                    <p>Infra: Messaging</p>
+                    <div>
+                        <pre>
+                            <code>
+cn-infra/messaging
+└── kafka
+...
+                           </code>
+                        </pre>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div style="padding-top: 50px">
@@ -154,12 +273,12 @@ cn-infra can be decomposed into a suite of plugins supporting capabilities prese
 
 ### Models / Protobufs / Keys
 
-Model abstractions, protobufs, key identifiers and KV data stores are fundamental concepts for managing configuration objects in a network. It is the application of the models and protobuf definitions that define northbound 
+Model abstractions, protobufs, key identifiers and KV data stores are fundamental concepts in Ligato. The application of models and protobuf definitions define northbound APIs for managing and controlling configuration objects in a CNF.
 
 {{< figure src="/images/ligato/components-model-proto-KV-store2.svg" class="image-center figcaption"caption="" >}}
 
 <br/>
-In Ligato, each object is defined by a model. The model is composed of a model specification and .proto protobuf defintion. A key is generated for the model, and that key is used to read/write configuration and status information into a KV data store.
+In Ligato, each object is defined by a model. The model is composed of a model specification and protobuf .proto defintion. A key is generated for the model, and that key is used to read/write configuration and status information into a KV data store. The key is also used in REST API calls for retrieving configuration information.
 
 ---
 
@@ -293,7 +412,14 @@ agentctl kvdb put /vnf-agent/vpp1/config/vpp/v2/route/vrf/0/dst/10.1.1.3/32/gw/1
 
 ---
 
+### KV Data Store
 
+- Used by the VPP agent to store VPP/Linux configuration and stats
+- Watches and reacts to events created by changes within the datastore
+- Uses a watched key value and microservice label to distinguish its own config from that of another VPP
+- Microservice label enables a single datastore to service multiple VPP agents
+
+{{< figure src="/images/ligato/components-KVDB_microservice_label.png" class="image-center figcaption"caption="" >}}
 
 ---
 
@@ -301,7 +427,7 @@ agentctl kvdb put /vnf-agent/vpp1/config/vpp/v2/route/vrf/0/dst/10.1.1.3/32/gw/1
 
 The runtime configuration  of a CNF must accurately reflect the desired network function. One configuration item could be dependent on the successful configuration of another item. Example: a route cannot be configured without an interface, therefore we say the interface is a dependency configuration item of the route. And these dependencies must be tracked and coordinated to ensure the proper configure sequence. 
 
-{{< figure src="/images/ligato/ligato-framework-arch-KVS2.svg" class="image-center figcaption"caption="KV Scheduler" >}}
+{{< figure src="/images/ligato/components-ligato-framework-arch-KVS2.svg" class="image-center figcaption"caption="KV Scheduler" >}}
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
@@ -309,62 +435,18 @@ The runtime configuration  of a CNF must accurately reflect the desired network 
                         </div>
 </div>
 
-The KV Scheduler is plugin that works with VPP and Linux agents on the SB side, and orchestrators/external data sources such as KV data stores and RPC clients on the NB side. In a nutshell, it keeps track of the correct configuration order and associated dependencies.
+The KV Scheduler is plugin that works with VPP and Linux agents on the SB side, and orchestrators/external data sources such as KV data stores, and RPC clients on the NB side. In a nutshell, it keeps track of the correct configuration order and associated dependencies.
 
 ---
 
 ### Agentctl
 
-some agentctl text
+Agenctl is a CLI command line tool for managing and interacting with the software components of the Ligato framework. The CLI that enables the developer or operator to check status, control VPP, view models, configure logs, gather metrics, and includes commands for a select or complete system dump.
 
-{{< figure src="/images/ligato/agentctl.png" class="image-center figcaption"caption="Agentctl" >}}
-
----
-
-#### Stash
-
-- Plugins
-
-- Models / Protobufs
-
-- KV Data Store
-
-- KV Scheduler
-
-- Agentctl
-
-- Logs
-
-
-
-
----
+{{< figure src="/images/ligato/agentctl.svg" class="image-center figcaption"caption="Agentctl" >}}
 
 ---
 
 
-
-##### Data Store Connector plugins:
-
-<div>
-    <pre>
-        <code>
-$ $ tree cn-infra/db/keyval -U -L 1
-
-cn-infra/db/keyval
-├── bolt
-├── redis
-├── consul
-├── etcd
-└── filedb
-...
-        </code>
-    </pre>
-</div>
-
-
-#### Northbound Plugins
-
-{{< figure src="/images/ligato/components-cn-infra-northbound-plugins.svg" class="image-center figcaption"caption="Northbound Plugins" >}}
 
 
