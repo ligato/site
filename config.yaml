@@ -77,9 +77,9 @@ params:
       text: Virtual Network Functions in Containers
       url: "cnf/cnf-def"
       buttonText: Learn More
-    - title: Building Framework
+    - title: Building Blocks
       icon: plug-cloud
-      text: Agents/Plugins for CNF Control & Management
+      text: Plugins/Models/Protobufs for CNF development
       url: "architecture/lig-framework-overview"
       buttonText: Learn More
     - title: Use Cases
@@ -147,12 +147,14 @@ params:
       column2:
         title: "Documentation"
         links:
+        - text: Ligato Docs
+          link: "https://docs.ligato.io/en/latest/"
         - text: Quickstart
           link: "https://docs.ligato.io/en/latest/user-guide/quickstart/"
         - text: Concepts
           link: "https://docs.ligato.io/en/latest/user-guide/concepts/"
-        - text: Hello World
-          link: "https://docs.ligato.io/en/latest/tutorials/01_hello-world/"
+        - text: Tutorials
+          link: "https://docs.ligato.io/en/latest/tutorials/00_tutorial-setup/"
         - text: FAQ
-          link: "https://docs.ligato.io/en/latest/user-guide/faq/"
+          link: "https://docs.ligato.io/en/latest/intro/faq/"
 disableKinds: ["taxonomy", "taxonomyTerm", "section"]

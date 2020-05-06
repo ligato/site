@@ -12,7 +12,7 @@ draft: false
 
 Ligato is an open source Go framework for building and developing solutions for managing and controlling CNFs. Reusable software components, protobuf-modelled APIs, dependency injection, and logging/REST/CLI visibility are provided. Documentation, tutorials and examples are supplied to facilitate development. 
 
-A set of VPP and Linux plugins, including a transaction-based configuration scheduler, are implemented in the VPP agent enabling agile and resilient deployments. Infrastructure plugins offer K8s lifecycle management, health care checking, notifications, data store/database integration, and logging for cloud-native operational affinities.  
+A set of VPP and Linux plugins, including a transaction-based configuration scheduler, are implemented in the VPP agent, enabling agile and resilient deployments. Infrastructure plugins offer K8s lifecycle management, health care checking, notifications, data store/database integration, and logging for cloud-native operational affinities.  
   
 Ligato is written in Golang for the performance, concurrency, scale, readability, and broad community support necessary for developing and implementing cloud-native network solutions. 
 
@@ -437,7 +437,7 @@ The runtime configuration  of a CNF must accurately reflect the desired network 
 
 <br/>
 
-The KV Scheduler is plugin that works with VPP and Linux agents on the SB side, and orchestrators/external data sources such as KV data stores, and RPC clients on the NB side. In a nutshell, it keeps track of the correct configuration order and associated dependencies.
+The KV Scheduler is a plugin that works with VPP and Linux plugins on the SB side; It works with orchestrators, external data sources such as KV data stores, and RPC clients on the NB side. In a nutshell, it keeps track of the correct configuration order and associated dependencies.
 
 <br/>
 
@@ -458,7 +458,7 @@ The KV Scheduler is plugin that works with VPP and Linux agents on the SB side, 
 
 ### Agentctl
 
-Agenctl is a CLI command line tool for managing and interacting with the software components of the Ligato framework. The CLI enables the developer or operator to check status, control VPP, view models, configure logs, gather metrics, and includes commands for a select or complete system dump.
+Agenctl is a CLI command line tool for managing and interacting with the software components of the Ligato framework. The CLI enables the developer or operator to check status, control VPP, view models, configure logs, gather metrics, and includes commands for a scoped or complete system dump.
 
 {{< figure src="/images/ligato/agentctl.svg" class="image-center figcaption"caption="" >}}
 
