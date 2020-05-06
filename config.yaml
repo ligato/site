@@ -77,7 +77,7 @@ params:
       text: Virtual Network Functions in Containers
       url: "cnf/cnf-def"
       buttonText: Learn More
-    - title: Ligato Framework
+    - title: Building Framework
       icon: plug-cloud
       text: Agents/Plugins for CNF Control & Management
       url: "architecture/lig-framework-overview"

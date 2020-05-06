@@ -69,7 +69,7 @@ draft: false
     </div>
 </div>
 
-An important aspect of any container-based network soltion is rapid and accurate configuration programmability. Containers are added and removed frequently. They _must_ (re)start within a second and there could be multiple running instances on a single host. They could move to other hosts. The complete configuration required for run-time operations may require each separate comfiguration action to be performed in proper sequence. Therefore it is crucial there be minimal delay to programming the correct configuration in the correct into the dataplane. 
+An important aspect of any container-based network soltion is rapid and accurate configuration programmability. Containers are added and removed frequently. They _must_ (re)start within a second and there could be multiple running instances on a single host. They could move to other hosts. The complete configuration required for run-time operations may require each separate configuration action to be performed in proper sequence. Therefore it is crucial there be minimal delay to programming the correct configuration in the correct into the dataplane. 
 
 Other solutions, projects and ventures either being worked on, shipping or considering the use of a container-based VPP vSwitch include [hICN](https://fd.io/2019/02/introducing-hybrid-information-centric-networking-hicn-a-new-fd-io-project/), [ONAP](https://www.onap.org), [Service Function Chaining](https://github.com/ligato/sfc-controller) as well as cable, mobility and service mesh edge proxies.
 
