@@ -3,6 +3,11 @@ languageCode: en-us
 title: Ligato
 theme: hugo-fresh
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 params:
   navbarlogo:
     # Logo (from /images/logos/___)

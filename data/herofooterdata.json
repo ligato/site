@@ -52,5 +52,11 @@
     "description": "gRPC",
     "image": "images/logos/clients/g-rpc.svg",
     "url": "https://grpc.io"
+  },
+  {
+    "title": "Netlify",
+    "description": "Netlify",
+    "image": "images/logos/clients/netlify.png",
+    "url": "https://netlify.com"
   }
 ]
