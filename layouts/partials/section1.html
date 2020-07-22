@@ -13,7 +13,7 @@
     <div class="content-wrapper">
       <div class="columns">
         {{- range $tiles }}
-        <div class="column is-one-third">
+        <div class="column is-one-half">
           <div class="feature-card is-bordered has-text-centered revealOnScroll delay-1" data-animation="fadeInLeft">
             <div class="card-title">
               <h4>{{ .title }}</h4>
@@ -25,7 +25,7 @@
                 <p>{{ .text }}</p>
             </div>
             <div class="card-action">
-              <a href="{{ .url }}" class="button btn-align-md primary-btn raised">{{ .buttonText }}</a>
+              <a href="{{ .url }}" class="button btn-align-md secondary-btn raised">{{ .buttonText }}</a>
             </div>
           </div>
         </div>

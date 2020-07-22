@@ -114,8 +114,9 @@ vpp-agent/plugins/vpp
 ├── aclplugin // ACL
 ├── ifplugin // Interfaces
 ├── ipsecplugin // IPsec
+├── ipfixplugin // IPFix
 ├── l2plugin // L2 including bridge domain, x-connect and FIB
-├── l3plugin // routes, VRFs
+├── l3plugin // routes, VRFs, arps, l3-xc
 ├── natplugin // NAT
 ├── puntplugin // Punt to Host
 ├── srplugin // segment routing
@@ -368,21 +369,24 @@ message Route {
 Key identifiers are used to identify objects controlled and managed by Ligato-built CNFs.
 
 The `VPP L3 route key` is:
-```json
+
+```
 /vnf-agent/vpp1/config/vpp/v2/route/vrf/<vrf_id>/dst/<dst_network>/gw/<next_hop_addr>
-```   
+```
+  
 <br/>
 
-This key is used to PUT L3 route values into a KV data store.
-```json
+This key is used to PUT L3 route values into a KV data store:
+
+```
 agentctl kvdb put /vnf-agent/vpp1/config/vpp/v2/route/vrf/0/dst/10.1.1.3/32/gw/192.168.1.13 
-'{  
+{  
     "type": "INTRA_VRF",
     "dst_network":"10.1.1.3/32",
     "next_hop_addr":"192.168.1.13",
     "outgoing_interface":"tap1",
     "weight":6
-}'
+}
 ```
 <br/>
 
