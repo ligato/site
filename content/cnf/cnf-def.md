@@ -95,7 +95,7 @@ Items to highlight from the figure above:
 </div>
 
 - __Application and CNF pods are deployed on workers__. As mentioned, a CNF is just another pod, albeit with specialized network functionality.
-- __CNFs are versatile__. They can implemented with a single purpose in mind, an example being a load balancer. Or designed and built for programming and executing specific data plane functions. Consider a CNF platform that is programmed through APIs/agent to perform L3 routing in one instantiation, and firewall/NAT functions in another. Operators can and will choose from a broad portfolio of CNF options. 
+- __CNFs are versatile__. They can be implemented with a single purpose in mind, with an example being a load balancer. Or designed and built for programming and executing specific data plane functions. Consider a CNF platform that is programmed through APIs/agent to perform L3 routing in one instantiation, and firewall/NAT functions in another. Operators can and will choose from a broad portfolio of CNF options. 
 - __CNF capabilities can be embedded in application pods__. For example, a [memif](https://docs.fd.io/vpp/17.10/libmemif_doc.html) interface can run on both CNF and application pods. The result is a point-to-point, user space communications channel that offers kernel-free packet transmit and receive functions.
           
 <div>
@@ -197,7 +197,7 @@ Two additional items:
 
 CNFs are arranged into a chain of contiguous network functions supporting an application or network service offering. NSMC, a customized SFC control plane or CLI can handle SFC provisioning.   
 
-In the top figure, an SFC is created to for a cloud storage service; the bottom file shows an ML training app.
+In the top figure, an SFC is created for a cloud storage service; the bottom figure shows an ML training app.
 
 Note that the cloud storage and ML training app pods could employ CNF functions such as the memif example described above.  
 
@@ -219,7 +219,7 @@ With these in mind, it becomes possible to paint a picture of a composite CNF ar
 
 <br>
 </br>
-The architecture is assembled from and presented as a system using a layered approach: Applications, orchestration, management plane on top; Software data plane on the bottom. The term, `plugin`, is a placeholder for integrated and/or configured software components supporting a function or functions performed by the CNF 
+The architecture is assembled from and presented as a system using a layered approach: Applications, orchestration, management plane on top; Software data plane on the bottom. The term, `plugin`, is a placeholder for integrated and/or configured software components supporting a function or functions performed by the CNF. 
  
 A discussion follows beginning with the data plane.
 
@@ -260,7 +260,7 @@ Agent</p>
  
 In any domain, the network plays a crucial role. This is especially true in cloud native environments . The momentum behind cloud native, the architecture, applications, and the greater ecosystem has perhaps inadvertently pushed networking into the background.  
 
-The advent of CNFs can serve as a vehicle to establish the network as playing a prominent and critical role in the success of cloud native. 
+The advent of CNFs can serve as a vehicle to establish the network as playing a prominent and vital role in the success of cloud native. 
 
 
 

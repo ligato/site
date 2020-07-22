@@ -54,16 +54,16 @@ params:
         url: https://docs.google.com/presentation/d/1SlfBPgn3Uwi316OWU4-l0oQRSeqiLdmacnHcX0qNdxQ/present?usp=sharing
       - title: Ligato - A Platform for the Development of Cloud Native VNFs
         url: https://www.cisco.com/c/dam/m/en_us/network-intelligence/service-provider/digital-transformation/knowledge-network-webinars/pdfs/0530-techad-ckn.pdf
-  - title: Videos
+  - title: APIs
     sublinks:
-      - title: Fosdem 2019 "VPP & Ligato Use Cases" talk
-        url: https://fosdem.org/2019/schedule/event/vpp_ligato_as_ipsec_gateway/
-      - title: Contiv VPP User Interface
-        url: https://youtu.be/GKaJkskZAnQ
-      - title: FD.io in a Cloud Native World
-        url: https://www.youtube.com/watch?v=SdLwSb0JSAs
-      - title: Network Service Mesh Deep Dive
-        url: https://networkservicemesh.io/docs/videos/deepdive/
+      - title: VPP Agent REST API Doc
+        url: https://docs.ligato.io/en/latest/api/api-vpp-agent/
+      - title: VPP Agent OpenAPI Definitions
+        url: https://app.swaggerhub.com/apis/chrisM9/ligato-vpp_agent_rest_ap_is/3
+      - title: KV Scheduler REST API Doc
+        url: https://docs.ligato.io/en/latest/api/api-kvs/
+      - title: KV Scheduler OpenAPI Definitions
+        url: https://app.swaggerhub.com/apis/chrisM9/ligato-kvs-rest-api/2-oas3
   - title: Community
     url: "/community/page"
 #    sublinks:
@@ -75,7 +75,7 @@ params:
         url: "/blog/cnf-ligato-fdio"
   section1:
     title: Learn more about Ligato
-    subtitle: All About CNFs, Ligato and Use Cases
+    subtitle: CNFs and Development Features
     tiles:
     - title: What is a CNF?
       icon: mouse-globe
@@ -87,11 +87,11 @@ params:
       text: Plugins/Models/Protobufs for CNF development
       url: "architecture/lig-framework-overview"
       buttonText: Learn More
-    - title: Use Cases
-      icon: laptop-cloud
-      text: Solutions Using the Ligato VPP Agent
-      url: "use-cases/ligato-use-cases"
-      buttonText: Learn More
+#    - title: Use Cases
+#      icon: laptop-cloud
+#      text: Solutions Using the Ligato VPP Agent
+#      url: "use-cases/ligato-use-cases"
+#      buttonText: Learn More
   section2:
     title: Rapid Innovation & Development
     subtitle: Packaging, Programming and Performance
@@ -118,7 +118,7 @@ params:
   section3:
     title: One Framework
     subtitle: Build CNFs for Existing and Future Networks
-    image: ligato/ligato-front-pillar-grey-bg2.svg
+    image: ligato/ligato-front-pillar-blue-grey.svg
     buttonText: Get started
     buttonLink: "https://docs.ligato.io/en/latest/user-guide/quickstart/"
   footer:

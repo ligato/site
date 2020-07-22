@@ -6160,7 +6160,7 @@ label.panel-block {
     .section.is-large {
       padding: 18rem 1.5rem; } }
 .footer {
-  background-color: #fafafa;
+  background-color: #6C96C2;
   padding: 3rem 1.5rem 6rem; }
 
 /* ==========================================================================
@@ -6405,8 +6405,8 @@ Hero styles
 Fresh Footer
 ========================================================================== */
 footer.footer-dark {
-  background: #444F60;
-  color: #fff; }
+  background: lightblue;
+  color: black; }
   footer.footer-dark .columns {
     margin-top: 35px; }
   footer.footer-dark .footer-logo img {
