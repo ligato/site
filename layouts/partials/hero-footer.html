@@ -33,7 +33,7 @@
         {{- range .Site.Data.herofooterdata }}
         <li>
           <a href="{{ .url }}">
-            <img class="partner-logo" src="{{ $.Site.BaseURL }}{{ .image }}">
+            <img class="partner-logo" src="{{ printf "/%s" .image | relURL }}">
           </a>
         </li>
         {{- end }}
