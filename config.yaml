@@ -42,7 +42,7 @@ params:
     url: "https://docs.ligato.io/"
   - title: Github
     sublinks:
-    - title: Infra
+    - title: CN Infra
       url: "https://github.com/ligato/cn-infra"
     - title: VPP Agent
       url: "https://github.com/ligato/vpp-agent"
