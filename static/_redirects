@@ -1,14 +1,27 @@
+# -------------------------------
 # Go vanity import path redirects
+# -------------------------------
 
-# -> cn-infra
-/cn-infra/v2* /golang/cn-infra_v2.html 200
-# -> vpp-agent
+# cn-infra
+# ---------
+/cn-infra/v2* /golang/cn-infra_v2.html 
+
+# vpp-agent
+# ---------
 /vpp-agent/v3* /golang/vpp-agent_v3.html 200
 #/vpp-agent/v2* /golang/vpp-agent_v2.html 200
-# -> vpp-binapi
+
+# vpp-binapi
+# ---------
 /vpp-binapi/* /golang/vpp-binapi.html 200
 
+# vpp-probe
+# ---------
+/vpp-probe/* /golang/vpp-probe.html 200
+
+# -------------------------------
 # Other redirects
+# -------------------------------
 
 / https://ligato.io/ 301
 /* https://ligato.io/ 301
