@@ -11,7 +11,7 @@ markup:
 params:
   navbarlogo:
     # Logo (from /images/logos/___)
-    image: logos/new-logo-ligato-dark.png
+    image: logos/ligato-navbar.svg
     link: /
   font:
     name: "Open Sans"
@@ -50,6 +50,8 @@ params:
       url: "https://github.com/ligato"
   - title: Presentations
     sublinks:
+      - title: LFN Webinar - Building CNFs with FD.io & NSM
+        url: https://www.youtube.com/watch?v=UcODeI-HVZE
       - title: Ligato Overview
         url: https://docs.google.com/presentation/d/1SlfBPgn3Uwi316OWU4-l0oQRSeqiLdmacnHcX0qNdxQ/present?usp=sharing
       - title: Ligato - A Platform for the Development of Cloud Native VNFs
