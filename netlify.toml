@@ -34,3 +34,8 @@ HUGO_ENABLEGITINFO = "true"
   to = "https://ligato.io/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "https://go.ligato.io/"
+  status = 301
+  force = true
