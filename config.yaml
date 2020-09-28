@@ -115,7 +115,7 @@ params:
       text: Model-driven APIs; common transport
       icon: code
     - title: Configuration Scheduler
-      text: Transaction-based for correct ordering, auto-healing, restarts
+      text: Transaction-based for dependency resolution, config sequencing, auto-healing, restarts
       icon: calendar-full
   section3:
     title: One Framework

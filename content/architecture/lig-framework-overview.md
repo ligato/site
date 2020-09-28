@@ -256,7 +256,7 @@ Model abstractions, protobufs, key identifiers and KV data stores are fundamenta
 {{< figure src="/images/ligato/components-model-proto-KV-store2.svg" class="image-center figcaption"caption="" >}}
 
 <br/>
-In Ligato, each object is defined by a model. The model is composed of a model specification and `.proto` defintion. A key is generated for the model, and that key is used to read/write configuration and status information into a KV data store. The key is also used in REST API calls for retrieving configuration information.
+In Ligato, each object is defined by a model. The model is composed of a model specification and `.proto` defintion. A key is generated for the model, and that key is used to read/write configuration and status information into a KV data store as well as manage configuration transactions through the KV Scheduler.
 
 <div style="padding-top: 50px">
                         <div style="text-align: center">
@@ -366,7 +366,7 @@ message Route {
 
 ### Keys
 
-Key identifiers are used to identify objects controlled and managed by Ligato-built CNFs.
+Keys are used to identify objects controlled and managed by Ligato-built CNFs.
 
 The `VPP L3 route key` is:
 
@@ -433,7 +433,7 @@ agentctl kvdb put /vnf-agent/vpp1/config/vpp/v2/route/vrf/0/dst/10.1.1.3/32/gw/1
 
 ### KV Scheduler
 
-The runtime configuration  of a CNF must accurately reflect the desired network function. One configuration item could be dependent on the successful configuration of another item. Example: a route cannot be configured without an interface, therefore we say the interface is a dependency configuration item of the route. And these dependencies must be tracked and coordinated to ensure the proper configuration sequence.
+The runtime configuration of a CNF must accurately reflect the desired network function. One configuration item could be dependent on the successful configuration of another item. Example: a route cannot be configured without an interface, therefore we say the interface is a dependency configuration item of the route. And these dependencies must be tracked and coordinated to ensure the proper configuration sequence.
 
 <br/> 
 
@@ -462,7 +462,7 @@ The KV Scheduler is a plugin that works with VPP and Linux plugins on the SB sid
 
 ### Agentctl
 
-Agenctl is a CLI command line tool for managing and interacting with the software components of the Ligato framework. The CLI enables the developer or operator to check status, control VPP, view models, configure logs, gather metrics, and includes commands for a scoped or complete system dump.
+Agenctl is a CLI command line tool for managing and interacting with the software components of the Ligato framework. The CLI enables the developer or operator to check status, manage VPP configurations, view models, dump KV data store and KV Scheduler contents and print transaction logs. 
 
 {{< figure src="/images/ligato/agentctl.svg" class="image-center figcaption"caption="" >}}
 
@@ -472,7 +472,27 @@ Agenctl is a CLI command line tool for managing and interacting with the softwar
                         </div>
 </div>
 
+---
 
+### REST API
+
+Ligato offers a comprehensive suite of REST APIs for managing VPP agent network configurations including those interfaces, L2, L3, IPsec and NAT. In addition, there are REST APIs available to retrieve information such as transaction logs and runtime dumps from the KV Scheduler. 
+
+<br/>
+
+
+<div class="columns">
+    <div class="column is-half">
+        <div style="text-align: center">
+            <a href="https://docs.ligato.io/en/latest/api/api-vpp-agent/"class="button btn-align-md secondary-btn raised">VPP Agent REST APIs</a>
+       </div> 
+  </div>    
+  <div class="column">
+        <div style="text-align: center">
+          <a href="https://docs.ligato.io/en/latest/api/api-kvs/"class="button btn-align-md secondary-btn raised">KV Scheduler REST APIs</a>
+        </div>  
+  </div>
+</div>    
 
 
 
