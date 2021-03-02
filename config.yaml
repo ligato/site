@@ -120,7 +120,7 @@ params:
   section3:
     title: One Framework
     subtitle: Build CNFs for Existing and Future Networks
-    image: ligato/ligato-front-pillar-blue-grey.svg
+    image: ligato/docs-overview-ligato.svg
     buttonText: Get started
     buttonLink: "https://docs.ligato.io/en/latest/user-guide/quickstart/"
   footer:

@@ -5,13 +5,13 @@ layout: "cnf"
 draft: false
 ---
 
-This section defines a CNF, provides some background context, discusses different scenarios, and lays out a composite architecture.  
+This section defines a CNF, provides background context, discusses different scenarios, and lays out a composite architecture.  
 
 ---
 
 ## Physical Network Function (PNF)
 
-Physical network functions (PNF) are physical devices that process packets supporting a network and/or application service.  A PNF comprises purpose-built hardware and software functions aligned with their station in the network. A sampling of PNF deployed in your network include core routers, campus switches and firewall appliances.
+Physical network functions (PNF) are physical devices that process packets supporting a network and/or application service.  A PNF comprises purpose-built hardware and software functions aligned with their station in the network. A sampling of PNFs deployed in your network include core routers, VPN gateways and firewall appliances.
 
 A set interconnected PNFs forms a network. You assemble interconnected networks into larger networks characterized by a broad range of applications and services, diverse customer profiles, and heterogeneous connectivity. 
 
@@ -19,8 +19,12 @@ A set interconnected PNFs forms a network. You assemble interconnected networks 
 
 ## Virtual Network Function (VNF)
 
-A virtualized network function (VNF) is a NF that runs in a virtual environment. By convention, you run VNFs in virtual machines (VMs) managed by operators using industry best practices and VM provisioning tools. VM-based VNFs operate on COTS servers and exist in an "enclosed space" surrounded by a guest OS/kernel, hypervisor, host OS/kernel, and network I/O. Excluding performance and scale, VNFs mirror many of the functions and features you find in dedicated hardware NFs, modulo the requisite adaptations for operating in virtual environments. 
+A virtualized network function (VNF) is an NF that runs in a virtual environment. By convention, you run VNFs in virtual machines (VMs) managed by operators using industry best practices and VM provisioning tools. VM-based VNFs operate on COTS servers and exist in an "enclosed space" surrounded by a guest OS/kernel, hypervisor, host OS/kernel, and network I/O. Excluding performance and scale, VNFs mirror many of the functions and features you find in PNFs, modulo the requisite adaptations for operating in virtual environments. 
 
+
+{{< figure src="/images/ligato/pnf-vnf.svg" class="image-center figcaption" caption="PNF appliances transition to software VNFs running on COTS hardware" >}}
+
+---
 
 <div>
 <p class="is-size-5" style="text-decoration: underline;font-weight: 600">
@@ -28,8 +32,9 @@ VNF advantages:
 </p>
 </div>
 
-- Automated "pre-staging" handles projected increased traffic workloads driven by customer growth and/or new services.
-- Service Chaining allows a deployment of a customer-facing service from a set of interconnected VNFs.  
+- Decouples NFs from purpose-built hardware resulting in potential capex and opex savings.
+- Automated VNF "pre-staging" handles projected increased traffic workloads driven by customer growth and/or new services.
+- Service Chaining allows a deployment of a customer-facing service built from a set of interconnected VNFs.  
 - Well understood performance and scale numbers. Proper capacity planning should not yield any surprises. 
 - Network architecture and operations affinity with physical networks. If you have worked with physical networks, you will not encounter a "sea change" of differences with VNFs.    
 
@@ -42,7 +47,7 @@ VNF challenges:
 - Performance impact due to VM software overhead. 
 - Availability impact due long boot times under normal maintenance, failure restart, and burst conditions. 
 - Multi-VNF scale out requires more investment in servers and PNF gear. 
-- Idle VM resources. VNFs deploy in coarse VM increments. Optimizing VNF resource allocations to meet traffic workload demands will not be precise. You must over-provision and resources sit idle. Lack of optimal VNF resource precision prevents resource assignment to cloud-ready applications and server expansion.   
+- Idle VM resources. VNFs deploy in coarse VM increments. Optimizing VNF resource allocations to meet traffic workload demands will not be precise. You must over-provision and then resources sit idle. Lack of optimal VNF resource precision prevents resource assignment to cloud-ready applications and server expansion.   
 - Implemented as code monoliths. All development, testing, maintenance, deployment, and troubleshooting must consider the VNF as a single atomic unit.
 - Kernel network feature dependencies. Your VNF implementation might rely on customized kernel modifications, or "hacks", to perform the desired function. This adds complexity to the code monolith.  
 
@@ -58,9 +63,9 @@ VNFs are the current defacto standard for standing up and running network functi
 - __Containers house the microservices and provide a run-time environment__. Containers dispense with VM overhead, and instead, package up the application code, binaries and dependencies. Containers share a guest and/or host OS/kernel. 
 - __Kubernetes orchestration provides complete container lifecycle management__ including scheduling, placement, start/stop/re-start, and visibility.  
 
- Kubernetes epods run on physical or virtual hosts, and contain one or more containers. A cluster defines a collection of hosts and pods managed by Kubernetes.
+Kubernetes pods run on physical or virtual hosts, and contain one or more containers. A cluster defines a collection of hosts and pods managed by Kubernetes.
 
-In addition, cloud native embraces the notions of open source, [12-factor app](https://12factor.net/), and devops CI/CD pipelines.      
+Cloud native embraces the notions of open source, [12-factor app](https://12factor.net/), and devops CI/CD pipelines.      
 
 A Cloud Native Compute Foundation (CNCF) definition summarizes these principles:
  
@@ -82,11 +87,11 @@ A new set of requirements emerge for container networking leveraging VNF-like ca
 - __(NFs) adapted for cloud native deployment and operations__. This assumes a container (pod) form-factor under K8s control, or a control/management plane co-existing or compatible with K8s.  
 
     In addition, you should align CNF architecture, development, and operations with 12-factor app precepts, and where appropriate, [X-factor CNF](https://x.cnf.dev/).     
-- __Lightweight data plane configuration__. To date, SDN-like centralized management systems communicating through a control channel to a configuration agent, handle configuration.   [Netconf](https://tools.ietf.org/html/rfc6241), [RESTCONF](https://tools.ietf.org/html/rfc8040) and [VPP Honeycomb](https://wiki.fd.io/view/Honeycomb) come to mind. However, the dynamics and velocity of container start/stop activity preclude central control. Cloud native must employ stateless and lightweight data plane configuration.     
-- __Feature-rich data plane__. Traffic workload growth coupled with per-service processing options such as ACL or encrypt/decrypt necessitate a robust, and multi-feature software data plane. 
+- __Lightweight data plane configuration__. To date, SDN-like centralized management systems communicating through a control channel to a configuration agent, handle configuration.   [Netconf](https://tools.ietf.org/html/rfc6241), [RESTCONF](https://tools.ietf.org/html/rfc8040) and [VPP Honeycomb](https://wiki.fd.io/view/Honeycomb) come to mind. However, the dynamics and velocity of container start/stop activity preclude centralized control. Cloud native must employ stateless and lightweight data plane configuration.     
+- __Feature-rich data plane__. Traffic workload growth coupled with per-service processing options such as ACL or encrypt/decrypt necessitate a robust, performant, and multi-feature software data plane. 
 - __User space networking__. Performance gains with user space packet processing vs kernel networking are well documented. User space permits network function processes to talk directly to physical NIC components, while bypassing the kernel altogether. You can innovate free of kernel dependencies. You can start/stop NF processes without fear of disrupting kernel functions.
 - __Topology "Meshiness"__. A service mesh describes a mesh of L7 inter-container RPCs that constitute a cloud native application or service. You can expand your service opportunities with a full or partial mesh of interconnected CNFs and application pods running L2/L3. This allows you to set up service chains, or provision point-point "wires" between pods.   
-- __Observability__. Logging, tracing, UI/UX visualization, telemetry, metrics, diagnostic/troubleshooting APIs, and CLI are mandatory_ for your development, testing, troubleshooting, and operations efforts.
+- __Observability__. Logging, tracing, UI/UX visualization, telemetry, metrics, diagnostic/troubleshooting APIs, and CLI are _mandatory_ for your development, testing, troubleshooting, and operations tasks.
 - __Common APIs__ Well documented declarative RPCs (REST, gRPC) expedite development, and integration with external systems. Low-level APIs add speed and accuracy to data plane programming.     
 
 ---
@@ -94,14 +99,21 @@ A new set of requirements emerge for container networking leveraging VNF-like ca
 
 A [cloud native network function (CNF)](https://ligato.io/blog/cnf-ligato-fdio/) is a network function designed and implemented to run inside containers. CNFs inherit all cloud native architectural and operational principles including K8s lifecycle management, agility, resilience, and observability. Your CNF development and deployments should strive to meet the requirements outlined above.
 
-{{< figure src="/images/ligato/cnf-net5.svg" class="image-center" >}}
+{{< figure src="/images/ligato/pnf-vnf-cnf-arch.svg" class="image-center figcaption" caption="VM-based VNFs transition to Container-based Network Function also known as CNFs" >}}
+
+CNFs place your physical (PNF) and virtual network functions (VNF) inside containers. You receive many of the VNF advantages discussed earlier. In addition, you are no longer burdened with VM software overhead. Containers do not require a guest OS or hypervisor. You can also spin up/spin down container CNFs as needed. 
+
+---
+
+
+{{< figure src="/images/ligato/cnf-net5.svg" class="image-center figcaption" caption="CNFs run on pods in a cluster managed by Kubernetes" >}}
 
 <br>
 </br>
 
 <div>
 <p class="is-size-5" style="text-decoration: underline;font-weight: 600">
-Items to highlight from the figure above:
+Kubernetes and CNFs:
 </p>
 </div>
 
